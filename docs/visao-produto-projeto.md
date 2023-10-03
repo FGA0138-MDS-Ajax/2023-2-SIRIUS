@@ -2,11 +2,11 @@
 
 ## Histórico de Revisão
 
-| Data       | Versão | Descrição                                 | Autor(es)     |
-| ---------- | ------ | ----------------------------------------- | ------------- |
-| 03/10/2023 | 0.1    | Criação do documento (apenas o esqueleto) | Lucas Queiroz |
-|            |        |                                           |               |
-|            |        |                                           |               |
+| Data       | Versão | Descrição                                 | Autor(es)                       |
+| ---------- | ------ | ----------------------------------------- | ------------------------------- |
+| 03/10/2023 | 0.1    | Criação do documento (apenas o esqueleto) | Lucas Queiroz                   |
+| 03/10/2023 | 0.2    | Adição de tecnologias a serem utilizadas  | Lucas Queiroz<br>Philipe Morais |
+|            |        |                                           |                                 |
 
 ## Visão Geral do Produto
 
@@ -32,7 +32,8 @@
 
 ### Tecnologias a serem utilizadas
 
-
+- Front-end: [React](https://react.dev)
+- Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com)
 
 ## Visão Geral do Projeto
 
