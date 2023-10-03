@@ -93,13 +93,19 @@
 
 ### Atividade 1
 
-| Atividade | Método | Ferramenta | Entrega |
-| --------- | ------ | ---------- | ------- |
-|           |        |            |         |
+| Atividade             | Método                                                    | Ferramenta                                                   | Entrega                     |
+| --------------------- | --------------------------------------------------------- | ------------------------------------------------------------ | --------------------------- |
+| Codificar a aplicação | Construir, a partir dos requisitos, o código da aplicação | Editores de texto e IDEs (de acordo com preferência individual) | Funcionalidade da aplicação |
 
 
 
-### Atividade N
+### Atividade 2
+
+| Atividade                        | Método                                                       | Ferramenta                                       | Entrega               |
+| -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------ | --------------------- |
+| Definir os requisitos do produto | Construir, a partir dos objetivos do cliente, a lista de requisitos do produto | Microsoft Teams (para comunicação com o cliente) | Requisitos do produto |
+
+### Atividade 3
 
 | Atividade | Método | Ferramenta | Entrega |
 | --------- | ------ | ---------- | ------- |
