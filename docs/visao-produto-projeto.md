@@ -2,11 +2,11 @@
 
 ## Histórico de Revisão
 
-| Data       | Versão | Descrição                                 | Autor(es)                       |
-| ---------- | ------ | ----------------------------------------- | ------------------------------- |
-| 03/10/2023 | 0.1    | Criação do documento (apenas o esqueleto) | Lucas Queiroz                   |
-| 03/10/2023 | 0.2    | Adição de tecnologias a serem utilizadas  | Lucas Queiroz<br>Philipe Morais |
-|            |        |                                           |                                 |
+| Data       | Versão | Descrição                                             | Autor(es)                       |
+| ---------- | ------ | ----------------------------------------------------- | ------------------------------- |
+| 03/10/2023 | 0.1    | Criação do documento (apenas o esqueleto)             | Lucas Queiroz                   |
+| 03/10/2023 | 0.2    | Adição de tecnologias a serem utilizadas              | Lucas Queiroz<br>Philipe Morais |
+| 03/10/2023 | 0.3    | Adição de alguns dos papéis na organização do projeto | Lucas Queiroz                   |
 
 ## Visão Geral do Produto
 
@@ -43,13 +43,13 @@
 
 ### Organização do Projeto
 
-| Papel | Atribuições | Responsável | Participantes |
-| ----- | ----------- | ----------- | ------------- |
-|       |             |             |               |
-|       |             |             |               |
-|       |             |             |               |
-|       |             |             |               |
-|       |             |             |               |
+| Papel         | Atribuições                                                  | Responsável    | Participantes |
+| ------------- | ------------------------------------------------------------ | -------------- | ------------- |
+| Product Owner | Definir e organizar o Backlog do Produto;<br>Definir e organizar o Backlog da Sprint; | Lucas Meireles | Todo o grupo  |
+| Desenvolvedor | Escrever os códigos da aplicação;<br>Escrever códigos de testes;<br>Documentar o código da aplicação. | Lucas Queiroz  | Todo o grupo  |
+| Cliente       | Verificar se o que foi definido no escopo está sendo entregue;<br>Auxiliar o Product Owner a definir o escopo do produto; | Lucas Meireles | Todo o grupo  |
+|               |                                                              |                |               |
+|               |                                                              |                |               |
 
 
 
