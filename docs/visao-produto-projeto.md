@@ -1,4 +1,4 @@
-# Visão do produto e do projeto - [nome do produto]
+# Visão do produto e do projeto - Bracket
 
 ## Histórico de Revisão
 
@@ -8,33 +8,40 @@
 | 03/10/2023 | 0.2    | Adição de tecnologias a serem utilizadas              | Lucas Queiroz<br>Philipe Morais |
 | 03/10/2023 | 0.3    | Adição de alguns dos papéis na organização do projeto | Lucas Queiroz                   |
 | 03/10/2023 | 0.4    | Adição do Ciclo de vida do projeto                    | João Eduardo P.                 |
+| 03/10/2023 | 0.5    | Adição de dados do produto                            | Lucas Queiroz<br>Lucas Meireles |
 
 ## Visão Geral do Produto
 
 ### Problema
 
-
+- Contexto: torneios de esportes eletrônicos.
+- Problema: o chaveamento dos torneios ainda é realizado de forma manual, em que organizadores precisam verificar longos arquivos .csv para definir os confrontos.
+- Solução: automatizar o processo de chaveamento dos torneios.
 
 ### Declaração de Posição do Produto
 
-| Para:                |      |
-| -------------------- | ---- |
-| Necessidade:         |      |
-| O (nome do produto): |      |
-| Que:                 |      |
-| Ao contrário:        |      |
-| Nosso produto:       |      |
+| Para:          | Organizadores de torneios de e-sports           |
+| -------------- | ----------------------------------------------- |
+| Necessidade:   | Chavear os jogadores do torneio                 |
+| O Bracket:     | é uma solução web                               |
+| Que:           | Auxilia no processo de chaveamento dos torneios |
+| Ao contrário:  | Battlefy, Challengermode                        |
+| Nosso produto: | Realiza o chaveamento de maneira automatizada   |
 
 
 
 ### Objetivos do Produto
 
-
+- Automatizar o processo de chaveamento de torneios;
+- Gerar relatórios de torneios (rodadas, jogadores, vencedores, etc);
+- Reconhecer dados repetidos em torneios separados;
 
 ### Tecnologias a serem utilizadas
 
 - Front-end: [React](https://react.dev)
 - Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com)
+- Documentação: [MkDocs](https://https://www.mkdocs.org/)
+- Conteinerização: [Docker](https://docker.com)
 
 ## Visão Geral do Projeto
 
