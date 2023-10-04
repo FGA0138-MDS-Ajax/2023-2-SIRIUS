@@ -7,7 +7,8 @@
 | 03/10/2023 | 0.1    | Criação do documento (apenas o esqueleto)             | Lucas Queiroz                   |
 | 03/10/2023 | 0.2    | Adição de tecnologias a serem utilizadas              | Lucas Queiroz<br>Philipe Morais |
 | 03/10/2023 | 0.3    | Adição de alguns dos papéis na organização do projeto | Lucas Queiroz                   |
-| 03/10/2023 | 0.4    | Adição de dados do produto                            | Lucas Queiroz<br>Lucas Meireles |
+| 03/10/2023 | 0.4    | Adição do Ciclo de vida do projeto                    | João Eduardo P.                 |
+| 03/10/2023 | 0.5    | Adição de dados do produto                            | Lucas Queiroz<br>Lucas Meireles |
 
 ## Visão Geral do Produto
 
@@ -45,7 +46,11 @@
 ## Visão Geral do Projeto
 
 ### Ciclo de vida do projeto de desenvolvimento de software
+Durante o ciclo de vida do projeto, adotaremos a metodologia Ágil para garantir uma interação contínua com nossos clientes. Isso nos permitirá receber feedback constante ao longo do processo de desenvolvimento. Para implementar essa abordagem, utilizaremos as práticas do SCRUM/XP, que se baseiam no "Guia do Scrum" e nas aulas disponibilizadas pela disciplina.
 
+No que diz respeito ao desenvolvimento, utilizaremos o GitHub para gerenciar alterações e submissões de código, além do MkDocs para manter a documentação do projeto atualizada. Também incorporaremos outras ferramentas de desenvolvimento à medida que avançarmos no projeto.
+
+Em relação ao método de trabalho, adotaremos o "Pair Programming", promovendo a colaboração entre os membros da equipe para o desenvolvimento e análise dos componentes trabalhados. Além disso, implementaremos revisões de código ("Code Review") como uma etapa essencial após cada sprint, garantindo o controle adequado das fases de desenvolvimento do projeto.
 
 
 ### Organização do Projeto
@@ -54,6 +59,7 @@
 | ------------- | ------------------------------------------------------------ | -------------- | ------------- |
 | Product Owner | Definir e organizar o Backlog do Produto;<br>Definir e organizar o Backlog da Sprint; | Lucas Meireles | Todo o grupo  |
 | Desenvolvedor | Escrever os códigos da aplicação;<br>Escrever códigos de testes;<br>Documentar o código da aplicação. | Lucas Queiroz  | Todo o grupo  |
+| Analista de Qualidade | Definir padrões para a qualidade do produto;<br>Estipular o cumprimento dos tópicos definidos do produto;<br>Trabalhar na análise da consistência do código fonte do produto; | ---------------  | Todo o grupo  |
 | Cliente       | Verificar se o que foi definido no escopo está sendo entregue;<br>Auxiliar o Product Owner a definir o escopo do produto; | Lucas Meireles | Todo o grupo  |
 |               |                                                              |                |               |
 |               |                                                              |                |               |
