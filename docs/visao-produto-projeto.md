@@ -11,6 +11,7 @@
 | 03/10/2023 | 0.5    | Adição de dados do produto                            | Lucas Queiroz<br>Lucas Meireles |
 | 03/10/2023 | 0.6    | Atualização da Visão Geral do Projeto                 | João Pedro da Silva             |
 | 03/10/2023 | 1.0    | Revisão do documento                                  | Lucas Queiroz                   |
+| 05/10/2023 | 1.1    | Documento atualizado com o feedback do professor      | Lucas Queiroz                   |
 
 
 ## Visão Geral do Produto
@@ -31,7 +32,7 @@
 | Ao contrário:  | Battlefy, Challengermode                        |
 | Nosso produto: | Realiza o chaveamento de maneira automatizada   |
 
-
+**OBS**: Vale ressaltar que o produto é a melhoria de uma solução já existente. Além disso, é possível que o produto seja vendido à empresa cliente.
 
 ### Objetivos do Produto
 
@@ -40,6 +41,8 @@
 - Reconhecer dados repetidos em torneios separados;
 
 ### Tecnologias a serem utilizadas
+
+O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido.
 
 - Front-end: [React](https://react.dev)
 - Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com)
