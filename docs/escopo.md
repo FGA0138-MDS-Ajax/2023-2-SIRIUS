@@ -111,7 +111,7 @@ Vamos utilizar as métricas Velocity e Throughput. Como abordagem de testes, usa
 
 ### Definição de ready/done
 
-Definition of Ready: a história de usuário deve estar no formato: “Eu, como <Role>, quero/desejo/necessito <verbo no infinitivo> para que <descrição do objetivo do usuário com aquela funcionalidade>". Além disso, os critérios de aceitação devem estar de acordo com as regras de negócio, e os habilitadores técnicos devem estar bem definidos.
+Definition of Ready: a história de usuário deve estar no formato: “Eu, como (Role), quero/desejo/necessito (verbo no infinitivo) para que (descrição do objetivo do usuário com aquela funcionalidade)". Além disso, os critérios de aceitação devem estar de acordo com as regras de negócio, e os habilitadores técnicos devem estar bem definidos.
  
 
 Definition of Done: a história deve ter testes unitários escritos e passar em 100% deles. Além disso, testes anteriores de histórias anteriores não podem ser quebrados. A história deve passar por integração contínua. O código novo deve passar por uma revisão por outro membro da equipe. Todo o código novo (classes, métodos, funções, variavéis novas, etc) deve estar bem documentado no próprio código.
