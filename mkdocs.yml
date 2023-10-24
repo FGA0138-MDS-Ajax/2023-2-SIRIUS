@@ -1,4 +1,12 @@
-site_name: Projeto sirius
+site_name: Matcher - Chaveamento de torneios
 theme:
   name: material
   language: pt-BR
+  palette:
+    scheme: slate
+
+nav:
+  - Declaração do escopo: escopo.md
+  - Visão do produto e do projeto: visao-produto-projeto.md
+  - Atas de reunião:
+      - Reunião de 12 de setembro de 2023: ata-reuniao-12-set.md

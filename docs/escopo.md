@@ -140,7 +140,7 @@ Todas as User Stories estarão sujeitas a todos os critérios de Ready e Done de
 
 ## Diagrama de casos de uso
 
-![Diagrama de casos de uso](../public/images/casos-uso.jpeg)
+![Diagrama de casos de uso](casos-uso.jpeg)
 
 ## MVP
 
