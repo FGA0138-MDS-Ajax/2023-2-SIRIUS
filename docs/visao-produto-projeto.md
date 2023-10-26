@@ -45,7 +45,7 @@
 O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido.
 
 - Front-end: [React](https://react.dev)
-- Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com)
+- Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com), [Prisma](https://prisma.io)
 - Documentação: [MkDocs](https://https://www.mkdocs.org/)
 - Conteinerização: [Docker](https://docker.com)
 
@@ -84,12 +84,12 @@ Em relação ao método de trabalho, adotaremos o "Pair Programming", promovendo
 
 
 
-| Descrição              | Área/Envolvidos | Periodicidade            | Produtos Gerados            |
-| ---------------------- | --------------- | ------------------------ | --------------------------- |
-| Planejamento da sprint | Todo o grupo    | No início de cada sprint | Backlog da sprint           |
-| Daily Scrum            | Todo o grupo    | Diário                   | Ata de reunião              |
-| Sprint Review          | Todo o grupo    | Ao final de cada sprint  | Ata de sprint review        |
-| Sprint Retrospective   | Todo o grupo    | Ao final de cada sprint  | Ata de sprint retrospective |
+| Descrição            | Área/Envolvidos | Periodicidade            | Produtos Gerados            |
+| -------------------- | --------------- | ------------------------ | --------------------------- |
+| Sprint planning      | Todo o grupo    | No início de cada sprint | Backlog da sprint           |
+| Daily Scrum          | Todo o grupo    | Diário                   | Ata de reunião              |
+| Sprint Review        | Todo o grupo    | Ao final de cada sprint  | Ata de sprint review        |
+| Sprint Retrospective | Todo o grupo    | Ao final de cada sprint  | Ata de sprint retrospective |
 
 
 
@@ -137,6 +137,30 @@ Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de aco
 | Atividade                        | Método                                                       | Ferramenta                                       | Entrega               |
 | -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------ | --------------------- |
 | Definir os requisitos do produto | Construir, a partir dos objetivos do cliente, a lista de requisitos do produto | Microsoft Teams (para comunicação com o cliente) | Requisitos do produto |
+
+
+
+### Atividade 3
+
+| Atividade       | Método                                                       | Ferramenta                                     | Entrega                          |
+| --------------- | ------------------------------------------------------------ | ---------------------------------------------- | -------------------------------- |
+| Sprint planning | A partir do backlog, definir o escopo da sprint, ou seja, histórias de usuário e tasks adicionais que serão de utilidade para o projeto ou produto | Product Backlog<br>Sistemas de issue do github | Sprint Backlog<br>Meta da sprint |
+
+
+
+### Atividade 4
+
+| Atividade     | Método                                                       | Ferramenta                       | Entrega                                      |
+| ------------- | ------------------------------------------------------------ | -------------------------------- | -------------------------------------------- |
+| Sprint Review | Verificar se o trabalho realizado numa sprint atende à meta da sprint | Sprint Backlog<br>Meta da sprint | Parte do documento de review e retrospective |
+
+
+
+### Atividade 5
+
+| Atividade            | Método                                                       | Ferramenta                                                   | Entrega                                      |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------- |
+| Sprint Retrospective | Verificar o trabalho realizado e entender o que poderíamos ter feito de melhor;<br>Metrificar o trabalho realizado e comparar com sprints anteriores | Sistema de issues do github<br>Meta da Sprint<br>Dados de sprints anteriores | Parte do documento de review e retrospective |
 
 
 
