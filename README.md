@@ -1,6 +1,6 @@
 # 2023-2-SIRIUS
 
-Repositório para documentação do projeto "Matcher", da equipe Sirius.
+Repositório para desenvolvimento e documentação do projeto "Matcher", da equipe Sirius.
 
 
 
