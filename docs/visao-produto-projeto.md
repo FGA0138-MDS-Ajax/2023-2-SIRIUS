@@ -164,6 +164,14 @@ Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de aco
 
 
 
+### Atividade 6
+
+| Atividade   | Método                                                       | Ferramenta | Entrega           |
+| ----------- | ------------------------------------------------------------ | ---------- | ----------------- |
+| Code review | Revisar o trabalho (código feito) de uma task qualquer. Essa revisão é em busca de erros e melhorias. | Github     | Código atualizado |
+
+
+
 ## Lições Aprendidas
 
 ### Unidade 1
