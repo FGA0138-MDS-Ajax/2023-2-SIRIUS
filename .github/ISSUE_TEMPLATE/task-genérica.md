@@ -1,5 +1,5 @@
 ---
-name: Task padrão
+name: Task genérica
 about: Issue para uma task qualquer.
 title: ''
 labels: ''
@@ -7,7 +7,9 @@ assignees: ''
 
 ---
 
-**Descrição**: escreva uma descrição sucinta da task.
+**Problema**: escreva uma descrição sucinta do problema em questão.
+
+**Solução**: escreva, da maneira mais breve possível, a solução do problema.
 
 **Branch**: `nome_da_branch`
 
