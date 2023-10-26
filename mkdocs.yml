@@ -10,3 +10,9 @@ nav:
   - Visão do produto e do projeto: visao-produto-projeto.md
   - Atas de reunião:
       - Reunião de 12 de setembro de 2023: ata-reuniao-12-set.md
+  - Sprints:
+      - Sprint 1: 
+        - Planning: sprints/sprint-1/s1-planning.md
+        - Dailies: sprints/sprint-1/s1-dailies.md
+        - Review e retrospective: sprints/sprint-1/s1-review-retrospective.md
+
