@@ -19,7 +19,7 @@ class CriadoraArquivos:
     Classe para criar arquivos de template.
     """
 
-    def __init__(self, numero_sprint=0):
+    def __init__(self):
         self.numero_sprint = self.tratar_entrada()
         self.path = self.criar_diretorio()
 
@@ -61,7 +61,11 @@ class CriadoraArquivos:
     def criar_arquivo(self, nome_arquivo: str, conteudo_arquivo: str):
         """
         Criar um arquivo qualquer no diretório criado.
+
+        :param nome_arquivo: nome do arquivo a ser criado.
+        :param conteudo_arquivo: conteúdo do arquivo a ser criado.
         """
+
         nome_arquivo = f's{self.numero_sprint}-{nome_arquivo}.md'
 
         try:
@@ -69,8 +73,7 @@ class CriadoraArquivos:
             arquivo.write(conteudo_arquivo)
             arquivo.close()
 
-        except Exception as e:
-            print(e)
+        except Exception:
             print(f"Erro ao criar {nome_arquivo}")
             sys.exit(1)
 
@@ -117,7 +120,6 @@ if __name__ == "__main__":
     template_review_retrospective += "### A equipe realizou as atividades definidas?\n"
     template_review_retrospective += "### A equipe teve alguma dificuldade técnica?\n"
     template_review_retrospective += '\n\n## Métricas'
-
 
     params.append(('review-retrospective', template_review_retrospective))
     params.append(('dailies', template_dailies))
