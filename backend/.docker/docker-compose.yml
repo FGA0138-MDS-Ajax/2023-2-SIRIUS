@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  database:
+    image: postgres
+    container_name: Matcher_DB
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_HOST=localhost
+      - POSTGRES_USER=dev_usermatcher
+      - POSTGRES_PASSWORD=matcher_devpass
+      - POSTGRES_DB=matcher_db
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
