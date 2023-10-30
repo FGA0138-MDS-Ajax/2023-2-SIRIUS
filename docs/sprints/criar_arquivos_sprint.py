@@ -82,19 +82,24 @@ if __name__ == "__main__":
     params = []
 
     # criar parametros pro arquivo de dailies
-    template_dailies = '## Daily dd/mm/aaaa\n'
-    for name in [
-            'Fábio',
-            'João Eduardo',
-            'João Pedro',
-            'Lucas Queiroz',
-            'Lucas Meireles',
-            'Philipe',
-            'Rodrigo'
-    ]:
-        template_dailies += f'### {name}\n'
-        template_dailies += '- O que fiz ontem?\n- O que pretendo fazer hoje?\n- Existe algo que está me atrapalhando?'
-        template_dailies += '\n\n'
+    template_dailies = ''
+    index = 0
+
+    while index < 3:
+        template_dailies += '## Daily dd/mm/aaaa\n'
+        for name in [
+                'Fábio',
+                'João Eduardo',
+                'João Pedro',
+                'Lucas Queiroz',
+                'Lucas Meireles',
+                'Philipe',
+                'Rodrigo'
+        ]:
+            template_dailies += f'### {name}\n'
+            template_dailies += '- O que fiz ontem?\n- O que pretendo fazer hoje?\n- Existe algo que está me atrapalhando?'
+            template_dailies += '\n\n'
+        index += 1
 
     # criar parametros pro arquivo de planning
     template_planning = "## Sprint backlog" + 5 * '\n'
