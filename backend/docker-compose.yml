@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  app:
+    container_name: Matcher_APP
+    build: .
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src
+    depends_on:
+      - database
   database:
     image: postgres
     container_name: Matcher_DB

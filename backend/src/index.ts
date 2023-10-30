@@ -2,6 +2,7 @@ import { z } from 'zod'
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
 import { routes } from './routes'
+import 'dotenv/config'
 
 const prisma = new PrismaClient()
 
@@ -29,7 +30,7 @@ const startServer = async () => {
 
   app.use(routes)
 
-  app.listen(process.env.PORT ? Number(process.env.PORT) : 3000, () => {
+  app.listen(process.env.PORT ? Number(process.env.PORT): 3000, () => {
     console.log('HTTP Server running')
   })
 }
