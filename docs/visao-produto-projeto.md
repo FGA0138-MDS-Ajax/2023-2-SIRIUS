@@ -12,6 +12,8 @@
 | 03/10/2023 | 0.6    | Atualização da Visão Geral do Projeto                 | João Pedro da Silva             |
 | 03/10/2023 | 1.0    | Revisão do documento                                  | Lucas Queiroz                   |
 | 05/10/2023 | 1.1    | Documento atualizado com o feedback do professor      | Lucas Queiroz                   |
+| 31/10/2023 | 1.2    | Alteração de tecnologia do Banco de Dados      | Philipe Morais                  |
+
 
 
 ## Visão Geral do Produto
@@ -45,7 +47,7 @@
 O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido.
 
 - Front-end: [React](https://react.dev)
-- Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com), [Prisma](https://prisma.io)
+- Back-end: [PostgreSQL](https://postgresql.org/), [Node](https://nodejs.org), [Express](https://expressjs.com), [Prisma](https://prisma.io)
 - Documentação: [MkDocs](https://https://www.mkdocs.org/)
 - Conteinerização: [Docker](https://docker.com)
 

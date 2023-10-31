@@ -6,6 +6,7 @@
 | ---------- | ------ | ---------------------- | ------------------------------------------------------------ |
 | 16/10/2023 | 0.1    | Criação do documento   | Lucas Queiroz<br>João Eduardo<br>Rodrigo Mattos              |
 | 23/10/2023 | 1.0    | Documento para entrega | Lucas Queiroz<br>Lucas Meireles<br>João Pedro<br>Rodrigo Mattos |
+| 31/10/2023 | 1.1    | Alteração do Banco de Dados | Philipe Morais |
 
 
 
@@ -32,7 +33,7 @@
 O chaveamento de torneios de e-sports para algumas formas especiais de competição é realizado manualmente, de forma que organizadores precisam verificar longos arquivos .csv para definir os confrontos. O Matcher surge como uma oportunidade para automatizar esse processo. Além disso, ele será usado para reconhecer dados repetidos em torneios separados e para gerar relatórios de torneios.
  
 
-Utilizaremos, como tecnologias, React com Typescript, para o Front-end. Para o Back-end, utilizaremos o SGBD MySQL, o ambiente de runtime NodeJS, também com Typescript, o ORM Prisma e o framework Express. Também usaremos o Docker para conteinerização. Git e Github serão empregados no versionamento do software. O MkDocs será usufruído para a documentação. Escolhemos essas tecnologias porque alguns membros do grupo já as conhecem.
+Utilizaremos, como tecnologias, React com Typescript, para o Front-end. Para o Back-end, utilizaremos o SGBD PostgreSQL, o ambiente de runtime NodeJS, também com Typescript, o ORM Prisma e o framework Express. Também usaremos o Docker para conteinerização. Git e Github serão empregados no versionamento do software. O MkDocs será usufruído para a documentação. Escolhemos essas tecnologias porque alguns membros do grupo já as conhecem.
  
 
 Nossa abordagem é ágil, com ciclo de vida ScrumXP. Com base no Scrum vamos utilizar dos rituais de Daily Scrum, Sprint Planning, Sprint Review e Sprint Retrospective. A duração de uma sprint é de uma semana. Além disso, vamos aproveitar as técnicas de Pair Programming, Code Review e Integração Contínua. 
