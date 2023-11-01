@@ -88,7 +88,7 @@ O conhecimento do nosso product owner e membro do grupo acerca dessa API externa
 
 
 
-![Visao de implementacao](visao-implementacao.jpeg)
+![Visao de implementacao](diagrama-implementacao.jpeg)
 
 
 
