@@ -123,7 +123,11 @@
 - O que pretendo fazer hoje? **Ajudar a equipe a terminar o doc de arquitetura e revisar o PR do Philipe**
 - Existe algo que está me atrapalhando? **Concorrência com outras matérias**
 
-### Lucas Meireles (não participou)
+### Lucas Meireles 
+
+- O que fiz ontem? **Iniciado tarefas do documento de arquitetura**
+- O que pretendo fazer hoje? **Estudos de tecnologias, maior detalhamento de backlog e finalizar documento de arquitetura**
+- Existe algo que está me atrapalhando? **Problemas em casa e de serviço**
 
 ### Philipe
 
