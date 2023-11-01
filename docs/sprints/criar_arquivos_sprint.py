@@ -119,6 +119,7 @@ if __name__ == "__main__":
     template_review_retrospective += "### Quais foram as principais dificuldades durante a sprint?\n"
     template_review_retrospective += "### A equipe realizou as atividades definidas?\n"
     template_review_retrospective += "### A equipe teve alguma dificuldade técnica?\n"
+    template_review_retrospective += "### Como a equipe entende que pode melhorar para a próxima sprint?\n"
     template_review_retrospective += '\n\n## Métricas'
 
     params.append(('review-retrospective', template_review_retrospective))
