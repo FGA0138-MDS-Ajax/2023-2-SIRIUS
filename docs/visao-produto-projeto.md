@@ -18,25 +18,26 @@
 
 ### Problema
 
-- Contexto: torneios de esportes eletrônicos.
-- Problema: o chaveamento dos torneios ainda é realizado de forma manual, em que organizadores precisam verificar longos arquivos .csv para definir os confrontos.
-- Solução: automatizar o processo de chaveamento dos torneios.
+- Contexto: Administração/manutanção de competições de esportes eletrônicos.
+- Problema: A realização de competições de campeonatos de TFT, por exemplo, ainda não possuem um sistema dedicado de chavemaneto e manutenção visto sua diferença de estilo de partida para 8 jogadores em uma mesma sala, dos quais um número definido pelo organizador da competição irá passar à próxima rodada da mesma.
+- Solução: automatizar o processo de chaveamento e realização dos torneios.
 
 ### Declaração de Posição do Produto
 
 | Para:          | Organizadores de torneios de e-sports           |
 | -------------- | ----------------------------------------------- |
-| Necessidade:   | Chavear os jogadores do torneio                 |
-| O Bracket:     | é uma solução web                               |
-| Que:           | Auxilia no processo de chaveamento dos torneios |
+| Necessidade:   | Chavear os jogadores do torneio de TFT                 |
+| O Matcher:     | é uma solução web                               |
+| Que:           | Auxilia no processo de chaveamento e realização dos torneios de TFT |
 | Ao contrário:  | Battlefy, Challengermode                        |
 | Nosso produto: | Realiza o chaveamento de maneira automatizada   |
 
-**OBS**: Vale ressaltar que o produto é a melhoria de uma solução já existente. Além disso, é possível que o produto seja vendido à empresa cliente.
+**OBS**: Vale ressaltar que o produto é a melhoria de uma solução já existente. Além disso, é possível que o produto seja vendido à empresa cliente ou até integrado a uma empresa maior, sendo esta a Battlefy.
+Atualmente o cliente primário utiliza um chaveamento baseado em múltiplas planilhas da Google com scripts feitos à mão para acelerar e reduzir o processo manual ao máximo e evitar grandes esperas dos jogadores durante o evento da competição propriamente dita.
 
 ### Objetivos do Produto
 
-- Automatizar o processo de chaveamento de torneios;
+- Automatizar o processo de chaveamento de torneios, o que inclui, mas não se limita a: chaveamento de rodadas, reconhecimento de vencedores de rodada, análise de dados cadastrados, ajuste de presença de jogadores.;
 - Gerar relatórios de torneios (rodadas, jogadores, vencedores, etc);
 - Reconhecer dados repetidos em torneios separados;
 
