@@ -12,19 +12,19 @@ version 1.22.19 or higher.
 
 First, install the project dependencies using the command:
 
-```bash
+```
 yarn
 ```
 
 Run the development server:
 
-```bash
+```
 yarn dev
 ```
 
 ## How to start
 
-- To initialize, run the above step by typing ```bash yarn dev```
+- To initialize, run the above step by typing ``` yarn dev```
 
 ## Database
 

@@ -7,12 +7,23 @@ assignees: ''
 
 ---
 
-**Descrição**: Eu, como...
+## User Story
 
-**Branch front-end**: `nome_da_branch`
-**Branch back-end**: `nome_da_branch`
+### **COMO:**
+Usuário da plataforma
+ 
+### **QUERO:**
+Poder entrar na plataforma, pelo o meu e-mail já registrado.
 
-**Critérios de aceitação**:
+### **COM A FINALIDADE DE:**
+Possa utilizar de todas as funcionalidades da plataforma.
+
+**Branch Front-end**: `nome_da_branch`
+<br>
+
+**Branch Back-end**: `nome_da_branch`
+
+### **Critérios de aceitação**:
 - [ ] Testes unitários foram escritos;
 - [ ] Testes unitários (novos e antigos) 100%;
 - [ ] Passou na integração contínua;

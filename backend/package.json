@@ -13,9 +13,11 @@
   "dependencies": {
     "@prisma/client": "^5.5.2",
     "bcrypt": "^5.1.1",
+    "csv-parse": "^5.5.2",
     "eslint": "^8.52.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
@@ -23,12 +25,14 @@
     "@types/bcrypt": "^5.0.1",
     "@types/express": "^4.17.20",
     "@types/jsonwebtoken": "^9.0.4",
+    "@types/multer": "^1.4.9",
     "@types/node": "^20.8.9",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "@vitest/coverage-v8": "^0.34.6",
     "dotenv": "^16.3.1",
     "prisma": "^5.5.2",
+    "ts-node": "^10.9.1",
     "tsup": "^7.2.0",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
