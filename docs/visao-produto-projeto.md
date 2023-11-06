@@ -52,22 +52,22 @@ O principal critério para a escolha das tecnologias abaixo foi a familiaridade 
 ## Visão Geral do Projeto
 
 ### Ciclo de vida do projeto de desenvolvimento de software
-Durante o ciclo de vida do projeto, adotaremos a metodologia Ágil para garantir uma interação contínua com nossos clientes. Isso nos permitirá receber feedback constante ao longo do processo de desenvolvimento. Para implementar essa abordagem, utilizaremos as práticas do SCRUM/XP, que se baseiam no "Guia do Scrum" e nas aulas disponibilizadas pela disciplina.
 
-No que diz respeito ao desenvolvimento, utilizaremos o GitHub para gerenciar alterações e submissões de código, além do MkDocs para manter a documentação do projeto atualizada. Também incorporaremos outras ferramentas de desenvolvimento à medida que avançarmos no projeto.
-
-Em relação ao método de trabalho, adotaremos o "Pair Programming", promovendo a colaboração entre os membros da equipe para o desenvolvimento e análise dos componentes trabalhados. Além disso, implementaremos revisões de código ("Code Review") como uma etapa essencial após cada sprint, garantindo o controle adequado das fases de desenvolvimento do projeto.
+- **Metodologia**: ágil. Isso garante contato contínuo com nossos clientes. Além disso, podemos receber feedback constante ao longo do processo de desenvolvimento.
+- **Processo**: SCRUM/XP. Esse processo é um híbrido entre SCRUM e XP. Para as atividades e conceitos relativos ao SCRUM, vamos nos basear no "Guia do Scrum". Para as atividades e conceitos relativos ao XP, vamos nos basear no livro "Programação extrema(xp) explicada", do autor Kent Beck. 
+- **Ferramentas**: utilizaremos o GitHub para gerenciar alterações e submissões de código, além do MkDocs para manter a documentação do projeto atualizada. Para reuniões, encontros e afins, utilizaremos como ferramental de apoio o [Gather Town](https://www.gather.town/) (aplicação web que promove um contexto similar a um jogo e possui ferramentas similares à um escritório online), criando um ambiente virtual mais atraente e descontraido para os membros envolvidos, além de permitir que membros possam acompanhar e interagir de modo mais casual uns com os outros.
+- **Métodos**: como citado acima, utilizaremos dos métodos que vem do SCRUM/XP. Ou seja, vamos utilizar de Pair Programming, Code Review, Integração Contínua, Refatoração, Jogo do Planejamento, Sprint Daily, Sprint Planning, Sprint Review, Sprint Retrospective e Refinamento de Backlog do Produto. 
 
 
 ### Organização do Projeto
 
 | Papel         | Atribuições                                                  | Responsável    | Participantes |
 | ------------- | ------------------------------------------------------------ | -------------- | ------------- |
-| Product Owner | Definir e organizar o Backlog do Produto;<br>Definir e organizar o Backlog da Sprint; | Lucas Meireles | Todo o grupo  |
+| Product Owner | Definir e organizar o Backlog do Produto;<br>Definir e organizar o Backlog da Sprint; | Lucas Meireles | Lucas Meireles |
 | Desenvolvedor | Escrever os códigos da aplicação;<br>Escrever códigos de testes;<br>Documentar o código da aplicação. | Philipe Morais | Todo o grupo  |
 | Analista de Qualidade | Definir padrões para a qualidade do produto;<br>Estipular o cumprimento dos tópicos definidos do produto;<br>Trabalhar na análise da consistência do código fonte do produto; | ---------------  | Todo o grupo  |
-| Cliente       | Verificar se o que foi definido no escopo está sendo entregue;<br>Auxiliar o Product Owner a definir o escopo do produto; | Lucas Meireles | Todo o grupo  |
-| Scrum Master | Garantir que os artefatos, rituais e princípios do Scrum sejam seguidos de acordo com o Guia do Scrum. | Lucas Queiroz | Todo o grupo |
+| Cliente       | Verificar se o que foi definido no escopo está sendo entregue;<br>Auxiliar o Product Owner a definir o escopo do produto; | Lucas Meireles | Lucas Meireles |
+| Scrum Master | Garantir que os artefatos, rituais e princípios do Scrum sejam seguidos de acordo com o Guia do Scrum. | Lucas Queiroz | Lucas Queiroz |
 
 
 
@@ -186,15 +186,14 @@ Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de aco
 
 ...
 
-### Unidade 4
-
-...
-
-
-
-## Próximos passos
-
 
 
 ## Referências Bibliográficas
 
+SCHWABER, Ken; SUTHERLAND, Jeff. **Guia do Scrum**: as regras do jogo. 2ª ed.
+Rio de Janeiro: Elsevier, 2020.
+
+
+
+BECK, Kent. **Programação extrema (xp) explicada**: acolha as mudanças. Porto
+Alegre: Bookman, 2004.
