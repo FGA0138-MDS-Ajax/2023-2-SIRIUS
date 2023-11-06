@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { UserController } from './controllers/Users/UsersController';
-import os from 'os';
 import fs from 'fs';
 import {parse} from 'csv-parse';
 import multer from 'multer';
@@ -14,7 +13,10 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/csv', upload.single('file'),(req, res) => {
-    const data = fs.readFileSync(req.file?.path);
+    const filePath = req.file?.path;
+    if(!filePath) return res.status(400).send('erro');
+
+    const data = fs.readFileSync(filePath);
 
     try {
         parse(data, (err, records) => {
@@ -32,7 +34,7 @@ routes.post('/csv', upload.single('file'),(req, res) => {
             }
 
             for(let linha of records) {
-                const dados = {};
+                const dados:any = {};
                 for(let i = 0; i < linha.length; i++) {
                     dados[chaves[i]] = linha[i];
                 }
