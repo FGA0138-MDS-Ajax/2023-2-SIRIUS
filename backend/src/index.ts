@@ -3,6 +3,7 @@ import express from 'express'
 import { PrismaClient } from '@prisma/client'
 import { routes } from './routes'
 import 'dotenv/config'
+import cors from 'cors' // Importe o pacote cors
 
 const prisma = new PrismaClient()
 
@@ -25,6 +26,9 @@ saveUserToDatabase({ name: 'Philipe Morais', age: 18 })
 
 const startServer = async () => {
   const app = express()
+
+  // Configure o middleware CORS
+  app.use(cors()) // Isso habilita o CORS para todas as rotas
 
   app.use(express.json())
 
