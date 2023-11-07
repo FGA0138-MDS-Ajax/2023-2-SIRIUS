@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { API } from '../../server/api'
 
 const Input = () => {
-  const [selectedFile, setSelectedFile] = useState()
+  const [selectedFile, setSelectedFile] = useState<any>()
   const [jsonData, setJsonData] = useState()
 
   const handleFileChange = (event: any) => {
@@ -10,28 +10,32 @@ const Input = () => {
   }
 
   const handleSubmit = async () => {
+    const usuarioSelecionouCSV = selectedFile && selectedFile.type == 'text/csv';
+    if(!usuarioSelecionouCSV) {
+      console.error('Nenhum arquivo CSV selecionado.')
+      return;
+    }
+
+    const formData = new FormData()
+
     try {
-      if (selectedFile) {
-        const formData = new FormData()
-        formData.append('csvFile', selectedFile)
-
-        // Utilize o try-catch para lidar com erros na requisição.
-        try {
-          const response = await API.post('/csv', formData)
-
-          if (response.data && response.data.res !== 'erro') {
-            setJsonData(response.data)
-          } else {
-            console.error('Erro no processamento do CSV.')
-          }
-        } catch (error) {
-          console.error('Erro na requisição para processar o CSV:', error)
-        }
-      } else {
-        console.error('Nenhum arquivo CSV selecionado.')
-      }
+      formData.append('csvFile', selectedFile)
     } catch (error) {
       console.error('Erro ao processar o arquivo CSV:', error)
+      return;
+    }
+
+    // Utilize o try-catch para lidar com erros na requisição.
+    try {
+      const response = await API.post('/csv', formData)
+
+      if (response.data && response.data.res !== 'erro') 
+        setJsonData(response.data)
+      else
+        console.error('Erro no processamento do CSV.')
+      
+    } catch (error) {
+      console.error('Erro na requisição para processar o CSV:', error)
     }
   }
 
