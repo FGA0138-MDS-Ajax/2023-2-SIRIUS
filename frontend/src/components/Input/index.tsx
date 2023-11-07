@@ -7,7 +7,7 @@ const Input = () => {
   const [jsonData, setJsonData] = useState()
 
   const fileIsValid = (file?: File) => {
-    return file && file.type === 'text/csv';
+    return file && file.type === 'text/csv'
   }
 
   const handleFileChange = (event: any) => {
@@ -17,10 +17,10 @@ const Input = () => {
     // contrário, limpar o input
     if(!fileIsValid(file)) {
       console.error('Selecione um arquivo csv!')
-      event.target.value = null;
+      event.target.value = null
       setFileContents('')
       setValidInput(false)
-      return;
+      return
     }
 
     setValidInput(true)
@@ -29,8 +29,8 @@ const Input = () => {
     // e alocar na variável fileContents
     const reader = new FileReader()
     reader.onload = r => {
-        const conteudoCsv = r.target?.result as string;
-        setFileContents(conteudoCsv)
+      const conteudoCsv = r.target?.result as string
+      setFileContents(conteudoCsv)
     }
 
     reader.readAsText(file)
@@ -41,7 +41,7 @@ const Input = () => {
     // tipo de arquivo.
     if(!validInput || fileContents === '') {
       console.error('Nenhum arquivo CSV selecionado.')
-      return;
+      return
     }
 
     try {
