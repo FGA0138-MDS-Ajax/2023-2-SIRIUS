@@ -12,14 +12,15 @@
 | 03/10/2023 | 0.6    | Atualização da Visão Geral do Projeto                 | João Pedro da Silva             |
 | 03/10/2023 | 1.0    | Revisão do documento                                  | Lucas Queiroz                   |
 | 05/10/2023 | 1.1    | Documento atualizado com o feedback do professor      | Lucas Queiroz                   |
+| 06/11/2023 | 1.2    | Documento atualizado com o feedback do professor      | Todo o grupo                    |
 
 
 ## Visão Geral do Produto
 
 ### Problema
 
-- Contexto: Administração/manutanção de competições de esportes eletrônicos.
-- Problema: A realização de competições de campeonatos de TFT, por exemplo, ainda não possuem um sistema dedicado de chavemaneto e manutenção visto sua diferença de estilo de partida para 8 jogadores em uma mesma sala, dos quais um número definido pelo organizador da competição irá passar à próxima rodada da mesma.
+- Contexto: Administração/manutenção de competições de esportes eletrônicos.
+- Problema: A realização de competições de campeonatos de Teamfight Tactics (TFT), por exemplo, ainda não possui um sistema dedicado de chaveamento e manutenção visto sua diferença de estilo de partida para 8 jogadores em uma mesma sala, dos quais um número definido pelo organizador da competição irá passar à próxima rodada da mesma.
 - Solução: automatizar o processo de chaveamento e realização dos torneios.
 
 ### Declaração de Posição do Produto
@@ -43,7 +44,7 @@ Atualmente o cliente primário utiliza um chaveamento baseado em múltiplas plan
 
 ### Tecnologias a serem utilizadas
 
-O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido.
+O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido. Além disso, elas são, todas, padrões de mercado, já bem testadas e consolidadas, utilizadas em vários projetos de grande escala (o facebook e o instagram, por exemplo, foram construídos utilizando React).
 
 - Front-end: [React](https://react.dev)
 - Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com), [Prisma](https://prisma.io)
@@ -74,11 +75,19 @@ O principal critério para a escolha das tecnologias abaixo foi a familiaridade 
 
 ### Planejamento das Fases e/ou Iterações do Projeto
 
-| Sprint   | Produto (entrega)                               | Data Início | Data Fim | Entregável(eis)                                 | Responsáveis | % conclusão |
-| -------- | ----------------------------------------------- | ----------- | -------- | ----------------------------------------------- | ------------ | ----------- |
-| Sprint 1 | Documento de visão, powerpoint e ata de reunião | 02/10       | 09/10    | Documento de visão, powerpoint e ata de reunião | Todo o grupo | 2%          |
+| Sprint        | Produto (entrega)                                            | Data Início | Data Fim | Entregável(eis)                                              | Responsáveis | % conclusão |
+| ------------- | ------------------------------------------------------------ | ----------- | -------- | ------------------------------------------------------------ | ------------ | ----------- |
+| Pré-SCRUM/XP* | Definir visão e escopo (de forma generalizada) do produto e do projeto. | 02/10       | 24/10    | Documento de visão, documento de escopo, powerpoint e atas de reunião realizadas | Todo o grupo | 40%         |
+| Sprint 1      | Definir a arquitetura do produto e  entregar US1             | 24/10/2023  | 31/10    | Documento de arquitetura, backlog da sprint, incremento, meta da sprint, US1 | Todo o grupo | 50%         |
+| Sprint 2      | Corrigir os documentos de visão, escopo e arquitetura, e entregar a US1** | 01/11       | 07/11    | Documentos atualizados, US1, backlog da sprint, incremento, meta da sprint | Todo o grupo | 60%         |
+| Sprint 3      | Entregar US2                                                 | 08/11       | 14/11    | US2, backlog da sprint, incremento, meta da sprint           | Todo o grupo | 70%         |
+| Sprint 4      | Entregar US3                                                 | 15/11       | 21/11    | US3, backlog da sprint, incremento, meta da sprint           | Todo o grupo | 80%         |
+| Sprint 5      | Entregar US6 e US7                                           | 22/11       | 27/11    | US6 e US7, backlog da sprint, incremento, meta da sprint     | Todo o grupo | 90%         |
+| Sprint 6      | Entregar US8 e US9                                           | 29/11       | 04/11    | US8 e US9, backlog da sprint, incremento, meta da sprint     | Todo o grupo | 100%        |
 
+*: não é sprint devidamente, pois nesse momento ainda não começamos a utilizar da metodologia SCRUM, muito menos dos rituais, artefatos, pilares, etc.
 
+**: não conseguimos entregar, de fato, a US1 na sprint 1.
 
 ### Matriz de Comunicação
 
@@ -101,7 +110,7 @@ O principal critério para a escolha das tecnologias abaixo foi a familiaridade 
 | Riscos | Grau de exposição | Mitigação | Plano de Contigência |
 | -------------- | --------------- | ------------- | ---------------- |
 | Trancamento de matrícula por parte de algum membro | Baixo (o grupo está comprometido com a matéria) | Definir de forma equilibrada as responsabilidades de cada membro | Mudar as responsabilidades dos membros, a fim de suprir a ausência do membro que trancou |
-| Desentendimento entre membros do grupo | Baixo | Cada membro deve ter, antes de mais nada, respeito pelo outro, a fim de evitar brigas desnecessárias. | O grupo deve se reunir como um todo a fim de encontrar uma solução para o conflito. |
+| Desentendimento entre membros do grupo | Alta | Cada membro deve ter, antes de mais nada, respeito pelo outro, a fim de evitar brigas desnecessárias. | O grupo deve se reunir como um todo a fim de encontrar uma solução para o conflito. |
 | Problemas técnicos | Médio | Utilizar de tecnologias (como o docker) que evitem problemas técnicos. | Buscar soluções com pessoas que já passaram e resolveram o problema. |
 | Falta de instrumento de desenvolvimento para algum membro | Baixo | Cada membro deve ser cuidadoso no uso e manutenção de seu computador. | Utilizar os computadores da BCE. |
 | Falta de comunicação adequada entre os membros do grupo | Alta | Deve ser reforçada a importância dos meios definidos de comunicação, além da participação nos rituais Scrum. | Realizar reunião emergencial, com o intuito de que todos entendam o andamento do projeto. |
@@ -120,7 +129,7 @@ O principal critério para a escolha das tecnologias abaixo foi a familiaridade 
 
 ## Processo de Desenvolvimento de Software
 
-Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de acordo com o Guia do Scrum. Ou seja: vamos utilizar dos rituais (sprint planning, dailies, review e retrospective), além dos artefatos (sprint backlog e product backlog). 
+Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de acordo com o Guia do Scrum e com o livro "Programação extrema(xp) explicada", do autor Kent Beck. Ou seja: vamos utilizar dos rituais (sprint planning, dailies, review e retrospective) e dos artefatos (sprint backlog e product backlog) SCRUM, além dos princípios, valores e processos que fazem o XP (pair programming, code review, etc. Explicado com mais detalhes acima, na sessão "ciclo de vida do projeto de desenvolvimento de software"). 
 
 
 ## Detalhamento de atividades do projeto
