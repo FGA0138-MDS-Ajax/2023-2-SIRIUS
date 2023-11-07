@@ -2,33 +2,51 @@ import { useState } from 'react'
 import { API } from '../../server/api'
 
 const Input = () => {
-  const [selectedFile, setSelectedFile] = useState<any>()
+  const [fileContents, setFileContents] = useState<string>('')
+  const [validInput, setValidInput] = useState<boolean>(false)
   const [jsonData, setJsonData] = useState()
 
+  const fileIsValid = (file?: File) => {
+    return file && file.type === 'text/csv';
+  }
+
   const handleFileChange = (event: any) => {
-    setSelectedFile(event.target.files[0])
+    const file = event.target.files[0]
+
+    // verificar se o arquivo inserido é csv. Caso
+    // contrário, limpar o input
+    if(!fileIsValid(file)) {
+      console.error('Selecione um arquivo csv!')
+      event.target.value = null;
+      setFileContents('')
+      setValidInput(false)
+      return;
+    }
+
+    setValidInput(true)
+
+    // usar o FileReader para obter o conteúdo do csv, em string,
+    // e alocar na variável fileContents
+    const reader = new FileReader()
+    reader.onload = r => {
+        const conteudoCsv = r.target?.result as string;
+        setFileContents(conteudoCsv)
+    }
+
+    reader.readAsText(file)
   }
 
   const handleSubmit = async () => {
-    const usuarioSelecionouCSV = selectedFile && selectedFile.type == 'text/csv';
-    if(!usuarioSelecionouCSV) {
+    // a validação abaixo é necessária, pois o usuário pode enviar qualquer outro
+    // tipo de arquivo.
+    if(!validInput || fileContents === '') {
       console.error('Nenhum arquivo CSV selecionado.')
       return;
     }
 
-    const formData = new FormData()
-
     try {
-      formData.append('csvFile', selectedFile)
-    } catch (error) {
-      console.error('Erro ao processar o arquivo CSV:', error)
-      return;
-    }
-
-    // Utilize o try-catch para lidar com erros na requisição.
-    try {
-      const response = await API.post('/csv', formData)
-
+      const json = {fileContents: fileContents}
+      const response = await API.post('/csv', {...json})
       if (response.data && response.data.res !== 'erro') 
         setJsonData(response.data)
       else
