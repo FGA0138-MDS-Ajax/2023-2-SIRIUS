@@ -1,9 +1,20 @@
-import Input from './components/Input'
+import CSVUpload from './pages/CSVUpload'
+import Home from './pages/Home'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom'
 
 const App = () => {
 
   return (
-    <Input />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/csvuploader" element={<CSVUpload />} />
+      </Routes >
+    </Router>
   )
 }
 

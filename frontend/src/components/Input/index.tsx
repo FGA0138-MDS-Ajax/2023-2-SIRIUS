@@ -1,59 +1,64 @@
-import { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from 'react'
 import { API } from '../../server/api'
 
 const Input = () => {
   const [fileContents, setFileContents] = useState<string>('')
   const [validInput, setValidInput] = useState<boolean>(false)
-  const [jsonData, setJsonData] = useState()
+  const [jsonData, setJsonData] = useState<any | null>()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>()
 
   const fileIsValid = (file?: File) => {
     return file && file.type === 'text/csv'
   }
 
-  const handleFileChange = (event: any) => {
-    const file = event.target.files[0]
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
 
-    // verificar se o arquivo inserido é csv. Caso
-    // contrário, limpar o input
-    if(!fileIsValid(file)) {
-      console.error('Selecione um arquivo csv!')
-      event.target.value = null
+    if (!file || !fileIsValid(file)) {
+      setError('Selecione um arquivo CSV válido.')
+      event.target.value = ''
       setFileContents('')
       setValidInput(false)
       return
     }
 
     setValidInput(true)
+    setError(null)
 
-    // usar o FileReader para obter o conteúdo do csv, em string,
-    // e alocar na variável fileContents
     const reader = new FileReader()
-    reader.onload = r => {
-      const conteudoCsv = r.target?.result as string
-      setFileContents(conteudoCsv)
+    reader.onload = (event) => {
+      const content = event.target?.result as string
+      setFileContents(content)
     }
 
     reader.readAsText(file)
   }
 
   const handleSubmit = async () => {
-    // a validação abaixo é necessária, pois o usuário pode enviar qualquer outro
-    // tipo de arquivo.
-    if(!validInput || fileContents === '') {
-      console.error('Nenhum arquivo CSV selecionado.')
+    if (!validInput || fileContents === '') {
+      setError('Nenhum arquivo CSV selecionado.')
       return
     }
 
+    setLoading(true)
+    setError(null)
+
     try {
-      const json = {fileContents: fileContents}
-      const response = await API.post('/csv', {...json})
-      if (response.data && response.data.res !== 'erro') 
+      const json = { fileContents }
+      const response = await API.post('/csv', { ...json })
+
+      if (response.data && response.data.res !== 'erro') {
         setJsonData(response.data)
-      else
-        console.error('Erro no processamento do CSV.')
-      
+      } else {
+        setError('Erro no processamento do CSV.')
+      }
     } catch (error) {
-      console.error('Erro na requisição para processar o CSV:', error)
+      setError('Erro na requisição para processar o CSV: ' + (error as string))
+
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -71,6 +76,8 @@ const Input = () => {
       >
         Upload
       </button>
+      {loading && <p>Carregando...</p>}
+      {error && <p className="text-red-500">{error}</p>}
       {jsonData && (
         <div>
           <h2>Transformed JSON Data:</h2>
