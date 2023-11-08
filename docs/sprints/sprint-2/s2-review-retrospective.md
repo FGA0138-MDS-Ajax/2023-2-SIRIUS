@@ -1,8 +1,9 @@
 ## Review
 ### A meta da sprint foi atingida?
+Não. Ajustamos os documentos e fizemos boa parte do código da US1, mas ela ainda não entrou na DoD.
 
 ### As histórias de usuário propostas foram entregues?
-
+Não. Explicado acima.
 
 
 ## Retrospective
