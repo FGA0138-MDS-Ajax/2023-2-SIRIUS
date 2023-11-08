@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { API } from '../../server/api'
 
-const Input = () => {
+const InputCSV = () => {
   const [fileContents, setFileContents] = useState<string>('')
   const [validInput, setValidInput] = useState<boolean>(false)
   const [jsonData, setJsonData] = useState<any | null>()
@@ -88,4 +88,4 @@ const Input = () => {
   )
 }
 
-export default Input
+export default InputCSV

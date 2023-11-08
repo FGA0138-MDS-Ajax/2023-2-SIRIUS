@@ -1,8 +1,8 @@
-import Input from '../../components/Input'
+import InputCSV from '../../components/InputCSV'
 
 const CSVUpload = () => {
   return (
-    <Input />
+    <InputCSV />
   )
 }
 
