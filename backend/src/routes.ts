@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { UserController } from './controllers/Users/UsersController'
-import { CSVController } from './controllers/CSV/CSVController'
+import CSVController from './controllers/CSV/CSVController'
 
 const routes = Router()
 
