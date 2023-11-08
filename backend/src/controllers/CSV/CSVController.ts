@@ -1,36 +1,54 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { Request, Response } from 'express'
 
 export class CSVController {
   async importCSV(req: Request, res: Response) {
-
-    // validar entrada de dados
-    if (!req.body.fileContents || req.body.fileContents === '')
-      return res.status(400).send('CSV Vazio')
-
-    const csvContents = req.body.fileContents.replaceAll('"', '').split('\n')
-
-    // tratar as chaves da tabela
-    const chaves = csvContents.shift().split(',')
-    for (let i = 0; i < chaves.length; i++) {
-      if (chaves[i].includes('ID Discord')) chaves[i] = 'discordID'
-      if (chaves[i].includes('Email')) chaves[i] = 'email'
-    }
-
-    // formar um json de retorno com os dados da tabela
-    const jsonRetorno = []
-    for (let linha of csvContents) {
-      linha = linha.split(',')
-      const dados: { [key: string]: string } = {}
-      for (let i = 0; i < linha.length; i++) {
-        for (let i = 0; i < linha.length; i++) {
-          dados[chaves[i]] = linha[i]
-        }
-        jsonRetorno.push(dados)
+    try {
+      const { fileContents } = req.body
+      if (!fileContents) {
+        return res.status(400).send('CSV Vazio')
       }
 
+      const csvContents = this.parseCSV(fileContents)
+      if (!csvContents) {
+        return res.status(400).send('CSV Inválido')
+      }
+
+      const chaves = this.extractKeys(csvContents)
+      const jsonRetorno = this.generateJSONData(csvContents, chaves)
+
       return res.json(jsonRetorno)
+    } catch (error) {
+      return res.status(500).send('Erro no Processamento do CSV: ' + (error as string))
     }
+  }
+
+  private parseCSV(fileContents: string): string[] | null {
+    try {
+      return fileContents.replaceAll('"', '').split('\n')
+    } catch (error) {
+      return null
+    }
+  }
+
+  private extractKeys(csvContents: string[]): string[] {
+    if (csvContents.length > 0) {
+      return csvContents.shift()!.split(',').map((chave: string) => {
+        if (chave.includes('ID Discord')) return 'discordID'
+        if (chave.includes('Email')) return 'email'
+        return chave
+      })
+    }
+    return []
+  }
+
+  private generateJSONData(csvContents: string[], chaves: string[]): { [key: string]: string }[] {
+    return csvContents.map((linha: string) => {
+      const valores = linha.split(',')
+      const dados: { [key: string]: string } = {}
+      chaves.forEach((chave: string, i: number) => {
+        dados[chave] = valores[i]
+      })
+      return dados
+    })
   }
 }
