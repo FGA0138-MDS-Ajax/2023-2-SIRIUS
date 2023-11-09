@@ -16,4 +16,8 @@ nav:
         - Planning: sprints/sprint-1/s1-planning.md
         - Dailies: sprints/sprint-1/s1-dailies.md
         - Review e retrospective: sprints/sprint-1/s1-review-retrospective.md
+      - Sprint 2: 
+        - Planning: sprints/sprint-2/s2-planning.md
+        - Dailies: sprints/sprint-2/s2-dailies.md
+        - Review e retrospective: sprints/sprint-2/s2-review-retrospective.md
 
