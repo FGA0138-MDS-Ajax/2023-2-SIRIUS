@@ -78,9 +78,19 @@ O conhecimento do nosso product owner e membro do grupo acerca dessa API externa
 
 #### Diagrama de classes: 
 
+O nosso projeto terá 4 principais classes: 
+- User;
+- Administrador (métodos: requisitar dados de jogadores, acessar dados de jogadores, montar tabela de competição, registrar resultados por grupo, registrar vencedores finais, gerar relatório final);
+- Player;
+- Supervisor (métodos: acesso aos dados persistentes dos jogadores, acesso à frequência de jogadores em múltiplos torneios, gerar relatório de múltiplos torneios, criar conta de administrador, remover conta de administrador, editar conta de administrador)
+
+A classe User será a classe pai de Administrador, que por sua vez será pai de Supervisor. A classe player será uma API externa que será requisitada pela classe Administrador.
+
 ![Diagrama de classes](diagrama-classes.jpeg)
 
 #### Diagrama de pacotes:
+
+Quanto ao diagrama de pacotes, decidimos representar o nosso projeto dividido em frontend, backend e banco de dados.
 
 ![Diagrama de pacotes](diagrama-pacotes.jpeg)
 
