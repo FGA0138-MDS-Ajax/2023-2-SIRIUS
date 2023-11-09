@@ -4,7 +4,6 @@ import CSVController from './controllers/CSV/CSVController'
 
 const routes = Router()
 
-const csvController = new CSVController();
 
 // a gente vai deixar isso assim mesmo? Hehe, sem uso apenas para teste!! :)
 routes.get('/', (req, res) => {
@@ -12,7 +11,8 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/csv', (req, res) => {
-    return csvController.importCSV(req,res)
+  const csvController = new CSVController();
+  return csvController.importCSV(req,res)
 })
 routes.post('/user', new UserController().create)
 routes.post('/login', new UserController().login)
