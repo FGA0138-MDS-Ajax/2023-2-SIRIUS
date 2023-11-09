@@ -86,7 +86,7 @@ O nosso projeto terá 4 principais classes:
 
 A classe User será a classe pai de Administrador, que por sua vez será pai de Supervisor. A classe player será uma API externa que será requisitada pela classe Administrador.
 
-![Diagrama de classes](diagrama-classes.jpeg)
+![Diagrama de classes](diagrama_classes.png)
 
 #### Diagrama de pacotes:
 
@@ -98,7 +98,7 @@ Quanto ao diagrama de pacotes, decidimos representar o nosso projeto dividido em
 
 
 
-![Visao de implementacao](diagrama-implementacao.jpeg)
+![Visao de implementacao](visao_implementacao.png)
 
 
 
