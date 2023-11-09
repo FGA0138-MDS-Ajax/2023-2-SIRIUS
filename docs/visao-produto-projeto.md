@@ -47,7 +47,7 @@ Atualmente o cliente primário utiliza um chaveamento baseado em múltiplas plan
 O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido. Além disso, elas são, todas, padrões de mercado, já bem testadas e consolidadas, utilizadas em vários projetos de grande escala (o facebook e o instagram, por exemplo, foram construídos utilizando React).
 
 - Front-end: [React](https://react.dev)
-- Back-end: [MySQL](https://mysql.com), [Node](https://nodejs.org), [Express](https://expressjs.com), [Prisma](https://prisma.io)
+- Back-end: [PostgreSQL](https://postgresql.org/), [Node](https://nodejs.org), [Express](https://expressjs.com), [Prisma](https://prisma.io)
 - Documentação: [MkDocs](https://https://www.mkdocs.org/)
 - Conteinerização: [Docker](https://docker.com)
 
