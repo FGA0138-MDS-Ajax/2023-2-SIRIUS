@@ -9,6 +9,7 @@ export default class CSVController {
       }
 
       const csvContents = this.parseCSV(fileContents)
+
       if (!csvContents) {
         return res.status(400).send('CSV Inválido')
       }
