@@ -76,3 +76,20 @@
 .borderAnim:hover:before {
     width: 100%;
 }
+
+.background {
+    background-color: #353535;
+    background-image: url("../public/HeaderGradient.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 50% -1%;
+}
+
+.background-footer {
+    background-color: #353535;
+    background-image: url('../public/FooterGradient.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 50% 70%;
+    background-size: cover;
+}

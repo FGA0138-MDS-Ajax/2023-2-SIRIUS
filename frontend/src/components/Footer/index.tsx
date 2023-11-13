@@ -28,7 +28,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="py-4 pb-6 lg:pt-20 bg-[#2D2D2F] font-coolveticaLt">
+    <footer className="py-4 pb-6 lg:pt-20 font-coolveticaLt background-footer">
       <div className="px-4 lg:px-20">
         <div className="lg:flex">
           <div className="flex-1 mb-16 lg:flex lg:items-start lg:justify-start lg:flex-col">

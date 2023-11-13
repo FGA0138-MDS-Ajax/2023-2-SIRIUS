@@ -8,7 +8,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <main className='bg-[#353535]'>
+    <main className='bg-[#353535] background'>
       <Header />
       {children} 
       <Footer />
