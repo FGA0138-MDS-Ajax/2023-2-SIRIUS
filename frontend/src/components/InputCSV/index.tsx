@@ -63,28 +63,41 @@ const InputCSV = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center my-10">
-      <input
-        type="file"
-        accept=".csv"
-        onChange={handleFileChange}
-      />
-      <button
-        type="button"
-        onClick={handleSubmit}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Upload
-      </button>
-      {loading && <p>Carregando...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-      {jsonData && (
-        <div>
-          <h2>Transformed JSON Data:</h2>
-          <pre>{JSON.stringify(jsonData, null, 2)}</pre>
+    <section className="md:py-[10rem] pt-32 pb-8">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-1 lg:flex lg:items-center lg:justify-between lg:gap-12">
+          <div className="flex items-center justify-center mt-20 lg:my-0 lg:w-full">
+            <div className="flex flex-col items-center justify-center my-10">
+              <label className='text-xl'>Importar arquivo <span>.csv</span></label>
+              <input
+                type="file"
+                accept=".csv"
+                onChange={handleFileChange}
+                className=''
+              />
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
+              >
+              Upload
+              </button>
+            </div>
+            <div>
+              {loading && <p>Carregando...</p>}
+              {error && <p className="text-red-500">{error}</p>}
+              {jsonData && (
+                <div>
+                  <h2>Arquivo CSV Transformado para JSON:</h2>
+                  <pre>{JSON.stringify(jsonData, null, 2)}</pre>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      )}
-    </div>
+      </div>
+      
+    </section>
   )
 }
 

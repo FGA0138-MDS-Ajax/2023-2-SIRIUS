@@ -90,7 +90,7 @@ const Header = () => {
           <div className="md:flex gap-10 text-xl hidden mb-2 text-[#C5C5C5]">
             {navLinks.map((link) => (
               <Link key={link.title} to={link.to}>
-                <h1>
+                <h1 className='hover:text-white duration-200 ease-in-out borderAnim'>
                   {link.title}
                 </h1>
               </Link>
@@ -102,13 +102,13 @@ const Header = () => {
           variants={reveal}
           className="mx-12 md:flex gap-6 text-lg items-center cursor-pointer hidden text-[#C5C5C5]"
         >
-          <Link to="">
+          <Link to="" className='hover:text-white duration-200 ease-in-out'>
             <BsGithub size={32} />
           </Link>
-          <Link to="">
+          <Link to="" className='hover:text-white duration-200 ease-in-out'>
             <RiTwitterXFill size={32} />
           </Link>
-          <Link to="">
+          <Link to="" className='hover:text-white duration-200 ease-in-out'>
             <BsLinkedin size={32} />
           </Link>
         </motion.div>
@@ -146,7 +146,7 @@ const Header = () => {
                   initial="initial"
                   animate="open"
                   exit="initial"
-                  className="flex flex-col h-full justify-center font-coolveticaLt items-center gap-4 "
+                  className="flex flex-col h-full justify-center font-caustenBd items-center gap-4 "
                 >
                   {navLinks.map((link, index) => {
                     return (

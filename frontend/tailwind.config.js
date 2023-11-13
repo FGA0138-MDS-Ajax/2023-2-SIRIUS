@@ -5,7 +5,20 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'coolveticaLt': ['Coolvetica Light'],
+        'coolveticaEl': ['Coolvetica Extra Light'],
+        'coolveticaRg': ['Coolvetica'],
+        'coolveticaBd': ['Coolvetica Bold'],
+        'coolveticaHv': ['Coolvetica Heavy'],
+        'caustenLt': ['Causten Light'],
+        'caustenRg': ['Causten Regular'],
+        'caustenBd': ['Causten Bold'],
+        'caustenBl': ['Causten Medium'],
+        'caustenEb': ['Causten Extra Bold'],
+      },
+    },
   },
   plugins: [],
 }
