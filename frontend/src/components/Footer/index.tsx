@@ -16,7 +16,7 @@ const Footer = () => {
         {navItems.map((item) => (
           <li
             key={item.title}
-            className="flex-col gap-y-[4px] block"
+            className="flex-col gap-y-[4px] block borderAnim"
           >
             <Link to={item.route}>
               {item.title}
@@ -32,7 +32,9 @@ const Footer = () => {
       <div className="px-4 lg:px-20">
         <div className="lg:flex">
           <div className="flex-1 mb-16 lg:flex lg:items-start lg:justify-start lg:flex-col">
-            <LogoFooter />
+            <Link to={'/'}>
+              <LogoFooter />
+            </Link>
           </div>
           <div className="flex flex-col">
             <div className="grid grid-cols-2 gap-24">
@@ -47,15 +49,15 @@ const Footer = () => {
         </div>
         <div className="text-gray-300 md:text-xl flex items-center flex-col mt-12 md:flex-row md:justify-between lg:flex-row lg:justify-between">
           <div className="flex">
-            <Link to="/privacy">
+            <Link to="/privacy" className='borderAnim'>
               Politica de Privacidade
             </Link>
             <span>/</span>
-            <Link to="/terms">
+            <Link to="/terms" className='borderAnim'>
               Termos
             </Link>
           </div>
-          <p>©2023 Todos os direitos reservados.</p>
+          <p>©Matcher 2023 - Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
