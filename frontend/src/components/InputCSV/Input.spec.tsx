@@ -7,7 +7,6 @@ describe('handleSubmit', () => {
     const setJsonData = jest.fn()
     const API = { post: jest.fn() }
 
-    
     const expectedErrorMessage = 'Nenhum arquivo CSV selecionado.'
 
     await handleSubmit()
@@ -24,7 +23,6 @@ describe('handleSubmit', () => {
     const setJsonData = jest.fn()
     const API = { post: jest.fn(() => ({ data: { res: 'erro' } })) }
 
-    
     const fileContents = 'some file contents'
     const expectedErrorMessage = 'Erro no processamento do CSV.'
 
