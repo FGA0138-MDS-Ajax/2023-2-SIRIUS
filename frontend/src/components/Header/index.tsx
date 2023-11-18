@@ -4,10 +4,7 @@ import { animationStart, reveal } from '../../utils/animation'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { TfiMenu } from 'react-icons/tfi'
-import { GrClose } from 'react-icons/gr'
-import { BsGithub, BsLinkedin } from 'react-icons/bs'
-import { RiTwitterXFill } from 'react-icons/ri'
+import { Menu, X } from 'lucide-react'
 
 import Logo from '../Logo'
 import MenuNavLink from '../MenuNavLink'
@@ -82,12 +79,12 @@ const Header = () => {
         className="font-coolveticaLt mt-6 w-[97%] rounded-[20px] flex items-center justify-between h-[80px] absolute top-0 bg-[#2D2D2F] z-50"
       >
         <motion.div variants={reveal} className="mt-2 flex items-center gap-16">
-          <div className='mx-12'>
+          <div className='lg:mx-12 mx-4'>
             <Link to="/">
               <Logo />
             </Link>
           </div>
-          <div className="md:flex gap-10 text-xl hidden mb-2 text-[#C5C5C5]">
+          <div className="md:flex md:gap-6 gap-10 text-xl hidden mb-2 text-[#C5C5C5]">
             {navLinks.map((link) => (
               <Link key={link.title} to={link.to}>
                 <h1 className='hover:text-white duration-200 ease-in-out borderAnim'>
@@ -100,23 +97,15 @@ const Header = () => {
 
         <motion.div
           variants={reveal}
-          className="mx-12 md:flex gap-6 text-lg items-center cursor-pointer hidden text-[#C5C5C5]"
+          className="mx-12 md:mx-4 md:flex text-lg items-center hidden"
         >
-          <Link to="" className='hover:text-white duration-200 ease-in-out'>
-            <BsGithub size={32} />
-          </Link>
-          <Link to="" className='hover:text-white duration-200 ease-in-out'>
-            <RiTwitterXFill size={32} />
-          </Link>
-          <Link to="" className='hover:text-white duration-200 ease-in-out'>
-            <BsLinkedin size={32} />
-          </Link>
+          <button className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Entrar</button>
         </motion.div>
         <div
-          className="cursor-pointer md:hidden text-lg mx-8 text-black"
+          className="cursor-pointer md:hidden text-lg mx-6 text-[#C5C5C5]"
           onClick={toggleMenu}
         >
-          <TfiMenu size={25} />
+          <Menu size={30} />
         </div>
         <AnimatePresence>
           {open && (
@@ -125,28 +114,28 @@ const Header = () => {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="fixed left-0 top-0 w-full h-screen origin-top bg-gradient text-black p-10"
+              className="fixed left-0 top-0 w-full h-screen origin-top bg-navbar text-[#C5C5C5] p-10"
             >
               <div className="flex h-full flex-col">
-                <div className="flex justify-between">
-                  <div className="-mt-8">
+                <div className="flex justify-between -mt-6">
+                  <div className="lg:-mt-8">
                     <Link to="/">
                       <Logo />
                     </Link>
                   </div>
-                  <p
-                    className="cursor-pointer text-lg text-black"
+                  <div
+                    className="cursor-pointer text-lg mt-12 text-[#C5C5C5]"
                     onClick={toggleMenu}
                   >
-                    <GrClose size={25} />
-                  </p>
+                    <X size={30} color='#C5C5C5'/>
+                  </div>
                 </div>
                 <motion.div
                   variants={containerVars}
                   initial="initial"
                   animate="open"
                   exit="initial"
-                  className="flex flex-col h-full justify-center font-caustenBd items-center gap-4 "
+                  className="flex flex-col h-full justify-center font-caustenBd items-center gap-4"
                 >
                   {navLinks.map((link, index) => {
                     return (
@@ -158,6 +147,7 @@ const Header = () => {
                       </div>
                     )
                   })}
+                  <button className='mt-4 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-4 px-16 bg-[#C5C5C5] rounded-lg shadow-xl text-2xl text-[#383E4A] text-center font-caustenBd hover:scale-110 duration-300 ease-in-out'>Login</button>
                 </motion.div>
               </div>
             </motion.div>
