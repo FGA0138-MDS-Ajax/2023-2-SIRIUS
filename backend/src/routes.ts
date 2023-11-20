@@ -11,9 +11,10 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/csv', (req, res) => {
-  const csvController = new CSVController();
+  const csvController = new CSVController()
   return csvController.importCSV(req,res)
 })
+
 routes.post('/user', new UserController().create)
 routes.post('/login', new UserController().login)
 routes.get('/profile', new UserController().getProfile)
