@@ -53,18 +53,15 @@ const InputCSV = () => {
     try {
       const json = { fileContents }
   
-      // Adicionando um timeout de 2 segundos (2000 milissegundos) para simular o carregamento
-      setTimeout(async () => {
-        const response = await API.post('/csv', { ...json })
+      const response = await API.post('/csv', { ...json })
   
-        if (response.data && response.data.res !== 'erro') {
-          setJsonData(response.data)
-        } else {
-          setError('Erro no processamento do CSV.')
-        }
+      if (response.data && response.data.res !== 'erro') {
+        setJsonData(response.data)
+      } else {
+        setError('Erro no processamento do CSV.')
+      }
   
-        setLoading(false)
-      }, 2000)
+      setLoading(false)
     } catch (error) {
       setError('Erro na requisição para processar o CSV: ' + (error as string))
       setLoading(false)
@@ -129,22 +126,40 @@ const InputCSV = () => {
             </motion.button>
           )}
         </AnimatePresence>
-        <AnimatePresence>
-          {jsonData && (
-            <motion.button
-              key="newUploadButton"
-              type="button"
-              onClick={handleNewUpload}
-              className="-mt-12 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
+        <div className='flex gap-4'>
+          <AnimatePresence>
+            {jsonData && (
+              <motion.button
+                key="newUploadButton"
+                type="button"
+                onClick={handleNewUpload}
+                className="-mt-12 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
               Fazer Novo Upload
-            </motion.button>
-          )}
-        </AnimatePresence>
+              </motion.button>
+            )}
+          </AnimatePresence>
+          <AnimatePresence>
+            {jsonData && (
+              <motion.button
+                key="newUploadButton"
+                type="button"
+                onClick={handleNewUpload}
+                className="-mt-12 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
+              Agrupar Jogadores
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </div>
         <div className='flex flex-col items-start justify-center text-gray-200'>
           <div className='flex items-center justify-center'>
             {loading && (
