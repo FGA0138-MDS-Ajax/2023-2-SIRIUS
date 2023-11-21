@@ -1,3 +1,116 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply scrollbar-track-gray-400/20 scrollbar-thumb-[#2D2D2F] scrollbar scroll-smooth;
+}
+
+@font-face {
+    font-family: 'Coolvetica';
+    src: url('../public/fonts/coolvetica/coolveticarg.otf');
+}
+
+@font-face {
+    font-family: 'Coolvetica Bold';
+    src: url('../public/fonts/coolvetica/CoolveticaRg-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Coolvetica Heavy';
+    src: url('../public/fonts/coolvetica/CoolveticaHv-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Coolvetica Light';
+    src: url('../public/fonts/coolvetica/CoolveticaLt-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Coolvetica Extra Light';
+    src: url('../public/fonts/coolvetica/CoolveticaEl-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Causten Light';
+    src: url('../public/fonts/causten/Causten-Light.otf');
+}
+
+@font-face {
+    font-family: 'Causten Regular';
+    src: url('../public/fonts/causten/Causten-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Causten Bold';
+    src: url('../public/fonts/causten/Causten-Bold.otf');
+}
+
+@font-face {
+    font-family: 'Causten Medium';
+    src: url('../public/fonts/causten/Causten-Medium.otf');
+}
+
+@font-face {
+    font-family: 'Causten Extra Bold';
+    src: url('../public/fonts/causten/Causten-ExtraBold.otf');
+}
+
+.bg-navbar {
+    background: #373B44;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-gradient {
+    background-image: url("../public/images/HeaderGradient.png");
+    background-repeat: no-repeat;
+    background-position: 60% 0%;
+}
+
+.borderAnim {
+    position: relative;
+}
+
+.borderAnim:before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    height: 1px;
+    width: 0;
+    background: #FFF;
+    border-radius: 50px;
+    transition: width 0.3s ease-in;
+}
+
+.borderAnim:hover:before {
+    width: 100%;
+}
+
+.background {
+    background-color: #353535;
+    background-image: url("../public/images/HeaderGradient.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 50% -1%;
+}
+
+.background-footer {
+    background-color: #353535;
+    background-image: url('../public/images/FooterGradient.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 50% 70%;
+    background-size: cover;
+}
+
+.btn-gradient{
+    background: #353535;
+} 
+
+.btn-gradient:hover {
+    background-image: url("../public/images/HeaderGradient.png");
+    background-repeat: no-repeat;
+    background-position: 60% 0%;
+    transition: 500ms ease-in-out;
+}

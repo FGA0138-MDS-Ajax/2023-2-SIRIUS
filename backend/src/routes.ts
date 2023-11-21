@@ -1,20 +1,22 @@
-import { Router } from 'express';
-import { UserController } from './controllers/Users/UsersController';
-import { CSVController } from './controllers/CSV/CSVController';
-import multer from 'multer';
+import { Router } from 'express'
+import { UserController } from './controllers/Users/UsersController'
+import CSVController from './controllers/CSV/CSVController'
 
-const upload = multer({ dest: '/temp/' });
+const routes = Router()
 
-const routes = Router();
 
-// a gente vai deixar isso assim mesmo?
+// a gente vai deixar isso assim mesmo? Hehe, sem uso apenas para teste!! :)
 routes.get('/', (req, res) => {
   res.send('Hello World! Você está na raiz da API!')
-});
+})
 
-routes.post('/csv', upload.single('file'), new CSVController().importCSV);
-routes.post('/user', new UserController().create);
-routes.post('/login', new UserController().login);
-routes.get('/profile', new UserController().getProfile);
+routes.post('/csv', (req, res) => {
+  const csvController = new CSVController()
+  return csvController.importCSV(req,res)
+})
+
+routes.post('/user', new UserController().create)
+routes.post('/login', new UserController().login)
+routes.get('/profile', new UserController().getProfile)
 
 export { routes }

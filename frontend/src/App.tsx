@@ -1,9 +1,23 @@
+import Layout from './components/Layout'
+import CSVUpload from './pages/CSVUpload'
+import Home from './pages/Home'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom'
+
 const App = () => {
 
   return (
-    <div>
-      <h1 className="text-5xl text-blue-500">Hello Matcher</h1>
-    </div>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/csvuploader" element={<CSVUpload />} />
+        </Routes >
+      </Layout>
+    </Router>
   )
 }
 
