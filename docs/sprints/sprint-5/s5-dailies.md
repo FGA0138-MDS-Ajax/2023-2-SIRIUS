@@ -73,7 +73,10 @@
 - O que pretendo fazer hoje? Tentar aplicar CI ao projeto
 - Existe algo que está me atrapalhando? Tentar aplicar CI ao projeto
 
-### João Eduardo (não participou)
+### João Eduardo
+- O que fiz ontem? Tentei fazer o conteúdo da sprint junto com o João Pedro
+- O que pretendo fazer hoje? Me reuni para andamento da US
+- Existe algo que está me atrapalhando? Compromissos pessoais
 
 ### João Pedro
 - O que fiz ontem? Estudei sobre typescript e tentei fazer o conteudo da sprint
