@@ -12,7 +12,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Torneio" (
     "id" TEXT NOT NULL,
     "datatorneio" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "vencedor" TEXT NOT NULL,
+    "vencedor" TEXT[],
 
     CONSTRAINT "Torneio_pkey" PRIMARY KEY ("id")
 );

@@ -31,9 +31,13 @@ export class ParticipantesController {
       }
   
       const newParticipante = await prisma.participantes.create({
-        data: {id, teamname, ingamename, checkedinat, iddiscord, published,emailcon,grupo,grupoId},
+        data: {id, teamname, ingamename, checkedinat, iddiscord, published, emailcon, grupo, grupoId},
       }) 
-  
+      
+      if (!newParticipante) {
+        return res.status(400).send('invalid participant')
+      }
+
       return res.status(201).json(newParticipante)
     }
 }  

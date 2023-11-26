@@ -26,8 +26,21 @@ export class RodadaController {
   
       const newRodadas = await prisma.rodadas.create({
         data: {id, torneioId, torneio, published, grupo},
-      }) 
-  
+      })
+
+      if (!newRodadas) {
+        return res.status(400).send('invalid round')
+      }
+
       return res.status(201).json(newRodadas) 
     }
+
+    /**
+     * Método para Deleção dos Rodadas na DataBase.
+     */
+    async delete(req: Request, res: Response) {  
+
+      const deleteRodadas = await prisma.rodadas.deleteMany({}) 
+
+    } 
 }  

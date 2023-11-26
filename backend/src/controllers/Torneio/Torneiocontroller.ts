@@ -27,6 +27,10 @@ export class TorneioController {
         data: {id, datatorneio, vencedor, rodada},
       }) 
   
+      if (!newTorneio) {
+        return res.status(400).send('invalid tournament')
+      }
+
       return res.status(201).json(newTorneio)
     }
 

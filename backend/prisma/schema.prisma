@@ -20,7 +20,7 @@ model User {
 model Torneio {
   id          String   @id @default(uuid()) @unique
   datatorneio DateTime @default(now())
-  vencedor    String
+  vencedor    String[]
   rodada      Rodadas[]
 }
 

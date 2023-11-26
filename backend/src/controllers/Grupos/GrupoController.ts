@@ -29,7 +29,20 @@ export class GrupoController {
         data: {id, grupos, published, rodada, rodadaId, participante},
       }) 
   
-      return res.status(201).json(newGrupo)
-    }
-}  
+      if (!newGrupo) {
+        return res.status(400).send('invalid group')
+      }
 
+      return res.status(201).json(newGrupo)
+
+    } 
+    
+    /**
+     * Método para Deleção dos Grupos na DataBase.
+     */
+    async delete(req: Request, res: Response) {  
+
+      const deleteGrupos = await prisma.grupos.deleteMany({}) 
+
+    } 
+}
