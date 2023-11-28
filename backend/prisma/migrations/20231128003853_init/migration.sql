@@ -50,15 +50,6 @@ CREATE TABLE "Participantes" (
     CONSTRAINT "Participantes_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
-CREATE TABLE "Exemplo" (
-    "id" TEXT NOT NULL,
-    "grupos" TEXT NOT NULL,
-    "published" BOOLEAN NOT NULL DEFAULT false,
-
-    CONSTRAINT "Exemplo_pkey" PRIMARY KEY ("id")
-);
-
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 

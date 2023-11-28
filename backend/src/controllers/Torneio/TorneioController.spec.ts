@@ -1,14 +1,14 @@
 import { Request, Response } from 'express'
-import { beforeEach } from 'node:test'
-import { TorneioController } from './Torneiocontroller'
+import { TorneioController } from './TorneioController'
+import { prismaMock } from './../../mocks/prismaMock'
 
 describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
-  let torneiocontroller: TorneioController
+  let torneioController: TorneioController
   let req: Request
   let res: Response
 
   beforeEach(() => {
-    torneiocontroller = new TorneioController()
+    torneioController = new TorneioController()
     req = {} as Request
     res = {
       status: jest.fn().mockReturnThis(),
@@ -19,7 +19,10 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
 
   describe('create', () => {
     it('should return 400 if tournament already exists', async () => {
-      await torneiocontroller.create(req, res)
+      // Mock do método create do Prisma
+      jest.spyOn(prismaMock.torneio, 'create').mockResolvedValueOnce({ /* Dados do torneio existente */ })
+
+      await torneioController.create(req, res)
 
       expect(res.status).toHaveBeenCalledWith(400)
       expect(res.send).toHaveBeenCalledWith('Torneio Existente')
@@ -28,10 +31,11 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
     it('should return 400 if tournament is invalid', async () => {
       req.body = { fileContents: 'invalid tournament' }
 
-      await torneiocontroller.create(req, res)
+      await torneioController.create(req, res)
 
       expect(res.status).toHaveBeenCalledWith(400)
       expect(res.send).toHaveBeenCalledWith('Torneio Inválido')
     })
+
   })
 })

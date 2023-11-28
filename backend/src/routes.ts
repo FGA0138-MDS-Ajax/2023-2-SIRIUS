@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import { UserController } from './controllers/Users/UsersController'
 import CSVController from './controllers/CSV/CSVController'
-import { TorneioController } from './controllers/Torneio/Torneiocontroller'
-import { RodadaController } from './controllers/Rodadas/Rodadacontroller'
+import { TorneioController } from './controllers/Torneio/TorneioController'
+import { RodadaController } from './controllers/Rodadas/RodadaController'
 import { GrupoController } from './controllers/Grupos/GrupoController'
 import { ParticipantesController } from './controllers/Participantes/ParticipantesController'
 

@@ -1,14 +1,14 @@
 import { Request, Response } from 'express'
-import { beforeEach } from 'node:test'
 import { GrupoController } from './GrupoController'
+import { prismaMock } from './../../mocks/prismaMock'
 
-describe('Testes unitários para Controle de  Dados na Tabela Grupos', () => {
-  let grupocontroller: GrupoController
+describe('Testes unitários para Controle de Dados na Tabela Grupos', () => {
+  let grupoController: GrupoController
   let req: Request
   let res: Response
 
   beforeEach(() => {
-    grupocontroller = new GrupoController()
+    grupoController = new GrupoController()
     req = {} as Request
     res = {
       status: jest.fn().mockReturnThis(),
@@ -19,16 +19,24 @@ describe('Testes unitários para Controle de  Dados na Tabela Grupos', () => {
 
   describe('create', () => {
     it('should return 400 if group already exists', async () => {
-      await grupocontroller.create(req, res)
+      // Mock do método findUnique do Prisma
+      jest.spyOn(prismaMock.grupos, 'findUnique').mockResolvedValueOnce({ 
+        id: 1,
+        nome: 'GrupoA',
+        descricao: 'GrupoA',
+        published: true,
+      })
+
+      await grupoController.create(req, res)
 
       expect(res.status).toHaveBeenCalledWith(400)
       expect(res.send).toHaveBeenCalledWith('Grupo Existente')
     })
 
     it('should return 400 if group is invalid', async () => {
-      req.body = { fileContents: 'invalid group' }
+      req.body = { /* Dados do grupo inválido */ }
 
-      await grupocontroller.create(req, res)
+      await grupoController.create(req, res)
 
       expect(res.status).toHaveBeenCalledWith(400)
       expect(res.send).toHaveBeenCalledWith('Grupo Inválido')

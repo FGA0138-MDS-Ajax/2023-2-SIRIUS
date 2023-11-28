@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  database:
+    image: postgres
+    container_name: Matcher_DB
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_HOST=localhost
+      - POSTGRES_USER=develop_usermatcher
+      - POSTGRES_PASSWORD=matcher_developpass
+      - POSTGRES_DB=matcher_develop
+    volumes:
+      - pgdata:/data/postgres
   app:
     container_name: Matcher_APP
     build: .
@@ -11,19 +24,6 @@ services:
       - .:/usr/src
     depends_on:
       - database
-  database:
-    image: postgres
-    container_name: Matcher_DB
-    restart: always
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_HOST=localhost
-      - POSTGRES_USER=dev_usermatcher
-      - POSTGRES_PASSWORD=matcher_devpass
-      - POSTGRES_DB=matcher_db
-    volumes:
-      - pgdata:/data/postgres
 
 volumes:
   pgdata:

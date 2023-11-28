@@ -1,40 +1,46 @@
-import { Request, Response } from 'express'
-import { beforeEach } from 'node:test'
-import { ParticipantesController } from './ParticipantesController'
+import { Request, Response } from 'express';
+import { ParticipantesController } from './ParticipantesController';
+import { prismaMock } from '../../mocks/prismaMock';
 
-describe('Testes unitários para Controle de  Dados na Tabela Participantes', () => {
-  let participantesController: ParticipantesController
-  let req: Request
-  let res: Response 
-  
+describe('Testes unitários para Controle de Dados na Tabela Participantes', () => {
+  let participantesController: ParticipantesController;
+  let req: Request;
+  let res: Response;
+
   beforeEach(() => {
-    participantesController = new ParticipantesController()
-    req = {} as Request
+    participantesController = new ParticipantesController();
+    req = {} as Request;
     res = {
       status: jest.fn().mockReturnThis(),
       send: jest.fn(),
       json: jest.fn(),
-    } as unknown as Response
-  })
+    } as unknown as Response;
+  });
 
   describe('create', () => {
     it('should return 400 if fileContents already exists', async () => {
-      await participantesController.create(req, res)
+      // Mock do método create do Prisma
+      jest.spyOn(prismaMock.participantes, 'create').mockResolvedValueOnce({ /* Dados do participante existente */ });
 
-      expect(res.status).toHaveBeenCalledWith(400)
-      expect(res.send).toHaveBeenCalledWith('Participante já Existente')
-    })
+      await participantesController.create(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.send).toHaveBeenCalledWith('Participante já Existente');
+    });
 
     it('should return 400 if participant is invalid', async () => {
-      req.body = { fileContents: 'invalid participant' }
+      req.body = { fileContents: 'invalid participant' };
 
-      await participantesController.create(req, res)
+      await participantesController.create(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(400)
-      expect(res.send).toHaveBeenCalledWith('Participante Inválido')
-    })
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.send).toHaveBeenCalledWith('Participante Inválido');
+    });
 
-  
+  });
+});
+
+
     /*
     it('Deve criar um novo participante', async () => {
       // Configurar dados de teste

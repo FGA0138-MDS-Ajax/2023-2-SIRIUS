@@ -11,50 +11,42 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  password String
+  id                Int     @id @default(autoincrement())
+  email             String  @unique
+  name              String?
+  password          String
 }
 
 model Torneio {
-  id          String   @id @default(uuid()) @unique
-  datatorneio DateTime @default(now())
-  vencedor    String[]
-  rodada      Rodadas[]
+  id                String   @id @default(uuid()) @unique
+  datatorneio       DateTime @default(now())
+  vencedor          String[]
+  rodada            Rodadas[]
 }
 
 model Rodadas {
-  id        String   @id @default(uuid())
-  published Boolean  @default(false)
-  torneio   Torneio  @relation(fields: [torneioId], references: [id])
-  torneioId String 
-  grupo     Grupos[]
+  id                String   @id @default(uuid())
+  torneio           Torneio  @relation(fields: [torneioId], references: [id])
+  torneioId         String 
+  grupo             Grupos[]
 }
 
 model Grupos {
-  id        String   @id @default(uuid())
-  grupos    String 
-  published Boolean  @default(false) 
-  rodada    Rodadas  @relation(fields: [rodadaId], references: [id])
-  rodadaId  String 
+  id               String   @id @default(uuid())
+  grupos           String 
+  rodada           Rodadas  @relation(fields: [idRodada], references: [id])
+  idRodada         String 
   participante     Participantes[]
 }
 
 model Participantes {
-  id          String   @id @default(uuid())
-  teamname    String 
-  ingamename  String 
-  checkedinat String
-  iddiscord   String?
-  published   Boolean  @default(false)
-  emailcon    String 
-  grupo       Grupos   @relation(fields: [grupoId], references: [id])
-  grupoId     String     
-}
-
-model Exemplo {
-  id        String   @id @default(uuid())
-  grupos    String 
-  published Boolean  @default(false) 
+  id               String   @id @default(uuid())
+  teamName         String 
+  inGameName       String 
+  checkedInAt      String
+  idDiscord        String
+  winner           Boolean  @default(false)
+  email            String 
+  grupo            Grupos   @relation(fields: [grupoId], references: [id])
+  grupoId          String     
 }

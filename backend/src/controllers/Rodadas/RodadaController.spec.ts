@@ -1,14 +1,18 @@
 import { Request, Response } from 'express'
-import { beforeEach } from 'node:test'
-import { RodadaController } from './Rodadacontroller'
+import { RodadaController } from './RodadaController'
+import { PrismaClient } from '@prisma/client'
+
+jest.mock('@prisma/client')
+
+const prismaMock = new PrismaClient() as jest.Mocked<PrismaClient>
 
 describe('Testes unitários para Controle de Dados na Tabela Rodadas', () => {
-  let rodadacontroller: RodadaController
+  let rodadaController: RodadaController
   let req: Request
   let res: Response
 
   beforeEach(() => {
-    rodadacontroller = new RodadaController()
+    rodadaController = new RodadaController()
     req = {} as Request
     res = {
       status: jest.fn().mockReturnThis(),
@@ -19,7 +23,10 @@ describe('Testes unitários para Controle de Dados na Tabela Rodadas', () => {
 
   describe('create', () => {
     it('should return 400 if round already exists', async () => {
-      await rodadacontroller.create(req, res)
+      // Mock do método create do Prisma
+      jest.spyOn(prismaMock.rodadas, 'create').mockResolvedValueOnce({ /* Dados da rodada existente */ })
+
+      await rodadaController.create(req, res)
 
       expect(res.status).toHaveBeenCalledWith(400)
       expect(res.send).toHaveBeenCalledWith('Rodada Existente')
@@ -28,10 +35,12 @@ describe('Testes unitários para Controle de Dados na Tabela Rodadas', () => {
     it('should return 400 if round is invalid', async () => {
       req.body = { fileContents: 'invalid round' }
 
-      await rodadacontroller.create(req, res)
+      await rodadaController.create(req, res)
 
       expect(res.status).toHaveBeenCalledWith(400)
       expect(res.send).toHaveBeenCalledWith('Rodada Inválida')
     })
+
+    // Adicione mais testes conforme necessário
   })
 })

@@ -1,11 +1,13 @@
+/* eslint-disable semi */
 import { Request, Response } from 'express'
 import { beforeEach } from 'node:test'
 import CSVController from './CSVController'
 
+
 describe('Testes unitários para o CSV Controller', () => {
-  let csvController: CSVController
-  let req: Request
-  let res: Response
+  let csvController: CSVController;
+  let req: Request;
+  let res: Response;
 
   beforeEach(() => {
     csvController = new CSVController()
