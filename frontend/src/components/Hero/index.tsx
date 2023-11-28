@@ -12,7 +12,7 @@ const Hero = () => (
           Monte agora mesmo o chaveamento do seu torneio e tenha acesso a uma plataforma completa para gerenciar seus eventos.
           </p>
           <div className="lg:justify-between lg:items-center lg:flex lg:flex-row md:justify-between md:items-center md:flex md:flex-row text-lg md:max-w-md flex items-center flex-col gap-4">
-            <Link to={'/csvuploader'} className="inline-block lg:py-4 lg:px-12 md:py-6 md:px-12 md:text-2xl py-4 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out">Montar Chave</Link>
+            <Link to={'/csvuploader'} className="inline-block lg:py-4 lg:px-12 md:py-6 md:px-12 md:text-2xl py-4 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out">Iniciar Novo Torneio</Link>
           </div>
         </div>
         <div className="flex items-center justify-center mt-20 lg:my-0 lg:w-full">

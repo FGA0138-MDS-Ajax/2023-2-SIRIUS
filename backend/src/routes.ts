@@ -6,7 +6,7 @@ import { RodadaController } from './controllers/Rodadas/RodadaController'
 import { GrupoController } from './controllers/Grupos/GrupoController'
 import { ParticipantesController } from './controllers/Participantes/ParticipantesController'
 
-const routes = Router()  
+const routes = Router()
 
 // a gente vai deixar isso assim mesmo? Hehe, sem uso apenas para teste!! :)
 routes.get('/', (req, res) => {

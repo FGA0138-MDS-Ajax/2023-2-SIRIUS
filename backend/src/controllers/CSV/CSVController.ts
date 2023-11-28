@@ -53,9 +53,9 @@ export default class CSVController {
   public fillArray(csvContents: string[]){
     const arrayord: string[][] = []
     csvContents.forEach((linha) =>{
-      const colunas = linha.split(',');
-      arrayord.push(colunas);    
-    });
+      const colunas = linha.split(',')
+      arrayord.push(colunas)    
+    })
     this.shuffleArray(arrayord)
     return arrayord
   }
@@ -64,24 +64,24 @@ export default class CSVController {
     inputArray.sort(() => Math.random() - 0.5)
   } 
   public arrayToCSV(array: string[][]) {
-    const csvRows = [];
-    this.moveSubarrayToFirstPosition(array,["teamName","inGameName","checkedInAt","userID","ID Discord (Exemplo#1234)","Email de Contato"])
+    const csvRows = []
+    this.moveSubarrayToFirstPosition(array,['teamName','inGameName','checkedInAt','userID','ID Discord (Exemplo#1234)','Email de Contato'])
     for (const row of array) {
-      const csvRow = row.map(value => `${value}`).join(',');
+      const csvRow = row.map(value => `${value}`).join(',')
       csvRows.push(csvRow)
     }
-    return csvRows;
+    return csvRows
   }
 
   public moveSubarrayToFirstPosition(array: string[][], subarrayToMove: string[]) {
     const index = array.findIndex(subarray => {
-      return subarray.every((value, i) => value === subarrayToMove[i]);
-    });
+      return subarray.every((value, i) => value === subarrayToMove[i])
+    })
     if (index > -1) {
-      const removedSubarray = array.splice(index, 1)[0];
-      array.unshift(removedSubarray);
+      const removedSubarray = array.splice(index, 1)[0]
+      array.unshift(removedSubarray)
     }
-    return array;
+    return array
   }
 
   public generateJSONData(csvContents: string[], chaves: string[]): { [key: string]: string }[] {
@@ -93,5 +93,5 @@ export default class CSVController {
       })
       return dados
     })
-  }
+  } 
 }
