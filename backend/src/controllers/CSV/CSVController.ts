@@ -1,6 +1,12 @@
 import { Request, Response } from 'express'
 
+/**
+ * Classe Para Controle do Métodos Controlador do CSV.
+ */
 export default class CSVController {
+  /**
+   * Método para Trabalhar o Arquivo .CSV e retornar um JSON para o FrontEnd.
+   */
   async importCSV(req: Request, res: Response) {
     try {
       const { fileContents } = req.body
