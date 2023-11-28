@@ -1,48 +1,41 @@
 import { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 
-let id: string;
-let grupo: string;
-let published: boolean;
-let rodada: string;
-let rodadaId: string;
-let participante: Array<string>=[];
-
 const prisma = new PrismaClient()
 /**
  * Classe Para Controle dos Métodos dos Grupos.
  */
 export class GrupoController {
-    /**
+  /**
      * Método para Criação dos Grupos na DataBase.
      */
-    async create(req: Request, res: Response) {
-      const {id, grupos, published, rodada, rodadaId, participante} = req.body
+  async create(req: Request, res: Response) {
+    const {id, grupos, published, rodada, rodadaId, participante} = req.body
       
-      const GrupoExists = await prisma.grupos.findUnique({ where: { id } })
+    const GrupoExists = await prisma.grupos.findUnique({ where: { id } })
       
-      if (GrupoExists) {
-        return res.status(400).json({ error: 'Grupo already exists!' })
-      }
+    if (GrupoExists) {
+      return res.status(400).json({ error: 'Grupo already exists!' })
+    }
   
-      const newGrupo = await prisma.grupos.create({
-        data: {id, grupos, published, rodada, rodadaId, participante},
-      }) 
+    const newGrupo = await prisma.grupos.create({
+      data: {id, grupos, published, rodada, rodadaId, participante},
+    }) 
   
-      if (!newGrupo) {
-        return res.status(400).send('invalid group')
-      }
+    if (!newGrupo) {
+      return res.status(400).send('invalid group')
+    }
 
-      return res.status(201).json(newGrupo)
+    return res.status(201).json(newGrupo)
 
-    } 
+  } 
     
-    /**
+  /**
      * Método para Deleção dos Grupos na DataBase.
      */
-    async delete(req: Request, res: Response) {  
+  async delete(req: Request, res: Response) {  
 
-      const deleteGrupos = await prisma.grupos.deleteMany({}) 
+    const deleteGrupos = await prisma.grupos.deleteMany({}) 
 
-    } 
+  } 
 }
