@@ -40,13 +40,6 @@ export class GrupoController {
 
   } 
 
-  public groupPlayers(playerData: PlayerData[]) {
-      playerData = playerData.filter((player: PlayerData) => player.checkedInAt !== '')
-      const numCheckin = playerData.length
-
-      const obj = this.calcularQuantidadeGrupos(numCheckin)
-      console.log(obj)
-  }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
     let quantidadeGrupos: number[];

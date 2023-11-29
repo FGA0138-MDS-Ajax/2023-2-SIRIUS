@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { API } from '../../server/api'
+import GroupButton from '../GroupButton'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -205,6 +206,7 @@ const InputCSV = () => {
           )}
         </div>
       </div>
+      <GroupButton jsonData={jsonData} />
     </section>
   )
 }
