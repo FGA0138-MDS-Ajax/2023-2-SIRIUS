@@ -19,25 +19,34 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
   }, [dadosJson])
 
   const groupPlayers = async () => {
-    console.log(playerData)
 
-    const Num_checkin = playerData.length
-    const grupos = await API.get(`/calcularQuantidadeGrupos/${Num_checkin}`)
-    const arr_ret: Array<Array<PlayerData>> = []
+    const qtdJogadoresQueFizeramCheckin = playerData.length
 
-    let pos = 0
-    for (let i = 0; i < grupos.data.length; i++) {
-      const groupSize = grupos.data[i]
-      const group: Array<PlayerData> = []
+    // a variável `quantidadeJogadoresPorGrupo` é um vetor que guarda o que o nome diz.
+    // Além disso, o seu `length` indica quantos grupos existem no torneio.
+    const quantidadeJogadoresPorGrupo = (
+      await API.get(`/calcularQuantidadeGrupos/${qtdJogadoresQueFizeramCheckin}`)
+    ).data.jogadoresPorGrupo
+    const gruposDoTorneio: Array<Array<PlayerData>> = []
 
-      for (let j = 0; j < groupSize; j++) {
-        group.push(playerData[pos])
-        pos++
+    let playerPos = 0
+    for (let i = 0; i < quantidadeJogadoresPorGrupo.length; i++) {
+      const groupSize = quantidadeJogadoresPorGrupo[i]
+      gruposDoTorneio.push([])
+      const pos = gruposDoTorneio.length - 1
+
+      while(gruposDoTorneio[pos].length < groupSize) {
+        gruposDoTorneio[pos].push(playerData[playerPos])
+        playerPos++
       }
-      arr_ret.push(group)
     }
 
-    console.log(arr_ret)
+    // a variável abaixo é um vetor de vetor de jogadores.
+    // Um vetor de jogadores constitui um grupo.
+    // Sendo assim, a variável abaixo constitui um vetor de grupos.
+    // Esse vetor deve ser usado para formar as tabelas no frontend.
+    // Além disso, deve ser enviado ao backend para salvar no banco de dados.
+    console.log(gruposDoTorneio)
   }
 
   return (
