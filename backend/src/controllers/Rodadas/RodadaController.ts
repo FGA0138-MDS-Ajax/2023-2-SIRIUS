@@ -30,12 +30,19 @@ export class RodadaController {
     return res.status(201).json(newRodadas) 
   }
 
-  /**
-     * Método para Deleção dos Rodadas na DataBase.
-     */
-  async delete(req: Request, res: Response) {  
+  // Método para Deleção dos Rodadas na DataBase.
 
-    const deleteRodadas = await prisma.rodadas.deleteMany({}) 
+  async handle(request: Request, response: Response) {
+    const { id } = request.params
 
-  } 
+    const rodada = await prisma.rodadas.findUnique({ where: { id } })
+
+    if (!rodada) {
+      return response.status(404).json({ error: 'Rodada not found' })
+    }
+
+    const deletedRodada = await prisma.rodadas.delete({ where: { id } })
+
+    return response.json(deletedRodada)
+  }
 }  
