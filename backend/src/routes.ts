@@ -13,12 +13,12 @@ routes.get('/', (req, res) => {
   res.send('Hello World! Você está na raiz da API!')
 })
 routes.post('/csv', (req, res) => {
-  const csvController = new CSVController();
+  const csvController = new CSVController()
   return csvController.importCSV(req,res)
 })
 
 routes.post('/torneio', new TorneioController().create)
-routes.post('/torneio/rodadas', new RodadaController().create)
+routes.post('/torneio/rodadas', new RodadaController().mainRodadas)
 routes.post('/torneio/grupos', new GrupoController().create)
 routes.post('/torneio/participantes', new ParticipantesController().create)
 
