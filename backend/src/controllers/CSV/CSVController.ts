@@ -24,6 +24,7 @@ export default class CSVController {
       const csvRandom = this.arrayToCSV(arrord)
       const chaves = this.extractKeys(csvRandom)
       const jsonRetorno = this.generateJSONData(csvRandom, chaves)
+
       
       return res.json(jsonRetorno)
     } catch (error) {
@@ -94,4 +95,6 @@ export default class CSVController {
       return dados
     })
   } 
+
+
 }

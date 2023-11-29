@@ -12,11 +12,13 @@ const routes = Router()
 routes.get('/', (req, res) => {
   res.send('Hello World! Você está na raiz da API!')
 })
+
 routes.post('/csv', (req, res) => {
   const csvController = new CSVController();
   return csvController.importCSV(req,res)
 })
 
+routes.get('/calcularQuantidadeGrupos/:Num_checkin', new GrupoController().calcularQuantidadeGruposHandler);
 routes.post('/torneio', new TorneioController().create)
 routes.post('/torneio/rodadas', new RodadaController().create)
 routes.post('/torneio/grupos', new GrupoController().create)
