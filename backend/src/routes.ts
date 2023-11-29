@@ -14,11 +14,15 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/csv', (req, res) => {
-  const csvController = new CSVController();
+  const csvController = new CSVController()
   return csvController.importCSV(req,res)
 })
 
-routes.get('/calcularQuantidadeGrupos/:Num_checkin', new GrupoController().calcularQuantidadeGruposHandler);
+routes.get('/calcularQuantidadeGrupos/:Num_checkin', (req, res) => {
+  const grupoController = new GrupoController()
+  return grupoController.calcularQuantidadeGruposHandler(req, res)
+})
+
 routes.post('/torneio', new TorneioController().create)
 routes.post('/torneio/rodadas', new RodadaController().create)
 routes.post('/torneio/grupos', new GrupoController().create)
