@@ -43,7 +43,6 @@ model Grupo {
     id                  String                @id @default(uuid())
     rodada              Rodada                @relation(fields: [rodadaID], references: [id])
     rodadaID            String
-    participante        Participante[]
     participanteEmGrupo ParticipanteEmGrupo[]
 }
 
@@ -62,8 +61,6 @@ model Participante {
     checkedInAt         String
     discordID           String
     email               String                @unique
-    grupo               Grupo                 @relation(fields: [grupoID], references: [id])
-    grupoID             String
     participanteEmGrupo ParticipanteEmGrupo[]
     vencedor            Vencedor[]
 }
