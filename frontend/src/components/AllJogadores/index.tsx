@@ -1,4 +1,4 @@
-import { PlayerData } from '../../types'
+import { PlayerData } from '../../types/playerType'
 
 const AllJogadores = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
   return (

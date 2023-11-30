@@ -60,7 +60,7 @@ model Participante {
     inGameName          String
     checkedInAt         String
     discordID           String
-    email               String                @unique
+    email               String                
     participanteEmGrupo ParticipanteEmGrupo[]
     vencedorTorneio     VencedorTorneio[]
     vencedorGrupo       VencedorGrupo[]

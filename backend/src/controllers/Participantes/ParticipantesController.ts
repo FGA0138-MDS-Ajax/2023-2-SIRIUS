@@ -19,4 +19,4 @@ export class ParticipantesController {
       return res.status(500).send('Internal Server Error')
     }
   }
-}  
+}
