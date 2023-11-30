@@ -1,0 +1,50 @@
+POST http://localhost:3000/csv
+Content-Type: application/json
+Access-Control-Allow-Origin: *,
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS,
+Access-Control-Allow-Headers: Content-Type, Authorization,
+{
+    "fileContents": ""teamName","inGameName","checkedInAt","userID","ID Discord (Exemplo#1234)","Email de Contato"
+"Blue Heart Zerza","Blue Heart Zerza",,"608a06482a65fd118e27c6fa","zerzax","mariac.zerza@gmail.com"
+"Luc4szin","Luc4szin","Wed Oct 25 2023 17:00:16 GMT+0000 (UTC)","6091e3bc934be111ac22fc6f","luc4szin","lhflagato@gmail.com"
+"duz1NNN","duz1NNN",,"593a1057adbcee033c74442d","duh$#1562","eduardopoltronierri@hotmail.com"
+"Sthefa","Sthefa","Wed Oct 25 2023 17:21:05 GMT+0000 (UTC)","622b7f7e0c2be904db6fd35f","#3078","sthefannibecker@gmail.com"
+"jbtto","jbtto","Wed Oct 25 2023 17:00:06 GMT+0000 (UTC)","652ffb2987893075fc63e906","jbtto jullybto","jullybtto01@gmail.com"
+"Koeyh","Koeyh","Wed Oct 25 2023 17:00:18 GMT+0000 (UTC)","6038217d3cc6e32afb733982","koeyh vicenzote","blackfield.toter@gmail.com"
+"dsfsdf54152","dsfsdf54152",,"5e83666ec9fdbe10afba43f6","izumeq","izume619@gmail.com"
+"TOP NILSON","TOP NILSON","Wed Oct 25 2023 17:10:49 GMT+0000 (UTC)","6429c82a88546636e41674df","ACTRON#8523","luska8398@gmail.com"
+"Herlayne","Herlayne",,"5e868ba805bc2e10ad884e43","Elaine","elaine_sahara@hotmail.com"
+"19 mole e 7 duro","19 mole e 7 duro","Wed Oct 25 2023 17:07:38 GMT+0000 (UTC)","60552a7b0b551316271d8e7f","thalles#3732","thalles.fernandes97@gmail.com"
+"Trigu","Trigu","Wed Oct 25 2023 17:00:28 GMT+0000 (UTC)","5e3b882d736fb91048b52dbc","_trigu","Igor.alex5224@gmail.com"
+"DK Neto","DK Neto","Wed Oct 25 2023 17:00:05 GMT+0000 (UTC)","5af1904f7df55303aef2c693","Netinho#4881","netinhobroa@gmail.com"
+"Just Betteer","Just Betteer","Wed Oct 25 2023 17:05:48 GMT+0000 (UTC)","5db33ef85d3aa43600febff7","davidss#8345","mulinhagt@gmail.com"
+"FORA CheckMate","FORA CheckMate","Wed Oct 25 2023 17:07:28 GMT+0000 (UTC)","5ab2dab9cd1087035aee6a74","checkmatetft","japaeiki@gmail.com"
+"pujin","pujin","Wed Oct 25 2023 17:13:12 GMT+0000 (UTC)","5e962d4711b1df107f1c7e92","iampujin","larissa.bagano@hotmail.com"
+"KMY Alcântara","KMY Alcântara","Wed Oct 25 2023 17:11:48 GMT+0000 (UTC)","6023ba2ab7da9f77068a40cf","Gus.mp4","gustavocerq234@gmail.com"
+"Pedro o cansado","Pedro o cansado","Wed Oct 25 2023 17:22:49 GMT+0000 (UTC)","64344226fd986a4a01e34a0a","Pedro o cansado #6154","peedropachioni393@gmail.com"
+"Livaii","Livaii","Wed Oct 25 2023 17:10:44 GMT+0000 (UTC)","597beeabaaf0f40338d6c98f","livai1508","andrey.araujo2001@gmail.com"
+"Billie Eilish zz","Billie Eilish zz","Wed Oct 25 2023 17:40:43 GMT+0000 (UTC)","5dd737e2d528f83a4b04a7a0","Dianna#9124","felipe.carmo3975@gmail.com"
+"Aqua Ria Wave","Aqua Ria Wave","Wed Oct 25 2023 17:00:16 GMT+0000 (UTC)","65304d8527e3c43ebdd356a5","AquaRia#5291","gabifontana47@gmail.com"
+"Roman Piinto","Roman Piinto","Wed Oct 25 2023 17:31:04 GMT+0000 (UTC)","58862b444d5d5b98060e7122","Dougrinha#4969","douglassomentejogos@gmail.com"
+"mabuki","mabuki","Wed Oct 25 2023 17:00:47 GMT+0000 (UTC)","578bacfce248e72a0c29cf39","loctalgamer","loctalgamers@gmail.com"
+"ayanami","ayanami","Wed Oct 25 2023 17:01:16 GMT+0000 (UTC)","5c1c11dfcc74d903a33d43ee","sasasz","sahriasfck@gmail.com"
+"GRF Didinho","GRF Didinho","Wed Oct 25 2023 17:02:09 GMT+0000 (UTC)","5934518264cf3f0348ec20fb","eidinha","felipeeidi18@gmail.com"
+"welcomet0themato","welcomet0themato","Wed Oct 25 2023 17:06:24 GMT+0000 (UTC)","64777f7c0c04cd34324138fa","kleitoniud","pikao1502@gmail.com"
+"Fearless Crow","Fearless Crow","Wed Oct 25 2023 17:21:35 GMT+0000 (UTC)","5b86ba6f2b166d03b4bd8a7e","FearlessCrow#2513","dkmlrafael@gmail.com"
+"ADC Nilson","ADC Nilson","Wed Oct 25 2023 17:27:48 GMT+0000 (UTC)","643d3ba814a6be5c7cadbcf4","VENIN#8007","ricardovenin@gmail.com"
+"I Purple You","I Purple You","Wed Oct 25 2023 17:32:55 GMT+0000 (UTC)","645a85e80d33735c5ca9c9e8","Nikólas.sun","kiitt.sun@gmail.com"
+"RYT ZAAI","RYT ZAAI","Wed Oct 25 2023 17:35:53 GMT+0000 (UTC)","57378e57c0ba027b12097f98","Isaque_","isaquekrt9@gmail.com"
+"Chawa","Chawa","Wed Oct 25 2023 17:39:23 GMT+0000 (UTC)","56db37f948a05b881231201a","chawah","saah.bbarros@gmail.com"
+"Hatakeplay","Hatakeplay","Wed Oct 25 2023 17:42:26 GMT+0000 (UTC)","61b8db6c2366d472cac1c07b","#4640","rafaelplayersilva@gmail.com"
+"FOUR Jhin","FOUR Jhin","Wed Oct 25 2023 17:51:58 GMT+0000 (UTC)","5adfa9983079a2036e87dee9","44jhin44","luisandrade1665@gmail.com"
+"FOUR Tanjo","FOUR Tanjo","Wed Oct 25 2023 17:47:53 GMT+0000 (UTC)","5d31f26c73731a57e58d42d4","tanjiro0411","feitan.152009@gmail.com"
+"Xusvisco","Xusvisco",,"5e9a2fde1e251c11a2a52237","Xusvisco","AB#3@GMAIL.COM"
+"dont let me go","dont let me go","Wed Oct 25 2023 17:57:01 GMT+0000 (UTC)","5dd2de71dd29085403bca50c","marshall6784","lolchagas5@gmail.com"
+"tft belveth","tft belveth","Wed Oct 25 2023 17:57:18 GMT+0000 (UTC)","5d5725b5738a664f2e9a943e","viniceta#2711","viniciusgoncalvescaetano@hotmail.com"
+"OverHavoc","OverHavoc","Wed Oct 25 2023 17:57:59 GMT+0000 (UTC)","61ae610eb2d3ef5fca356628","overzada","robsonbarrossilva.rb@gmail.com""
+
+###
+
+GET http://localhost:3000/grupos/quantidade/:32
+
+###

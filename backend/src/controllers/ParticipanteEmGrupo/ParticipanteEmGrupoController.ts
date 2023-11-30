@@ -3,24 +3,27 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export class ParticipantesController {
+export class ParticipanteEmGrupoController {
   async create(req: Request, res: Response) {
 
-    const { id, teamName, inGameName, checkedInAt, discordID, email } = req.body
-    const ParticipanteExists = await prisma.participante.findUnique({ where: { id } })
+    const participantesEmGrupoData = req.body.participanteEmGrupo
 
-    if (ParticipanteExists) {
-      return res.status(400).json({ error: 'O participante já existe.' })
+    try {
+      const createdParticipantes = await prisma.participanteEmGrupo.createMany({
+        data: participantesEmGrupoData,
+        skipDuplicates: true,
+      })
+
+      return res.status(201).json(createdParticipantes)
+    } catch (error) {
+      console.error('Error creating participants:', error)
+      return res.status(500).send('Internal Server Error')
     }
-
-    const newParticipante = await prisma.participante.create({
-      data: { id, teamName, inGameName, checkedInAt, discordID, email },
-    })
-
-    if (!newParticipante) {
-      return res.status(400).send('Erro ao criar participante')
-    }
-
-    return res.status(201).json(newParticipante)
   }
-}  
+}
+
+/* 
+[
+    { grupoid: number; playerid: number; }, { ...},
+] 
+*/
