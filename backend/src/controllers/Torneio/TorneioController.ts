@@ -4,15 +4,9 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-/**
- * Classe Para Controle dos Métodos dos Torneios.
- */
 export class TorneioController {
-  /**
-     * Método para Criação dos Torneios na DataBase.
-     */
   async create(req: Request, res: Response) {
-    const {id, datatorneio, vencedor, rodada} = req.body
+    const { nome } = req.body
       
     const TorneioExists = await prisma.torneio.findUnique({ where: { id } })
   

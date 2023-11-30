@@ -10,6 +10,13 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+enum EnumVencedorPosicao {
+    PRIMEIRO
+    SEGUNDO
+    TERCEIRO
+    QUARTO
+}
+
 model User {
     id       Int     @id @default(autoincrement())
     email    String  @unique
@@ -18,44 +25,55 @@ model User {
 }
 
 model Torneio {
-    id          String   @id @unique @default(uuid())
-    datatorneio DateTime @default(now())
-    vencedor    String[]
+    id          String     @id @unique @default(uuid())
+    nome        String
+    dataTorneio DateTime   @default(now())
     rodada      Rodada[]
+    vencedor    Vencedor[]
 }
 
 model Rodada {
-    id            String          @id @default(uuid())
-    torneio       Torneio         @relation(fields: [torneioId], references: [id])
-    torneioId     String
-    grupo         Grupo[]
+    id        String  @id @default(uuid())
+    torneio   Torneio @relation(fields: [torneioID], references: [id])
+    torneioID String
+    grupo     Grupo[]
 }
 
 model Grupo {
-    id                         String                       @id @default(uuid())
-    rodada                     Rodada                       @relation(fields: [idRodada], references: [id])
-    idRodada                   String
-    participante               Participante[]
-    ParticipanteParticipaGrupo ParticipanteParticipaGrupo[]
+    id                  String                @id @default(uuid())
+    rodada              Rodada                @relation(fields: [rodadaID], references: [id])
+    rodadaID            String
+    participante        Participante[]
+    participanteEmGrupo ParticipanteEmGrupo[]
 }
 
-model ParticipanteParticipaGrupo {
+model ParticipanteEmGrupo {
     id             String       @id @default(uuid())
-    participante   Participante @relation(fields: [participanteId], references: [id])
-    participanteId String
-    grupo          Grupo        @relation(fields: [grupoId], references: [id])
-    grupoId        String
+    participante   Participante @relation(fields: [participanteID], references: [id])
+    participanteID String
+    grupo          Grupo        @relation(fields: [grupoID], references: [id])
+    grupoID        String
 }
 
 model Participante {
-    id                         String                       @id @default(uuid())
-    teamName                   String
-    inGameName                 String
-    checkedInAt                String
-    idDiscord                  String
-    winner                     Boolean                      @default(false)
-    email                      String
-    grupo                      Grupo                        @relation(fields: [grupoId], references: [id])
-    grupoId                    String
-    ParticipanteParticipaGrupo ParticipanteParticipaGrupo[]
+    id                  String                @id @default(uuid())
+    teamName            String
+    inGameName          String
+    checkedInAt         String
+    dicordID            String
+    winner              Boolean               @default(false)
+    email               String
+    grupo               Grupo                 @relation(fields: [grupoID], references: [id])
+    grupoID             String
+    participanteEmGrupo ParticipanteEmGrupo[]
+    vencedor            Vencedor[]
+}
+
+model Vencedor {
+    id             String              @id @default(uuid())
+    participante   Participante        @relation(fields: [participanteID], references: [id])
+    participanteID String
+    torneio        Torneio             @relation(fields: [torneioID], references: [id])
+    torneioID      String
+    posicao        EnumVencedorPosicao
 }

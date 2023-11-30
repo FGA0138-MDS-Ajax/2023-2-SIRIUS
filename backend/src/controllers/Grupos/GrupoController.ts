@@ -5,16 +5,16 @@ const prisma = new PrismaClient()
 
 export class GrupoController {
   async create(req: Request, res: Response) {
-    const { id, rodada, idRodada, participante } = req.body
+    const { id, rodada, idRodada } = req.body
 
-    const GrupoExists = await prisma.grupos.findUnique({ where: { id } })
+    const GrupoExists = await prisma.grupo.findUnique({ where: { id } })
 
     if (GrupoExists) {
       return res.status(400).json({ error: 'Grupo already exists!' })
     }
 
-    const newGrupo = await prisma.grupos.create({
-      data: { id, rodada, idRodada, participante },
+    const newGrupo = await prisma.grupo.create({
+      data: { id, rodada, idRodada },
     })
 
     if (!newGrupo) {
@@ -27,9 +27,6 @@ export class GrupoController {
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
     let quantidadeGrupos: number[]
-    let jogadoresPorGrupo: number[]
-
-    console.log('Num_checkin', Num_checkin)
 
     if (Num_checkin >= 17 && Num_checkin <= 21) {
       quantidadeGrupos = [6, 6, (Num_checkin === 17) ? 5 : 6]
@@ -52,21 +49,14 @@ export class GrupoController {
       }
     }
 
-    console.log('quantidadeGrupos', quantidadeGrupos)
-
-    jogadoresPorGrupo = quantidadeGrupos.map((qtd) => (qtd === 7) ? 7 : 6)
-
-    console.log('jogadoresPorGrupo', jogadoresPorGrupo)
+    const jogadoresPorGrupo = quantidadeGrupos.map((qtd) => (qtd === 7) ? 7 : 6)
 
     return { jogadoresPorGrupo }
   }
 
   calcularQuantidadeGruposHandler(req: Request, res: Response): void {
-    console.log('req.params', req.params)
     const { Num_checkin } = req.params
 
-    console.log('Num_checkin', Num_checkin)
-    console.log('+Num_checkin', +Num_checkin)
     try {
       const { jogadoresPorGrupo } = this.calcularQuantidadeGrupos(+(Num_checkin))
       res.status(200).json({ jogadoresPorGrupo })
