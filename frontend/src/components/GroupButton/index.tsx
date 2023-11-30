@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react'
 import { API } from '../../server/api'
+import { motion } from 'framer-motion'
 
 interface PlayerData {
   teamName: string
@@ -25,7 +26,7 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
     // a variável `quantidadeJogadoresPorGrupo` é um vetor que guarda o que o nome diz.
     // Além disso, o seu `length` indica quantos grupos existem no torneio.
     const quantidadeJogadoresPorGrupo = (
-      await API.get(`/calcularQuantidadeGrupos/${qtdJogadoresQueFizeramCheckin}`)
+      await API.get(`/grupos/quantidade/${qtdJogadoresQueFizeramCheckin}`)
     ).data.jogadoresPorGrupo
     const gruposDoTorneio: Array<Array<PlayerData>> = []
 
@@ -35,7 +36,7 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
       gruposDoTorneio.push([])
       const pos = gruposDoTorneio.length - 1
 
-      while(gruposDoTorneio[pos].length < groupSize) {
+      while (gruposDoTorneio[pos].length < groupSize) {
         gruposDoTorneio[pos].push(playerData[playerPos])
         playerPos++
       }
@@ -50,7 +51,15 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
   }
 
   return (
-    <button onClick={() => groupPlayers()}>me aperte aaaa</button>
+    <motion.button
+      className="-mt-12 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
+      onClick={() => groupPlayers()}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}>
+      Agrupar Jogadores
+    </motion.button>
   )
 }
 

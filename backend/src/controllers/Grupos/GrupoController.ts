@@ -19,32 +19,51 @@ export class GrupoController {
   }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
-    let quantidadeGrupos: number[]
-
-    if (Num_checkin >= 17 && Num_checkin <= 21) {
-      quantidadeGrupos = [6, 6, (Num_checkin === 17) ? 5 : 6]
-    } else if (Num_checkin >= 25 && Num_checkin <= 28) {
-      quantidadeGrupos = [7, 7, 6, 6]
-    } else if (Num_checkin >= 33 && Num_checkin <= 35) {
-      quantidadeGrupos = [(Num_checkin === 35) ? 5 : 6, 7, 7, 6, 6]
-    } else if (Num_checkin === 41 || Num_checkin === 42) {
-      quantidadeGrupos = [7, 7, 7, 7, 6, 6]
-    } else if (Num_checkin === 49) {
-      quantidadeGrupos = [7, 7, 7, 7, 7, 7, 7]
-    } else if (Num_checkin % 8 === 0) {
-      quantidadeGrupos = Array.from({ length: Num_checkin / 8 }, () => 8)
-    } else {
-      const gruposCom7 = Math.floor(Num_checkin / 8)
-      const resto = Num_checkin % 8
-      quantidadeGrupos = Array.from({ length: gruposCom7 }, () => 7)
-      if (resto >= 1) {
-        quantidadeGrupos.push(resto)
+    switch (Num_checkin) {
+    case 17:
+      return { jogadoresPorGrupo: [6, 6, 5] }
+    case 18:
+      return { jogadoresPorGrupo: [6, 6, 6] }
+    case 19:
+      return { jogadoresPorGrupo: [7, 6, 6] }
+    case 20:
+      return { jogadoresPorGrupo: [7, 7, 6] }
+    case 21:
+      return { jogadoresPorGrupo: [7, 7, 7] }
+    case 25:
+      return { jogadoresPorGrupo: [7, 6, 6, 6] }
+    case 26:
+      return { jogadoresPorGrupo: [7, 7, 6, 6] }
+    case 27:
+      return { jogadoresPorGrupo: [7, 7, 7, 6] }
+    case 28:
+      return { jogadoresPorGrupo: [7, 7, 7, 7] }
+    case 33:
+      return { jogadoresPorGrupo: [7, 7, 7, 6, 6] }
+    case 34:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 6] }
+    case 35:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 7] }
+    case 41:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 6, 6] }
+    case 42:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7] }
+    case 49:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7, 7] }
+    default:
+      if (Num_checkin % 8 === 0) {
+        const quantidade = Num_checkin / 8
+        return { jogadoresPorGrupo: Array(quantidade).fill(8) }
+      } else {
+        const gruposCom7 = Math.floor(Num_checkin / 8)
+        const resto = Num_checkin % 8
+        const jogadoresPorGrupo = Array(gruposCom7).fill(7)
+        if (resto >= 1) {
+          jogadoresPorGrupo.push(resto)
+        }
+        return { jogadoresPorGrupo }
       }
     }
-
-    const jogadoresPorGrupo = quantidadeGrupos.map((qtd) => (qtd === 7) ? 7 : 6)
-
-    return { jogadoresPorGrupo }
   }
 
   calcularQuantidadeGruposHandler(req: Request, res: Response): void {
