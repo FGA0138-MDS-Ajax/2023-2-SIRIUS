@@ -42,6 +42,14 @@ CREATE TABLE "Grupos" (
 );
 
 -- CreateTable
+CREATE TABLE "ParticipanteGrupo" (
+    "id" TEXT NOT NULL,
+    "grupoId" TEXT NOT NULL,
+
+    CONSTRAINT "ParticipanteGrupo_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Participantes" (
     "id" TEXT NOT NULL,
     "teamName" TEXT NOT NULL,
@@ -51,7 +59,8 @@ CREATE TABLE "Participantes" (
     "winner" BOOLEAN NOT NULL DEFAULT false,
     "email" TEXT NOT NULL,
     "grupoId" TEXT NOT NULL,
-    "participantestorneioId" TEXT NOT NULL,
+    "participantetorneioId" TEXT NOT NULL,
+    "participantegrupoId" TEXT NOT NULL,
 
     CONSTRAINT "Participantes_pkey" PRIMARY KEY ("id")
 );
@@ -65,6 +74,21 @@ CREATE UNIQUE INDEX "Torneio_id_key" ON "Torneio"("id");
 -- CreateIndex
 CREATE UNIQUE INDEX "ParticipantesTorneio_id_key" ON "ParticipantesTorneio"("id");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "ParticipantesTorneio_torneioId_key" ON "ParticipantesTorneio"("torneioId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Rodadas_torneioId_key" ON "Rodadas"("torneioId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ParticipanteGrupo_id_key" ON "ParticipanteGrupo"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ParticipanteGrupo_grupoId_key" ON "ParticipanteGrupo"("grupoId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Participantes_grupoId_key" ON "Participantes"("grupoId");
+
 -- AddForeignKey
 ALTER TABLE "ParticipantesTorneio" ADD CONSTRAINT "ParticipantesTorneio_torneioId_fkey" FOREIGN KEY ("torneioId") REFERENCES "Torneio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -75,7 +99,13 @@ ALTER TABLE "Rodadas" ADD CONSTRAINT "Rodadas_torneioId_fkey" FOREIGN KEY ("torn
 ALTER TABLE "Grupos" ADD CONSTRAINT "Grupos_idRodada_fkey" FOREIGN KEY ("idRodada") REFERENCES "Rodadas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "ParticipanteGrupo" ADD CONSTRAINT "ParticipanteGrupo_grupoId_fkey" FOREIGN KEY ("grupoId") REFERENCES "Grupos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Participantes" ADD CONSTRAINT "Participantes_grupoId_fkey" FOREIGN KEY ("grupoId") REFERENCES "Grupos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Participantes" ADD CONSTRAINT "Participantes_participantestorneioId_fkey" FOREIGN KEY ("participantestorneioId") REFERENCES "ParticipantesTorneio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Participantes" ADD CONSTRAINT "Participantes_participantetorneioId_fkey" FOREIGN KEY ("participantetorneioId") REFERENCES "ParticipantesTorneio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Participantes" ADD CONSTRAINT "Participantes_participantegrupoId_fkey" FOREIGN KEY ("participantegrupoId") REFERENCES "ParticipanteGrupo"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
