@@ -10,10 +10,10 @@ import Logo from '../Logo'
 import MenuNavLink from '../MenuNavLink'
 
 const navLinks = [
-  { title: 'Sobre', to: '/design' },
-  { title: 'Time', to: '/branding' },
-  { title: 'Stack', to: '/development' },
-  { title: 'Contato', to: '/about' },
+  { title: 'Sobre', to: '/sobre' },
+  { title: 'Time', to: '/time' },
+  { title: 'Stack', to: '/stack' },
+  { title: 'Contato', to: '/contato' },
 ]
 
 const Header = () => {
