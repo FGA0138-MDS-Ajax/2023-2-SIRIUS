@@ -29,7 +29,7 @@ model Torneio {
     nome        String     @unique
     dataTorneio DateTime   @default(now())
     rodada      Rodada[]
-    vencedor    Vencedor[]
+    vencedor    VencedorTorneio[]
 }
 
 model Rodada {
@@ -44,6 +44,7 @@ model Grupo {
     rodada              Rodada                @relation(fields: [rodadaID], references: [id])
     rodadaID            String
     participanteEmGrupo ParticipanteEmGrupo[]
+    vencedorGrupo       VencedorGrupo[]
 }
 
 model ParticipanteEmGrupo {
@@ -62,14 +63,24 @@ model Participante {
     discordID           String
     email               String                @unique
     participanteEmGrupo ParticipanteEmGrupo[]
-    vencedor            Vencedor[]
+    vencedorTorneio     VencedorTorneio[]
+    vencedorGrupo       VencedorGrupo[]
 }
 
-model Vencedor {
+model VencedorTorneio {
     id             String              @id @default(uuid())
     participante   Participante        @relation(fields: [participanteID], references: [id])
     participanteID String
     torneio        Torneio             @relation(fields: [torneioID], references: [id])
     torneioID      String
+    posicao        EnumVencedorPosicao
+}
+
+model VencedorGrupo {
+    id             String              @id @default(uuid())
+    participante   Participante        @relation(fields: [participanteID], references: [id])
+    participanteID String
+    grupo          Grupo               @relation(fields: [grupoID], references: [id])
+    grupoID        String
     posicao        EnumVencedorPosicao
 }
