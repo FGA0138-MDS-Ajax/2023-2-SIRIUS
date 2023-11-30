@@ -8,22 +8,21 @@ export class TorneioController {
   async create(req: Request, res: Response) {
     const { nome } = req.body
       
-    const TorneioExists = await prisma.torneio.findUnique({ where: { id } })
+    const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
   
-    if (TorneioExists) {
-      return res.status(400).json({ error: 'Torneio already exists!' })
+    if (TorneioNameExists) {
+      return res.status(400).json({ error: 'Torneio ja existe!' })
     }
   
     const newTorneio = await prisma.torneio.create({
-      data: {id, datatorneio, vencedor, rodada},
+      data: { nome },
     }) 
   
     if (!newTorneio) {
-      return res.status(400).send('invalid tournament')
+      return res.status(400).send('Toneio invalido!')
     }
 
     return res.status(201).json(newTorneio)
   }
-
 }  
 
