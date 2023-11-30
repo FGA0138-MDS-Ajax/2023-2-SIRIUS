@@ -8,7 +8,6 @@ import { ParticipantesController } from './controllers/Participantes/Participant
 
 const routes = Router()
 
-// a gente vai deixar isso assim mesmo? Hehe, sem uso apenas para teste!! :)
 routes.get('/', (req, res) => {
   res.send('Hello World! Você está na raiz da API!')
 })
@@ -18,17 +17,17 @@ routes.post('/csv', (req, res) => {
   return csvController.importCSV(req,res)
 })
 
-routes.get('/calcularQuantidadeGrupos/:Num_checkin', (req, res) => {
+routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
   const grupoController = new GrupoController()
   return grupoController.calcularQuantidadeGruposHandler(req, res)
 })
 
-routes.post('/torneio', new TorneioController().create)
-routes.post('/torneio/rodadas', new RodadaController().create)
-routes.post('/torneio/grupos', new GrupoController().create)
-routes.post('/torneio/participantes', new ParticipantesController().create)
+routes.post('/torneios/create', new TorneioController().create)
+routes.post('/rodadas/create', new RodadaController().create)
+routes.post('/grupos/create', new GrupoController().create)
+routes.post('/participantes/create', new ParticipantesController().createVariosParticipantes)
 
-routes.post('/user', new UserController().create)
+routes.post('/users/create', new UserController().create)
 routes.post('/login', new UserController().login)
 routes.get('/profile', new UserController().getProfile)
 
