@@ -5,20 +5,14 @@ const prisma = new PrismaClient()
 
 export class RodadaController {
   async create(req: Request, res: Response) {
-    const {id, torneioId, torneio } = req.body 
+    const { torneioID } = req.body 
       
-    const RodadasExists = await prisma.rodada.findUnique({ where: { id } })
-  
-    if (RodadasExists) {
-      return res.status(400).json({ error: 'Rodadas already exists!' })
-    }
-  
     const newRodadas = await prisma.rodada.create({
-      data: { id, torneioId, torneio },
+      data: { torneioID },
     })
 
     if (!newRodadas) {
-      return res.status(400).send('invalid round')
+      return res.status(400).send('Erro ao criar rodada!\n')
     }
 
     return res.status(201).json(newRodadas) 
