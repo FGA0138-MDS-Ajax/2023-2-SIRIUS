@@ -7,6 +7,8 @@ const prisma = new PrismaClient()
 export class TorneioController {
   async create(req: Request, res: Response) {
     const { nome } = req.body
+
+    console.log(nome)
       
     const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
   
@@ -19,7 +21,7 @@ export class TorneioController {
     }) 
   
     if (!newTorneio) {
-      return res.status(400).send('Toneio invalido!')
+      return res.status(400).send('Torneio invalido!')
     }
 
     return res.status(201).json(newTorneio)

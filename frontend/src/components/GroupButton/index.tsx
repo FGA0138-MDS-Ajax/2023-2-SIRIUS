@@ -2,17 +2,9 @@
 import { useState, useEffect } from 'react'
 import { API } from '../../server/api'
 import { motion } from 'framer-motion'
+import { PlayerData } from '../../types'
 
-interface PlayerData {
-  teamName: string
-  inGameName: string
-  checkedInAt: string
-  userID: string
-  discordID: string
-  email: string
-}
-
-const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
+const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[]}) => {
   const [playerData, setPlayerData] = useState<PlayerData[]>([])
 
   useEffect(() => {
@@ -28,8 +20,8 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
     const quantidadeJogadoresPorGrupo = (
       await API.get(`/grupos/quantidade/${qtdJogadoresQueFizeramCheckin}`)
     ).data.jogadoresPorGrupo
+    
     const gruposDoTorneio: Array<Array<PlayerData>> = []
-
     let playerPos = 0
     for (let i = 0; i < quantidadeJogadoresPorGrupo.length; i++) {
       const groupSize = quantidadeJogadoresPorGrupo[i]
@@ -52,8 +44,9 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[] }) => {
 
   return (
     <motion.button
+      type='button'
       className="-mt-12 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
-      onClick={() => groupPlayers()}
+      onSubmit={() => groupPlayers()}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}

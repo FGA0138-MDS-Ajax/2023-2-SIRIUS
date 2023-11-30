@@ -8,7 +8,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_HOST=localhost
+      - POSTGRES_HOST=database
       - POSTGRES_USER=develop_usermatcher
       - POSTGRES_PASSWORD=matcher_developpass
       - POSTGRES_DB=matcher_develop
