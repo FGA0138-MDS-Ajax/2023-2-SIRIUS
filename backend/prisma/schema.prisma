@@ -18,35 +18,44 @@ model User {
 }
 
 model Torneio {
-    id          String    @id @unique @default(uuid())
-    datatorneio DateTime  @default(now())
+    id          String   @id @unique @default(uuid())
+    datatorneio DateTime @default(now())
     vencedor    String[]
-    rodada      Rodadas[]
+    rodada      Rodada[]
 }
 
-model Rodadas {
-    id        String   @id @default(uuid())
-    torneio   Torneio  @relation(fields: [torneioId], references: [id])
-    torneioId String
-    grupo     Grupos[]
+model Rodada {
+    id            String          @id @default(uuid())
+    torneio       Torneio         @relation(fields: [torneioId], references: [id])
+    torneioId     String
+    grupo         Grupo[]
 }
 
-model Grupos {
-    id           String          @id @default(uuid())
-    grupos       String
-    rodada       Rodadas         @relation(fields: [idRodada], references: [id])
-    idRodada     String
-    participante Participantes[]
+model Grupo {
+    id                         String                       @id @default(uuid())
+    rodada                     Rodada                       @relation(fields: [idRodada], references: [id])
+    idRodada                   String
+    participante               Participante[]
+    ParticipanteParticipaGrupo ParticipanteParticipaGrupo[]
 }
 
-model Participantes {
-    id          String  @id @default(uuid())
-    teamName    String
-    inGameName  String
-    checkedInAt String
-    idDiscord   String
-    winner      Boolean @default(false)
-    email       String
-    grupo       Grupos  @relation(fields: [grupoId], references: [id])
-    grupoId     String
+model ParticipanteParticipaGrupo {
+    id             String       @id @default(uuid())
+    participante   Participante @relation(fields: [participanteId], references: [id])
+    participanteId String
+    grupo          Grupo        @relation(fields: [grupoId], references: [id])
+    grupoId        String
+}
+
+model Participante {
+    id                         String                       @id @default(uuid())
+    teamName                   String
+    inGameName                 String
+    checkedInAt                String
+    idDiscord                  String
+    winner                     Boolean                      @default(false)
+    email                      String
+    grupo                      Grupo                        @relation(fields: [grupoId], references: [id])
+    grupoId                    String
+    ParticipanteParticipaGrupo ParticipanteParticipaGrupo[]
 }
