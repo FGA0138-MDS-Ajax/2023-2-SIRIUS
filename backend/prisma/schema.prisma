@@ -56,13 +56,12 @@ model ParticipanteEmGrupo {
 }
 
 model Participante {
-    id                  String                @id @default(uuid())
+    id                  String                @id
     teamName            String
     inGameName          String
     checkedInAt         String
-    dicordID            String
-    winner              Boolean               @default(false)
-    email               String
+    discordID           String
+    email               String                @unique
     grupo               Grupo                 @relation(fields: [grupoID], references: [id])
     grupoID             String
     participanteEmGrupo ParticipanteEmGrupo[]
