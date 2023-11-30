@@ -20,14 +20,21 @@ model User {
 model Torneio {
     id          String    @id @unique @default(uuid())
     datatorneio DateTime  @default(now())
-    vencedor    String[]
+    participantes ParticipantesTorneio[]
     rodada      Rodadas[]
+}
+
+model ParticipantesTorneio {
+    id        String   @id @unique @default(uuid())
+    torneio   Torneio  @relation(fields: [torneioId], references: [id])
+    torneioId String   @unique
+    participantestorneio Participantes[]
 }
 
 model Rodadas {
     id        String   @id @default(uuid())
     torneio   Torneio  @relation(fields: [torneioId], references: [id])
-    torneioId String
+    torneioId String   @unique
     grupo     Grupos[]
 }
 
@@ -36,12 +43,12 @@ model Grupos {
     grupos       String
     rodada       Rodadas         @relation(fields: [idRodada], references: [id])
     idRodada     String
-    participante Participantes[]
+    participantes Participantes[]
 }
 
 model Participantes {
     id          String  @id @default(uuid())
-    teamName    String
+    teamName    String  
     inGameName  String
     checkedInAt String
     idDiscord   String
@@ -49,4 +56,6 @@ model Participantes {
     email       String
     grupo       Grupos  @relation(fields: [grupoId], references: [id])
     grupoId     String
+    participantestorneio ParticipantesTorneio @relation(fields: [participantestorneioId], references: [id])
+    participantestorneioId  String
 }

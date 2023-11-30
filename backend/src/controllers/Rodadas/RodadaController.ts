@@ -10,7 +10,7 @@ export class RodadaController {
   //Método para Criação das Rodadas na DataBase.
 
   async mainRodadas(req: Request, res: Response) {
-    const { id, torneioId, torneio, published, grupo } = req.body
+    const { id, torneioId, torneio, grupo } = req.body
 
     const RodadasExists = await prisma.rodadas.findUnique({ where: { id } })
 
@@ -19,7 +19,7 @@ export class RodadaController {
     }
 
     const newRodadas = await prisma.rodadas.create({
-      data: { id, torneioId, torneio, published, grupo },
+      data: { id, torneioId, torneio, grupo },
     })
 
     if (!newRodadas) {
@@ -27,21 +27,23 @@ export class RodadaController {
     }
 
     return res.status(201).json(newRodadas)
+
+  
   }
 
   // Método para Deleção dos Rodadas na DataBase.
 
   public deleteRodadas() {
     async (request: Request, response: Response) => {
-      const { id } = request.params
+      const { id,torneioId } = request.params
 
-      const rodada = await prisma.rodadas.findUnique({ where: { id } })
+      const rodada = await prisma.rodadas.findUnique({ where: { id,torneioId } })
 
       if (!rodada) {
         return response.status(404).json({ error: 'Rodada not found' })
       }
 
-      const deletedRodada = await prisma.rodadas.delete({ where: { id } })
+      const deletedRodada = await prisma.rodadas.delete({ where: { id,torneioId } })
 
       return response.json(deletedRodada)
     }

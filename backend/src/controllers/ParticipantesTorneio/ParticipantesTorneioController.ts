@@ -3,26 +3,25 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-/**
- * Classe Para Controle dos Métodos dos Participantes.
- */
-export class ParticipantesController {
+
+// Classe Para Controle dos Métodos dos Participantes.
+ 
+export class ParticipantesTorneioController {
   /**
      * Método para Criação dos Participantes na DataBase.
      */
   async create(req: Request, res: Response) {
 
-    const {id, teamName, inGameName, checkedInAt, idDiscord, winner, email,  grupo, grupoId, participantestorneio, participantestorneioId} = req.body
+    const {id, torneio, torneioId, participantestorneio} = req.body
       
-    const ParticipanteExists = await prisma.participantes.findUnique({ where: { id } })
+    const ParticipanteTorneioExists = await prisma.participantesTorneio.findUnique({ where: { id } })
   
-    if (ParticipanteExists) {
+    if (ParticipanteTorneioExists) {
       return res.status(400).json({ error: 'Participante already exists!' })
     }
   
     const newParticipante = await prisma.participantes.create({
-      data: {id, teamName, inGameName, checkedInAt, idDiscord, winner, email, grupo, grupoId, participantestorneio, participantestorneioId
-      },
+      data: {id, torneio, torneioId, participantestorneio},
     }) 
       
     if (!newParticipante) {

@@ -10,7 +10,7 @@ export class GrupoController {
      * Método para Criação dos Grupos na DataBase.
      */
   async create(req: Request, res: Response) {
-    const {id, grupos, published, rodada, rodadaId, participante} = req.body
+    const {id, grupos, rodada, idRodada, participantes} = req.body
       
     const GrupoExists = await prisma.grupos.findUnique({ where: { id } })
       
@@ -19,7 +19,7 @@ export class GrupoController {
     }
   
     const newGrupo = await prisma.grupos.create({
-      data: {id, grupos, published, rodada, rodadaId, participante},
+      data: {id, grupos, rodada, idRodada, participantes},
     }) 
   
     if (!newGrupo) {
@@ -33,9 +33,19 @@ export class GrupoController {
   /**
      * Método para Deleção dos Grupos na DataBase.
      */
-  async delete(req: Request, res: Response) {  
+  public deleteGrupos() {
+    async (request: Request, response: Response) => {
+      const { id } = request.params
 
-    const deleteGrupos = await prisma.grupos.deleteMany({}) 
+      const grupo = await prisma.rodadas.findUnique({ where: { id } })
 
-  } 
+      if (!grupo) {
+        return response.status(404).json({ error: 'Rodada not found' })
+      }
+
+      const deletedGrupo = await prisma.rodadas.delete({ where: { id } })
+
+      return response.json(deletedGrupo)
+    }
+  }
 }

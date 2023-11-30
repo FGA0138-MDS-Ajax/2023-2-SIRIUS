@@ -5,6 +5,7 @@ import { TorneioController } from './controllers/Torneio/TorneioController'
 import { RodadaController } from './controllers/Rodadas/RodadaController'
 import { GrupoController } from './controllers/Grupos/GrupoController'
 import { ParticipantesController } from './controllers/Participantes/ParticipantesController'
+import { ParticipantesTorneioController } from './controllers/ParticipantesTorneio/ParticipantesTorneioController' 
 
 const routes = Router()
 
@@ -21,6 +22,7 @@ routes.post('/torneio', new TorneioController().create)
 routes.post('/torneio/rodadas', new RodadaController().mainRodadas)
 routes.post('/torneio/grupos', new GrupoController().create)
 routes.post('/torneio/participantes', new ParticipantesController().create)
+routes.post('/torneio/participantestorneio', new ParticipantesTorneioController().create)
 
 routes.post('/user', new UserController().create)
 routes.post('/login', new UserController().login)
