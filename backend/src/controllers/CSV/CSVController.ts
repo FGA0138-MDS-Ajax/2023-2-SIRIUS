@@ -43,6 +43,7 @@ export default class CSVController {
   public extractKeys(csvContents: string[]): string[] {
     if (csvContents.length > 0) {
       return csvContents.shift()!.split(',').map((chave: string) => {
+        if (chave.includes('userID')) return 'id'
         if (chave.includes('ID Discord')) return 'discordID'
         if (chave.includes('Email')) return 'email'
         return chave
