@@ -5,24 +5,17 @@ const prisma = new PrismaClient()
 
 export class GrupoController {
   async create(req: Request, res: Response) {
-    const { id, rodada, idRodada } = req.body
-
-    const GrupoExists = await prisma.grupo.findUnique({ where: { id } })
-
-    if (GrupoExists) {
-      return res.status(400).json({ error: 'Grupo already exists!' })
-    }
+    const { rodadaID } = req.body
 
     const newGrupo = await prisma.grupo.create({
-      data: { id, rodada, idRodada },
+      data: { rodadaID },
     })
 
     if (!newGrupo) {
-      return res.status(400).send('invalid group')
+      return res.status(400).send('Erro ao criar grupo!\n')
     }
 
     return res.status(201).json(newGrupo)
-
   }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
