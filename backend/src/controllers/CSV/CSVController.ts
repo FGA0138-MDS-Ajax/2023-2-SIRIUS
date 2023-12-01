@@ -24,6 +24,7 @@ export default class CSVController {
       const csvRandom = this.arrayToCSV(arrord)
       const chaves = this.extractKeys(csvRandom)
       const jsonRetorno = this.generateJSONData(csvRandom, chaves)
+
       
       return res.json(jsonRetorno)
     } catch (error) {
@@ -42,6 +43,7 @@ export default class CSVController {
   public extractKeys(csvContents: string[]): string[] {
     if (csvContents.length > 0) {
       return csvContents.shift()!.split(',').map((chave: string) => {
+        if (chave.includes('userID')) return 'id'
         if (chave.includes('ID Discord')) return 'discordID'
         if (chave.includes('Email')) return 'email'
         return chave
@@ -94,4 +96,6 @@ export default class CSVController {
       return dados
     })
   } 
+
+
 }

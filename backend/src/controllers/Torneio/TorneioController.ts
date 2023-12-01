@@ -4,32 +4,27 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-/**
- * Classe Para Controle dos Métodos dos Torneios.
- */
 export class TorneioController {
-  /**
-     * Método para Criação dos Torneios na DataBase.
-     */
   async create(req: Request, res: Response) {
-    const {id, datatorneio, vencedor, rodada} = req.body
+    const { nome } = req.body
+
+    console.log(nome)
       
-    const TorneioExists = await prisma.torneio.findUnique({ where: { id } })
+    const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
   
-    if (TorneioExists) {
-      return res.status(400).json({ error: 'Torneio already exists!' })
+    if (TorneioNameExists) {
+      return res.status(400).json({ error: 'Torneio ja existe!' })
     }
   
     const newTorneio = await prisma.torneio.create({
-      data: {id, datatorneio, vencedor, rodada},
+      data: { nome },
     }) 
   
     if (!newTorneio) {
-      return res.status(400).send('invalid tournament')
+      return res.status(400).send('Torneio invalido!')
     }
 
     return res.status(201).json(newTorneio)
   }
-
 }  
 

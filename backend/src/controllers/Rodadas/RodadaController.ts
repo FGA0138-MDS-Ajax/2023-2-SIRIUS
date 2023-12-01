@@ -3,49 +3,34 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-// Classe Para Controle dos Métodos das Rodadas.
-
 export class RodadaController {
-
-  //Método para Criação das Rodadas na DataBase.
-
-  async mainRodadas(req: Request, res: Response) {
-    const { id, torneioId, torneio, grupo } = req.body
-
-    const RodadasExists = await prisma.rodadas.findUnique({ where: { id } })
-
-    if (RodadasExists) {
-      return res.status(400).json({ error: 'Rodadas already exists!' })
-    }
-
-    const newRodadas = await prisma.rodadas.create({
-      data: { id, torneioId, torneio, grupo },
+  async create(req: Request, res: Response) {
+    const { torneioID } = req.body 
+      
+    const newRodadas = await prisma.rodada.create({
+      data: { torneioID },
     })
 
     if (!newRodadas) {
-      return res.status(400).send('invalid round')
+      return res.status(400).send('Erro ao criar rodada!\n')
     }
 
-    return res.status(201).json(newRodadas)
-
-  
+    return res.status(201).json(newRodadas) 
   }
 
   // Método para Deleção dos Rodadas na DataBase.
 
-  public deleteRodadas() {
-    async (request: Request, response: Response) => {
-      const { id,torneioId } = request.params
+  async handle(request: Request, response: Response) {
+    const { id } = request.params
 
-      const rodada = await prisma.rodadas.findUnique({ where: { id,torneioId } })
+    const rodada = await prisma.rodada.findUnique({ where: { id } })
 
-      if (!rodada) {
-        return response.status(404).json({ error: 'Rodada not found' })
-      }
-
-      const deletedRodada = await prisma.rodadas.delete({ where: { id,torneioId } })
-
-      return response.json(deletedRodada)
+    if (!rodada) {
+      return response.status(404).json({ error: 'Rodada not found' })
     }
+
+    const deletedRodada = await prisma.rodada.delete({ where: { id } })
+
+    return response.json(deletedRodada)
   }
 }

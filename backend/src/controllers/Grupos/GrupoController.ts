@@ -2,50 +2,78 @@ import { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
-/**
- * Classe Para Controle dos Métodos dos Grupos.
- */
+
 export class GrupoController {
-  /**
-     * Método para Criação dos Grupos na DataBase.
-     */
   async create(req: Request, res: Response) {
-    const {id, grupos, rodada, idRodada, participantes} = req.body
-      
-    const GrupoExists = await prisma.grupos.findUnique({ where: { id } })
-      
-    if (GrupoExists) {
-      return res.status(400).json({ error: 'Grupo already exists!' })
-    }
-  
-    const newGrupo = await prisma.grupos.create({
-      data: {id, grupos, rodada, idRodada, participantes},
-    }) 
-  
+    const { rodadaID } = req.body
+
+    const newGrupo = await prisma.grupo.create({
+      data: { rodadaID },
+    })
+
     if (!newGrupo) {
-      return res.status(400).send('invalid group')
+      return res.status(400).send('Erro ao criar grupo!\n')
     }
 
     return res.status(201).json(newGrupo)
+  }
 
-  } 
-    
-  /**
-     * Método para Deleção dos Grupos na DataBase.
-     */
-  public deleteGrupos() {
-    async (request: Request, response: Response) => {
-      const { id } = request.params
-
-      const grupo = await prisma.rodadas.findUnique({ where: { id } })
-
-      if (!grupo) {
-        return response.status(404).json({ error: 'Rodada not found' })
+  public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
+    switch (Num_checkin) {
+    case 17:
+      return { jogadoresPorGrupo: [6, 6, 5] }
+    case 18:
+      return { jogadoresPorGrupo: [6, 6, 6] }
+    case 19:
+      return { jogadoresPorGrupo: [7, 6, 6] }
+    case 20:
+      return { jogadoresPorGrupo: [7, 7, 6] }
+    case 21:
+      return { jogadoresPorGrupo: [7, 7, 7] }
+    case 25:
+      return { jogadoresPorGrupo: [7, 6, 6, 6] }
+    case 26:
+      return { jogadoresPorGrupo: [7, 7, 6, 6] }
+    case 27:
+      return { jogadoresPorGrupo: [7, 7, 7, 6] }
+    case 28:
+      return { jogadoresPorGrupo: [7, 7, 7, 7] }
+    case 33:
+      return { jogadoresPorGrupo: [7, 7, 7, 6, 6] }
+    case 34:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 6] }
+    case 35:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 7] }
+    case 41:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 6, 6] }
+    case 42:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7] }
+    case 49:
+      return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7, 7] }
+    default:
+      if (Num_checkin % 8 === 0) {
+        const quantidade = Num_checkin / 8
+        return { jogadoresPorGrupo: Array(quantidade).fill(8) }
+      } else {
+        const gruposCom7 = Math.floor(Num_checkin / 8)
+        const resto = Num_checkin % 8
+        const jogadoresPorGrupo = Array(gruposCom7).fill(7)
+        if (resto >= 1) {
+          jogadoresPorGrupo.push(resto)
+        }
+        return { jogadoresPorGrupo }
       }
+    }
+  }
 
-      const deletedGrupo = await prisma.rodadas.delete({ where: { id } })
+  calcularQuantidadeGruposHandler(req: Request, res: Response): void {
+    const { Num_checkin } = req.params
 
-      return response.json(deletedGrupo)
+    try {
+      const { jogadoresPorGrupo } = this.calcularQuantidadeGrupos(+(Num_checkin))
+      res.status(200).json({ jogadoresPorGrupo })
+    } catch (error) {
+      res.status(400).json({ error: 'Erro ao calcular a quantidade de grupos.' })
     }
   }
 }

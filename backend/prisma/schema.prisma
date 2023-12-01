@@ -10,6 +10,13 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+enum EnumVencedorPosicao {
+    PRIMEIRO
+    SEGUNDO
+    TERCEIRO
+    QUARTO
+}
+
 model User {
     id       Int     @id @default(autoincrement())
     email    String  @unique
@@ -18,53 +25,62 @@ model User {
 }
 
 model Torneio {
-    id           String                 @id @unique @default(uuid())
-    datatorneio  DateTime               @default(now())
-    participante ParticipantesTorneio[]
-    rodada       Rodadas[]
+    id          String     @id @unique @default(uuid())
+    nome        String     @unique
+    rodada      Rodada[]
+    vencedor    VencedorTorneio[]
 }
 
-model ParticipantesTorneio {
-    id                  String          @id @unique @default(uuid())
-    torneio             Torneio         @relation(fields: [torneioId], references: [id])
-    torneioId           String          @unique
-    participantetorneio Participantes[]
+model Rodada {
+    id        String  @id @default(uuid())
+    torneio   Torneio @relation(fields: [torneioID], references: [id])
+    torneioID String
+    grupo     Grupo[]
 }
 
-model Rodadas {
-    id        String   @id @default(uuid())
-    torneio   Torneio  @relation(fields: [torneioId], references: [id])
-    torneioId String   @unique
-    grupo     Grupos[]
+model Grupo {
+    id                  String                @id @default(uuid())
+    rodada              Rodada                @relation(fields: [rodadaID], references: [id])
+    rodadaID            String
+    participanteEmGrupo ParticipanteEmGrupo[]
+    vencedorGrupo       VencedorGrupo[]
 }
 
-model Grupos {
-    id                String              @id @default(uuid())
-    rodada            Rodadas             @relation(fields: [idRodada], references: [id])
-    idRodada          String
-    participantegrupo ParticipanteGrupo[]
-    participante      Participantes[]
+model ParticipanteEmGrupo {
+    id             String       @id @default(uuid())
+    participante   Participante @relation(fields: [participanteID], references: [id])
+    participanteID String
+    grupo          Grupo        @relation(fields: [grupoID], references: [id])
+    grupoID        String
 }
 
-model ParticipanteGrupo {
-    id           String          @id @unique @default(uuid())
-    grupo        Grupos          @relation(fields: [grupoId], references: [id])
-    grupoId      String          @unique
-    participante Participantes[]
+model Participante {
+    id                  String                @id
+    teamName            String
+    inGameName          String
+    checkedInAt         String
+    discordID           String
+    email               String                
+    participanteEmGrupo ParticipanteEmGrupo[]
+    vencedorTorneio     VencedorTorneio[]
+    vencedorGrupo       VencedorGrupo[]
 }
 
-model Participantes {
-    id                    String               @id @default(uuid())
-    teamName              String
-    inGameName            String
-    checkedInAt           String
-    idDiscord             String
-    winner                Boolean              @default(false)
-    email                 String
-    grupo                 Grupos               @relation(fields: [grupoId], references: [id])
-    grupoId               String               @unique
-    participantetorneio   ParticipantesTorneio @relation(fields: [participantetorneioId], references: [id])
-    participantetorneioId String
-    participantegrupo     ParticipanteGrupo    @relation(fields: [participantegrupoId], references: [id])
-    participantegrupoId   String
+model VencedorTorneio {
+    id             String              @id @default(uuid())
+    participante   Participante        @relation(fields: [participanteID], references: [id])
+    participanteID String
+    torneio        Torneio             @relation(fields: [torneioID], references: [id])
+    torneioID      String
+    posicao        EnumVencedorPosicao
 }
+
+model VencedorGrupo {
+    id             String              @id @default(uuid())
+    participante   Participante        @relation(fields: [participanteID], references: [id])
+    participanteID String
+    grupo          Grupo               @relation(fields: [grupoID], references: [id])
+    grupoID        String
+    posicao        EnumVencedorPosicao
+}
+

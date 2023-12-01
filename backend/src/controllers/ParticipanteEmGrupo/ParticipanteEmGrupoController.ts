@@ -3,13 +3,14 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export class ParticipantesController {
-  async createVariosParticipantes(req: Request, res: Response) {
-    const participantesData = req.body.participantes
+export class ParticipanteEmGrupoController {
+  async create(req: Request, res: Response) {
+
+    const participantesEmGrupoData = req.body.participanteEmGrupo
 
     try {
-      const createdParticipantes = await prisma.participante.createMany({
-        data: participantesData,
+      const createdParticipantes = await prisma.participanteEmGrupo.createMany({
+        data: participantesEmGrupoData,
         skipDuplicates: true,
       })
 
@@ -20,3 +21,9 @@ export class ParticipantesController {
     }
   }
 }
+
+/* 
+[
+    { grupoid: number; playerid: number; }, { ...},
+] 
+*/

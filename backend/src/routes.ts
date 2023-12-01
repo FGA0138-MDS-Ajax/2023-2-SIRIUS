@@ -5,27 +5,33 @@ import { TorneioController } from './controllers/Torneio/TorneioController'
 import { RodadaController } from './controllers/Rodadas/RodadaController'
 import { GrupoController } from './controllers/Grupos/GrupoController'
 import { ParticipantesController } from './controllers/Participantes/ParticipantesController'
-import { ParticipantesTorneioController } from './controllers/ParticipantesTorneio/ParticipantesTorneioController' 
+import { ParticipanteEmGrupoController } from './controllers/ParticipanteEmGrupo/ParticipanteEmGrupoController'
 
 const routes = Router()
 
-// a gente vai deixar isso assim mesmo? Hehe, sem uso apenas para teste!! :)
 routes.get('/', (req, res) => {
   res.send('Hello World! Você está na raiz da API!')
 })
+
 routes.post('/csv', (req, res) => {
   const csvController = new CSVController()
   return csvController.importCSV(req,res)
 })
 
-routes.post('/torneio', new TorneioController().create)
-routes.post('/torneio/rodadas', new RodadaController().mainRodadas)
-routes.post('/torneio/grupos', new GrupoController().create)
-routes.post('/torneio/participantes', new ParticipantesController().create)
-routes.post('/torneio/participantestorneio', new ParticipantesTorneioController().create)
+routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
+  const grupoController = new GrupoController()
+  return grupoController.calcularQuantidadeGruposHandler(req, res)
+})
 
-routes.post('/user', new UserController().create)
+routes.post('/torneios/create', new TorneioController().create)
+routes.post('/rodadas/create', new RodadaController().create)
+routes.post('/grupos/create', new GrupoController().create)
+routes.post('/participantes/create', new ParticipantesController().createVariosParticipantes)
+routes.post('/participantesEmGrupo/create', new ParticipanteEmGrupoController().create)
+
+routes.post('/users/create', new UserController().create)
 routes.post('/login', new UserController().login)
 routes.get('/profile', new UserController().getProfile)
 
 export { routes }
+
