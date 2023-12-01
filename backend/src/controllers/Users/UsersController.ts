@@ -4,43 +4,46 @@ import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { PrismaClient } from '@prisma/client'
+import { IUserDataProps } from '../../types/types'
 
 const prisma = new PrismaClient()
 
 export class UserController {
-  async create(req: Request, res: Response) {
-    const { name, email, password } = req.body
+  async create(userData: IUserDataProps) {
 
-    const userExists = await prisma.user.findUnique({ where: { email } })
+    const userExists = await prisma.user.findUnique({ where: { email: userData.email } })
 
     if (userExists) {
-      return res.status(400).json({ error: 'Email already exists!' })
+      return (null)
     }
 
-    const hashPassword = await bcrypt.hash(password, 10)
+    const hashPassword = await bcrypt.hash(userData.password, 10)
 
     const newUser = await prisma.user.create({
-      data: { name, email, password: hashPassword },
+      data: {
+        name: userData.name,
+        email: userData.email,
+        password: hashPassword
+      }
     })
 
     const { password: _, ...user } = newUser
 
-    return res.status(201).json(user)
+    return (user)
   }
 
-  async login(req: Request, res: Response) {
-    const { email, password } = req.body
+  async login(userData: IUserDataProps) {
 
-    const user = await prisma.user.findUnique({ where: { email } })
+    const user = await prisma.user.findUnique({ where: { email: userData.email } })
 
     if (!user) {
-      return res.status(400).json({ error: 'Email or password invalids' })
+      return (null)
     }
 
-    const verifyPass = await bcrypt.compare(password, user.password)
+    const verifyPass = await bcrypt.compare(userData.password, user.password)
 
     if (!verifyPass) {
-      return res.status(400).json({ error: 'Email or password invalids' })
+      return (null)
     }
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_PASS ?? '', {
@@ -49,7 +52,7 @@ export class UserController {
 
     const { password: _, ...userLogin } = user
 
-    return res.status(200).json({ user: userLogin, token: token })
+    return ({ user: userLogin, token: token })
   }
 
   async getProfile(req: Request, res: Response) {

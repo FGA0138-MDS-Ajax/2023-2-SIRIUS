@@ -18,11 +18,6 @@ routes.post('/csv', (req, res) => {
   return csvController.importCSV(req, res)
 })
 
-routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
-  const grupoController = new GrupoController()
-  return grupoController.calcularQuantidadeGruposHandler(req, res)
-})
-
 // Criar rota para fazer as 5 requisicoes de uma vez
 routes.post('/torneios/create', async (req, res) => {
   const torneioController = new TorneioController()
@@ -36,7 +31,6 @@ routes.post('/torneios/create', async (req, res) => {
   return res.status(200).json(newTorneio)
 
 })
-
 routes.post('/torneios/search', async (req, res) => {
   const torneioController = new TorneioController()
   const nome = req.body.nome
@@ -48,8 +42,8 @@ routes.post('/torneios/search', async (req, res) => {
   return res.status(200).json(torneio)
 
 })
-
 routes.get('/torneios', new TorneioController().getTorneios)
+
 
 routes.post('/rodadas/create', async (req, res) => {
   const rodadaController = new RodadaController()
@@ -63,6 +57,10 @@ routes.post('/rodadas/create', async (req, res) => {
 })
 
 
+routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
+  const grupoController = new GrupoController()
+  return grupoController.calcularQuantidadeGruposHandler(req, res)
+})
 routes.post('/grupos/create', async (req, res) => {
   const grupoController = new GrupoController()
   const rodadaID = req.body.rodadaID
@@ -74,15 +72,63 @@ routes.post('/grupos/create', async (req, res) => {
   return res.status(200).json(newGrupo)
 })
 
-routes.post('/participantes/create', new ParticipantesController().createVariosParticipantes)
-routes.post('/participantes/search', new ParticipantesController().searchByInGameName)
-routes.get('/participantes', new ParticipantesController().getParticipantes)
 
-routes.post('/participantesEmGrupo/create', new ParticipanteEmGrupoController().create)
-routes.post('/participantesEmGrupo/search', new ParticipanteEmGrupoController().getGruposDeParticipante)
+routes.post('/participantes/create', async (req, res) => {
+  const participantesController = new ParticipantesController()
+  const participantes = req.body.participantes
 
-routes.post('/users/create', new UserController().create)
-routes.post('/login', new UserController().login)
+  const newParticipantes = await participantesController.create(participantes)
+  if (!newParticipantes) {
+    return res.status(400).send('Erro ao criar participantes')
+  }
+  return res.status(200).json(newParticipantes)
+})
+routes.post('/participantes/search', async (req, res) => {
+  const participantesController = new ParticipantesController()
+  const inGameName = req.body.inGameName
+
+  const participante = await participantesController.searchByInGameName(inGameName)
+  if (!participante) {
+    return res.status(400).send('Erro ao buscar participante')
+  }
+  return res.status(200).json(participante)
+})
+routes.get('/participantes', new ParticipantesController().getParticipantes) 
+
+
+routes.post('/participantesEmGrupo/create', async (req, res) => {
+  const participanteEmGrupoController = new ParticipanteEmGrupoController()
+  const participantesEmGrupo = req.body.participanteEmGrupo
+
+  const newParticipantesEmGrupo = await participanteEmGrupoController.create(participantesEmGrupo)
+  if (!newParticipantesEmGrupo) {
+    return res.status(400).send('Erro ao criar participantes')
+  }
+  return res.status(200).json(newParticipantesEmGrupo)
+})
+routes.post('/participantesEmGrupo/search', new ParticipanteEmGrupoController().searchGruposDeParticipante) 
+routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParticipantesEmGrupo)
+
+routes.post('/users/create', async (req, res) => {
+  const userController = new UserController()
+  const userData = req.body
+
+  const newUser = await userController.create(userData)
+  if (!newUser) {
+    return res.status(400).send('Erro ao criar usuário')
+  }
+  return res.status(200).json(newUser)
+})
+routes.post('/login', async (req, res) => {
+  const userController = new UserController()
+  const userData = req.body
+
+  const user = await userController.login(userData)
+  if (!user) {
+    return res.status(400).send('Erro ao logar usuário')
+  }
+  return res.status(200).json(user)
+}) // Não testado
 routes.get('/profile', new UserController().getProfile)
 
 export { routes }

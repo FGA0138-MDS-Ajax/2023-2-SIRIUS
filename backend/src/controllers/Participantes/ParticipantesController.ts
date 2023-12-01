@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
-import { IPlayerDataProps } from '../../types/type'
+import { IPlayerDataProps } from '../../types/types'
 
 const prisma = new PrismaClient()
 
 export class ParticipantesController {
-  async createVariosParticipantes(participantesData: IPlayerDataProps[]) {
+  async create(participantesData: IPlayerDataProps[]) {
     try {
       const createdParticipantes = await prisma.participante.createMany({
         data: participantesData,
@@ -19,21 +19,19 @@ export class ParticipantesController {
     }
   }
 
-  async searchByInGameName(req: Request, res: Response) {
-    const { inGameName } = req.body
-
+  async searchByInGameName(inGameName: string) {
     try {
       const participante = await prisma.participante.findUnique({ where: { inGameName } })
 
       if (!participante) {
-        return res.status(400).send('participante nao encontrado!')
+        return (null)
       }
 
-      return res.status(200).json(participante)
+      return (participante)
     }
     catch (error) {
       console.error('Error searching participante:', error)
-      return res.status(500).send('Internal Server Error')
+      return (null)
     }
   }
 
