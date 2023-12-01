@@ -20,10 +20,5 @@ export class ParticipanteEmGrupoController {
       return res.status(500).send('Internal Server Error')
     }
   }
-}
 
-/* 
-[
-    { grupoid: number; playerid: number; }, { ...},
-] 
-*/
+}

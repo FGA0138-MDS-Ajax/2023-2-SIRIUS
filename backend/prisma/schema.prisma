@@ -2,13 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
 enum EnumVencedorPosicao {
@@ -26,10 +26,11 @@ model User {
 }
 
 model Torneio {
-    id          String     @id @unique @default(uuid())
-    nome        String     @unique
-    rodada      Rodada[]
-    vencedor    VencedorTorneio[]
+    id                  String                @id @unique @default(uuid())
+    nome                String                @unique
+    rodada              Rodada[]
+    vencedor            VencedorTorneio[]
+    participanteEmGrupo ParticipanteEmGrupo[]
 }
 
 model Rodada {
@@ -53,15 +54,17 @@ model ParticipanteEmGrupo {
     participanteID String
     grupo          Grupo        @relation(fields: [grupoID], references: [id])
     grupoID        String
+    torneioID      String
+    torneio        Torneio      @relation(fields: [torneioID], references: [id])
 }
 
 model Participante {
     id                  String                @id
     teamName            String
-    inGameName          String
+    inGameName          String                @unique
     checkedInAt         String
     discordID           String
-    email               String                
+    email               String
     participanteEmGrupo ParticipanteEmGrupo[]
     vencedorTorneio     VencedorTorneio[]
     vencedorGrupo       VencedorGrupo[]

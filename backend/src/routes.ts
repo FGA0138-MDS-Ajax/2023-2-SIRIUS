@@ -23,10 +23,18 @@ routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
   return grupoController.calcularQuantidadeGruposHandler(req, res)
 })
 
+// Criar rota para fazer as 5 requisicoes de uma vez
 routes.post('/torneios/create', new TorneioController().create)
+routes.post('/torneios/search', new TorneioController().searchByName)
+routes.get('/torneios', new TorneioController().getTorneios)
+
 routes.post('/rodadas/create', new RodadaController().create)
 routes.post('/grupos/create', new GrupoController().create)
+
 routes.post('/participantes/create', new ParticipantesController().createVariosParticipantes)
+routes.post('/participantes/search', new ParticipantesController().searchByInGameName)
+routes.get('/participantes', new ParticipantesController().getParticipantes)
+
 routes.post('/participantesEmGrupo/create', new ParticipanteEmGrupoController().create)
 
 routes.post('/users/create', new UserController().create)

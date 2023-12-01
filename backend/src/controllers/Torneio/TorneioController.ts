@@ -26,5 +26,33 @@ export class TorneioController {
 
     return res.status(201).json(newTorneio)
   }
+
+  async searchByName(req: Request, res: Response) {
+    const { nome } = req.body
+
+    try {
+      const torneio = await prisma.torneio.findUnique({ where: { nome:nome } })
+
+      if (!torneio) {
+        return res.status(400).send('Torneio nao encontrado!')
+      }
+
+      return res.status(200).json(torneio)
+    }
+    catch (error) {
+      console.error('Error searching torneio:', error)
+      return res.status(500).send('Internal Server Error')
+    }
+  }
+
+  async getTorneios(req: Request, res: Response) {
+    const torneios = await prisma.torneio.findMany()
+
+    if (!torneios) {
+      return res.status(400).send('Nenhum torneio encontrado!')
+    }
+
+    return res.status(200).json(torneios)
+  }
 }  
 

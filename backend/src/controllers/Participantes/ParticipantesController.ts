@@ -19,4 +19,32 @@ export class ParticipantesController {
       return res.status(500).send('Internal Server Error')
     }
   }
+
+  async searchByInGameName(req: Request, res: Response) {
+    const { inGameName } = req.body
+
+    try {
+      const participante = await prisma.participante.findUnique({ where: { inGameName } })
+
+      if (!participante) {
+        return res.status(400).send('participante nao encontrado!')
+      }
+
+      return res.status(200).json(participante)
+    }
+    catch (error) {
+      console.error('Error searching participante:', error)
+      return res.status(500).send('Internal Server Error')
+    }
+  }
+
+  async getParticipantes(req: Request, res: Response) {
+    const participantes = await prisma.participante.findMany()
+
+    if (!participantes) {
+      return res.status(400).send('Nenhum participante encontrado!')
+    }
+
+    return res.status(200).json(participantes)
+  }
 }

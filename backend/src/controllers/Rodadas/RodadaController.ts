@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 export class RodadaController {
   async create(req: Request, res: Response) {
-    const { torneioID } = req.body 
+    const torneioID = req.body.torneioID 
       
     const newRodadas = await prisma.rodada.create({
       data: { torneioID },
