@@ -1,22 +1,22 @@
-import { PlayerData } from './playerType'
+import { IPlayerData } from './playerType'
 
-export interface CriarParticipantes {
-    participantes: PlayerData[]
+export interface ICriarParticipantesProps {
+    participantes: IPlayerData[]
 }
 
-export interface CriarTorneio {
+export interface ICriarTorneioProps {
     nome: string
 }
 
-export interface CriarRodada {
+export interface ICriarRodadaProps {
     torneioID: string
 }
 
-export interface CriarGrupo {
+export interface ICriarGrupoProps {
     rodadaID: string
 }
 
-export interface CriarParticipanteEmGrupo {
+export interface ICriarParticipanteEmGrupoProps {
     participanteEmGrupo:{
         grupoID: string
         participanteID: string

@@ -4,11 +4,14 @@ import { API } from '../../server/api'
 import GroupButton from '../GroupButton'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { AnimatePresence, motion } from 'framer-motion'
+import NewUploadButton from '../NewUploadButton'
+import SubmitButton from '../SubmitButton'
+import ParticipantsTable from '../ParticipantsTable'
 
 const InputCSV = () => {
   const [fileContents, setFileContents] = useState<string>('')
   const [validInput, setValidInput] = useState<boolean>(false)
-  const [jsonData, setJsonData] = useState<any | null>()
+  const [dataJSON, setdataJSON] = useState<any | null>()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>()
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null)
@@ -57,7 +60,7 @@ const InputCSV = () => {
       const response = await API.post('/csv', { ...json })
 
       if (response.data && response.data.res !== 'erro') {
-        setJsonData(response.data)
+        setdataJSON(response.data)
       } else {
         setError('Erro no processamento do CSV.')
       }
@@ -72,7 +75,7 @@ const InputCSV = () => {
   const handleNewUpload = () => {
     setFileContents('')
     setValidInput(false)
-    setJsonData(null)
+    setdataJSON(null)
     setError(null)
     setSelectedFileName(null) // Limpa o nome do arquivo
   }
@@ -83,7 +86,7 @@ const InputCSV = () => {
         <h1 className='text-gray-200 lg:text-6xl md:text-4xl text-2xl text-center font-caustenBd'>Importação de Arquivos CSV para Chaveamento.</h1>
         <div className="flex items-center justify-center w-full max-w-7xl">
           <AnimatePresence>
-            {!jsonData && (
+            {!dataJSON && (
               <motion.label
                 key="label"
                 htmlFor="dropzone-file"
@@ -112,41 +115,19 @@ const InputCSV = () => {
           </AnimatePresence>
         </div>
         <AnimatePresence>
-          {!jsonData && (
-            <motion.button
-              key="button"
-              type="button"
-              onClick={handleSubmit}
-              className="inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
-              Upload
-            </motion.button>
+          {!dataJSON && (
+            <SubmitButton handleSubmit={handleSubmit} />
           )}
         </AnimatePresence>
         <div className='flex gap-4'>
           <AnimatePresence>
-            {jsonData && (
-              <motion.button
-                key="newUploadButton"
-                type="button"
-                onClick={handleNewUpload}
-                className="-mt-12 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-2 px-10 bg-gradient rounded-full text-lg text-white text-center font-caustenBd shadow-lg hover:scale-110 duration-300 ease-in-out"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
-              >
-                Fazer Novo Upload
-              </motion.button>
+            {dataJSON && (
+              <NewUploadButton handleNewUpload={handleNewUpload} />
             )}
           </AnimatePresence>
           <AnimatePresence>
-            {jsonData && (
-              <GroupButton dadosJson={jsonData} />
+            {dataJSON && (
+              <GroupButton dadosJson={dataJSON} />
             )}
           </AnimatePresence>
         </div>
@@ -166,38 +147,11 @@ const InputCSV = () => {
             )}
           </div>
           {error && <p className="text-red-500 mt-2 text-center font-bold text-xl">Erro: {error}</p>}
-          {jsonData && (
-            <div className='flex flex-col items-center justify-center'>
-              <h2 className='text-2xl text-center font-caustenBd mb-4'>Arquivo CSV Transformado para JSON:</h2>
-              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-200 shadow-xl">
-                  <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-[#2D2D2F] dark:text-gray-300">
-                    <tr>
-                      <th scope="col" className="px-6 py-3">
-                        Game Name
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Discord ID
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {jsonData.map((item: any, index: number) => (
-                      <tr key={index} className="odd:bg-white odd:dark:bg-[#344981] even:bg-gray-50 even:dark:bg-[#2D2D2F] border-b dark:border-gray-700">
-                        <td className="px-6 py-4">{item.inGameName}</td>
-                        <td className="px-6 py-4">{item.discordID}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          {dataJSON && (
+            <ParticipantsTable dadosJSON={dataJSON} />
           )}
         </div>
       </div>
-      {jsonData && (
-        <GroupButton dadosJson={jsonData} />
-      )}
     </section>
   )
 }

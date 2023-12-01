@@ -1,4 +1,4 @@
-export interface PlayerData {
+export interface IPlayerData {
     teamName: string
     inGameName: string
     checkedInAt: string
