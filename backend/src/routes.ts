@@ -36,6 +36,11 @@ routes.post('/participantes/search', new ParticipantesController().searchByInGam
 routes.get('/participantes', new ParticipantesController().getParticipantes)
 
 routes.post('/participantesEmGrupo/create', new ParticipanteEmGrupoController().create)
+routes.post('/participantesEmGrupo/search', (req, res) => {
+  const participanteEmGrupoController = new ParticipanteEmGrupoController()
+  const { inGameName, nome } = req.body
+  const response = participanteEmGrupoController.getGruposDeParticipante(inGameName, nome)
+})
 
 routes.post('/users/create', new UserController().create)
 routes.post('/login', new UserController().login)
