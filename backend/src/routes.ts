@@ -35,4 +35,3 @@ routes.get('/profile', new UserController().getProfile)
 
 export { routes }
 
-
