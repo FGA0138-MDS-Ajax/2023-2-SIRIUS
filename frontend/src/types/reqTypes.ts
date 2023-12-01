@@ -20,6 +20,7 @@ export interface ICriarParticipanteEmGrupoProps {
     participanteEmGrupo:{
         grupoID: string
         participanteID: string
+        torneioID: string
     }[]
 }
 

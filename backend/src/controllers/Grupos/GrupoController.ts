@@ -4,18 +4,17 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export class GrupoController {
-  async create(req: Request, res: Response) {
-    const { rodadaID } = req.body
+  async create(rodadaID: string) {
 
     const newGrupo = await prisma.grupo.create({
       data: { rodadaID },
     })
 
     if (!newGrupo) {
-      return res.status(400).send('Erro ao criar grupo!\n')
+      return (null)
     }
 
-    return res.status(201).json(newGrupo)
+    return (newGrupo)
   }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {

@@ -34,13 +34,12 @@ export class ParticipanteEmGrupoController {
     return res.status(200).json(participantesEmGrupo)
   }
 
-  async getGruposDeParticipante(inGameName: string, nome: string) {
-
+  async getGruposDeParticipante(req: Request, res: Response) {
     try {
       const torneio = (await new TorneioController().searchByName(req, res))
 
       if (!torneio) {
-        return res.status(400).send('Torneio nao encontrado!')
+        return res.status(400).send('torneio nao encontrado!')
       }
 
       const participante = (await new ParticipantesController().searchByInGameName(req, res))
@@ -51,7 +50,8 @@ export class ParticipanteEmGrupoController {
 
       const grupos = await prisma.participanteEmGrupo.findMany({
         where: {
-          participanteId: participante.id
+          participanteID: participante.id,
+          torneioID: torneio.id
         },
         include: {
           grupo: true

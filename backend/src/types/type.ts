@@ -2,7 +2,7 @@ export interface IPlayerDataProps {
     teamName: string
     inGameName: string
     checkedInAt: string
-    userID: string
+    id: string
     discordID: string
     email: string
   }

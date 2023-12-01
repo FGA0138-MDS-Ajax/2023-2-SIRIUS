@@ -15,7 +15,7 @@ routes.get('/', (req, res) => {
 
 routes.post('/csv', (req, res) => {
   const csvController = new CSVController()
-  return csvController.importCSV(req,res)
+  return csvController.importCSV(req, res)
 })
 
 routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
@@ -24,23 +24,62 @@ routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
 })
 
 // Criar rota para fazer as 5 requisicoes de uma vez
-routes.post('/torneios/create', new TorneioController().create)
-routes.post('/torneios/search', new TorneioController().searchByName)
+routes.post('/torneios/create', async (req, res) => {
+  const torneioController = new TorneioController()
+  const nome = req.body.nome
+
+  const newTorneio = await torneioController.create(nome)
+  if (!newTorneio) {
+    return res.status(400).send('Erro ao criar torneio')
+  }
+
+  return res.status(200).json(newTorneio)
+
+})
+
+routes.post('/torneios/search', async (req, res) => {
+  const torneioController = new TorneioController()
+  const nome = req.body.nome
+
+  const torneio = await torneioController.searchByName(nome)
+  if (!torneio) {
+    return res.status(400).send('Erro ao buscar torneio')
+  }
+  return res.status(200).json(torneio)
+
+})
+
 routes.get('/torneios', new TorneioController().getTorneios)
 
-routes.post('/rodadas/create', new RodadaController().create)
-routes.post('/grupos/create', new GrupoController().create)
+routes.post('/rodadas/create', async (req, res) => {
+  const rodadaController = new RodadaController()
+  const torneioID = req.body.torneioID
+
+  const newRodada = await rodadaController.create(torneioID)
+  if (!newRodada) {
+    return res.status(400).send('Erro ao criar rodada')
+  }
+  return res.status(200).json(newRodada)
+})
+
+
+routes.post('/grupos/create', async (req, res) => {
+  const grupoController = new GrupoController()
+  const rodadaID = req.body.rodadaID
+
+  const newGrupo = await grupoController.create(rodadaID)
+  if (!newGrupo) {
+    return res.status(400).send('Erro ao criar grupo')
+  }
+  return res.status(200).json(newGrupo)
+})
 
 routes.post('/participantes/create', new ParticipantesController().createVariosParticipantes)
 routes.post('/participantes/search', new ParticipantesController().searchByInGameName)
 routes.get('/participantes', new ParticipantesController().getParticipantes)
 
 routes.post('/participantesEmGrupo/create', new ParticipanteEmGrupoController().create)
-routes.post('/participantesEmGrupo/search', (req, res) => {
-  const participanteEmGrupoController = new ParticipanteEmGrupoController()
-  const { inGameName, nome } = req.body
-  const response = participanteEmGrupoController.getGruposDeParticipante(inGameName, nome)
-})
+routes.post('/participantesEmGrupo/search', new ParticipanteEmGrupoController().getGruposDeParticipante)
 
 routes.post('/users/create', new UserController().create)
 routes.post('/login', new UserController().login)
