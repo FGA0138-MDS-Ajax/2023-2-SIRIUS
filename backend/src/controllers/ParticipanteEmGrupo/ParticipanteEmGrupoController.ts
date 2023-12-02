@@ -31,7 +31,7 @@ export class ParticipanteEmGrupoController {
       return (null)
     }
 
-    const participantes = await participantesController.searchByInGameName(participantesEmGrupoData[0].participanteID)
+    const participantes = await participantesController.searchByInGameName(participantesEmGrupoData.inGameName)
     if (!participantes) {
       return (null)
     }

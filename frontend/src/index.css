@@ -56,10 +56,26 @@ body {
     src: url('../public/fonts/causten/Causten-ExtraBold.otf');
 }
 
+.text-gradient {
+    background: #373B44;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #4286f4, #373B44);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #4286f4, #373B44);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .bg-navbar {
-    background: #373B44;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #373B44;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #4286f4, #373B44);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #4286f4, #373B44);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .bg-gradient {
@@ -104,9 +120,13 @@ body {
     background-size: cover;
 }
 
-.btn-gradient{
+.btn-gradient2 {
+    background: #4286f4;
+}
+
+.btn-gradient {
     background: #353535;
-} 
+}
 
 .btn-gradient:hover {
     background-image: url("../public/images/HeaderGradient.png");
@@ -114,3 +134,27 @@ body {
     background-position: 60% 0%;
     transition: 500ms ease-in-out;
 }
+
+.btn-gradient2:hover {
+    background-image: url("../public/images/HeaderGradient.png");
+    background-repeat: no-repeat;
+    background-position: 60% 0%;
+    transition: 1s ease-in-out;
+}
+
+.input:focus {
+    outline: none;
+    background-color: #f6f6f6;
+    box-shadow: 0 8px 32px 0 #224377;
+    transition: 0.5s ease-in-out;
+    color: #000000;
+}
+
+.input {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 #132644;
+    backdrop-filter: blur(9.5px);
+    -webkit-backdrop-filter: blur(9.5px);
+    border-radius: 10px;
+}
+
