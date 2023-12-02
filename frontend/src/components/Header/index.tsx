@@ -98,7 +98,7 @@ const Header = () => {
           variants={reveal}
           className="mx-12 md:mx-4 md:flex text-lg items-center hidden"
         >
-          <Link to={'/login'} className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Entrar</Link>
+          <Link to={'/login'} className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Login</Link>
         </motion.div>
         <div
           className="cursor-pointer md:hidden text-lg mx-6 text-[#C5C5C5]"
