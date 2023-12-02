@@ -1,11 +1,12 @@
 import { Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
-
-
-const prisma = new PrismaClient()
+import prisma from '../../../client'
 
 export class TorneioController {
   async create(nome: string) {
+
+    if (!nome) {
+      return (null)
+    }
 
     const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
 
@@ -27,6 +28,11 @@ export class TorneioController {
   async searchByName(nome: string) {
 
     try {
+
+      if (!nome) {
+        return (null)
+      }
+
       const torneio = await prisma.torneio.findUnique({ where: { nome: nome } })
 
       if (!torneio) {
@@ -42,9 +48,9 @@ export class TorneioController {
   }
 
   async getTorneios(req: Request, res: Response) {
-    const torneios = await prisma.torneio.findMany()
+    const torneios = await prisma.torneio.findMany(req.body)
 
-    if (!torneios) {
+    if (!torneios.length) {
       return res.status(400).send('Nenhum torneio encontrado!')
     }
 
