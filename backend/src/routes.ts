@@ -6,6 +6,7 @@ import { RodadaController } from './controllers/Rodadas/RodadaController'
 import { GrupoController } from './controllers/Grupos/GrupoController'
 import { ParticipantesController } from './controllers/Participantes/ParticipantesController'
 import { ParticipanteEmGrupoController } from './controllers/ParticipanteEmGrupo/ParticipanteEmGrupoController'
+import { VencedorGrupoController } from './controllers/VencedorGrupo/VencedorGrupoController'
 
 const routes = Router()
 
@@ -120,6 +121,18 @@ routes.post('/participantesEmGrupo/search', async (req, res) => {
 }) 
 
 routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParticipantesEmGrupo)
+
+routes.post('/vencedores/grupo', async (req, res) => {
+  const vencedorGrupoController = new VencedorGrupoController()
+  const vencedoresGrupo = req.body
+
+  const newVencedor = await vencedorGrupoController.createVariosVencedores(vencedoresGrupo)
+
+  if (!newVencedor) {
+    return res.status(400).send('Erro ao definir vencedores de grupo')
+  }
+  return res.status(200).json(newVencedor)
+})
 
 routes.post('/users/create', async (req, res) => {
   const userController = new UserController()

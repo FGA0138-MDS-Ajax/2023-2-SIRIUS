@@ -5,6 +5,14 @@ export enum EnumRodada {
   SEMIFINAL = 'SEMIFINAL',
   FINAL = 'FINAL',
 }
+
+export enum EnumVencedorPosicao {
+  PRIMEIRO = 'PRIMEIRO',
+  SEGUNDO = 'SEGUNDO',
+  TERCEIRO = 'TERCEIRO',
+  QUARTO = 'QUARTO',
+}
+
 export interface IPlayerDataProps {
   teamName: string
   inGameName: string
@@ -36,4 +44,10 @@ export interface IBuscaPlayerEmGrupoProps {
   nomeTorneio: string
   inGameName: string
   numeroRodada: EnumRodada
+}
+
+export interface IVencedorGrupoDataProps {
+    participanteID: string
+    grupoID:        string
+    posicao:        EnumVencedorPosicao
 }

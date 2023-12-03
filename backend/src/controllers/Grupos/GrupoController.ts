@@ -75,4 +75,31 @@ export class GrupoController {
       res.status(400).json({ error: 'Erro ao calcular a quantidade de grupos.' })
     }
   }
+
+  async getGrupos(req: Request, res: Response) {
+    const grupo = await prisma.grupo.findMany()
+
+    if (!grupo) {
+      return res.status(400).send('Nenhum grupo encontrado!')
+    }
+
+    return res.status(200).json(grupo)
+  }
+
+  async searchByID(id: string) {
+
+    try {
+      const grupo = await prisma.grupo.findUnique({ where: { id } })
+
+      if (!grupo) {
+        return (null)
+      }
+
+      return (grupo)
+    }
+    catch (error) {
+      console.error('Error searching grupo:', error)
+      return (null)
+    }
+  }
 }
