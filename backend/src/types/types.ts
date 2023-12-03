@@ -51,3 +51,15 @@ export interface IVencedorGrupoDataProps {
     grupoID:        string
     posicao:        EnumVencedorPosicao
 }
+
+export interface IVencedorGrupoDataProps {
+    participanteID: string
+    grupoID:        string
+    posicao:        EnumVencedorPosicao
+}
+
+export interface IVencedorTorneioDataProps {
+    participanteID: string
+    torneioID:      string
+    posicao:        EnumVencedorPosicao
+}
