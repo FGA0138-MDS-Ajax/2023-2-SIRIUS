@@ -1,3 +1,10 @@
+export enum EnumRodada {
+  UM = 'UM',
+  DOIS = 'DOIS',
+  TRES = 'TRES',
+  SEMIFINAL = 'SEMIFINAL',
+  FINAL = 'FINAL',
+}
 export interface IPlayerDataProps {
   teamName: string
   inGameName: string
@@ -19,15 +26,13 @@ export interface IUserDataProps {
   password: string
 }
 
-export enum EnumRodada {
-    UM = "UM",
-    DOIS = "DOIS",
-    TRES = "TRES",
-    SEMIFINAL = "SEMIFINAL",
-    FINAL = "FINAL",
+export interface IRodadaDataProps {
+  numeroRodada: EnumRodada
+  torneioID: string
 }
 
-export interface ICriarRodada {
-    numeroRodada: EnumRodada
-    torneioID: string
+export interface IBuscaPlayerEmGrupoProps {
+  nomeTorneio: string
+  inGameName: string
+  numeroRodada: EnumRodada
 }

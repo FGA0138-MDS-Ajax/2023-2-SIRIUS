@@ -65,6 +65,7 @@ model ParticipanteEmGrupo {
     grupoID        String
     torneioID      String
     torneio        Torneio      @relation(fields: [torneioID], references: [id])
+    numeroRodada   EnumRodada
 }
 
 model Participante {

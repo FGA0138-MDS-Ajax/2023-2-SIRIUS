@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 
 import { TorneioController } from '../Torneio/TorneioController'
 import { ParticipantesController } from '../Participantes/ParticipantesController'
-import { IPlayerEmGrupoDataProps } from '../../types/types'
+import { IPlayerEmGrupoDataProps, IBuscaPlayerEmGrupoProps } from '../../types/types'
 
 const prisma = new PrismaClient()
 
@@ -22,11 +22,11 @@ export class ParticipanteEmGrupoController {
     }
   }
 
-  async searchGruposDeParticipante(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
+  async searchGruposDeParticipante(participantesEmGrupoData: IBuscaPlayerEmGrupoProps) {
     const torneioController = new TorneioController()
     const participantesController = new ParticipantesController()
 
-    const torneio = await torneioController.searchByName(participantesEmGrupoData[0].torneioID)
+    const torneio = await torneioController.searchByName(participantesEmGrupoData.nomeTorneio)
     if (!torneio) {
       return (null)
     }
@@ -39,11 +39,22 @@ export class ParticipanteEmGrupoController {
     const grupos = await prisma.participanteEmGrupo.findMany({
       where: {
         torneioID: torneio.id,
-        participanteID: participantes.id
+        participanteID: participantes.id,
+        numeroRodada: participantesEmGrupoData.numeroRodada
       }
     })
 
-    return (grupos)
+    if (!grupos) {
+      return (null)
+    }
+
+    const grupoID = grupos[0].grupoID
+
+    return (await prisma.participanteEmGrupo.findMany({
+      where: {
+        grupoID: grupoID
+      }
+    }))
     
   }
 
