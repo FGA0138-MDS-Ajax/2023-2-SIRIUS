@@ -18,6 +18,13 @@ enum EnumVencedorPosicao {
     QUARTO
 }
 
+enum EnumRodada {
+    UM
+    DOIS
+    TRÊS
+    SEMIFINAL
+}
+
 model User {
     id       Int     @id @default(autoincrement())
     email    String  @unique
@@ -34,10 +41,11 @@ model Torneio {
 }
 
 model Rodada {
-    id        String  @id @default(uuid())
-    torneio   Torneio @relation(fields: [torneioID], references: [id])
-    torneioID String
-    grupo     Grupo[]
+    id           String  @id @default(uuid())
+    torneio      Torneio @relation(fields: [torneioID], references: [id])
+    torneioID    String
+    grupo        Grupo[]
+    numeroRodada EnumRodada
 }
 
 model Grupo {
