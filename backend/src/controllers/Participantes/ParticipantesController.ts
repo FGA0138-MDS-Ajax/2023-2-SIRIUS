@@ -1,8 +1,6 @@
 import { Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../client'
 import { IPlayerDataProps } from '../../types/types'
-
-const prisma = new PrismaClient()
 
 export class ParticipantesController {
   async create(participantesData: IPlayerDataProps[]) {
@@ -23,9 +21,13 @@ export class ParticipantesController {
     try {
       const participante = await prisma.participante.findUnique({ where: { inGameName } })
 
+      console.log("searchByInGameName", inGameName, participante, !participante)
+
       if (!participante) {
         return (null)
       }
+
+      console.log("searchByInGameName", "Vai Retornar diferente de nulo")
 
       return (participante)
     }

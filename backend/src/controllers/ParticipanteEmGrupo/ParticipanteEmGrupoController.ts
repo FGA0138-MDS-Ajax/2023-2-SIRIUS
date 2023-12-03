@@ -8,28 +8,21 @@ export class ParticipanteEmGrupoController {
   async create(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
     try {
 
-      console.log('1')
-
       if (!participantesEmGrupoData) {
         return (null)
       }
-
-      console.log('2')
 
       const createdParticipantes = await prisma.participanteEmGrupo.createMany({
         data: participantesEmGrupoData,
         skipDuplicates: true,
       })
 
-      console.log('3')
-
       if (!createdParticipantes || createdParticipantes.count === 0) {
         return (null)
       }
 
-      console.log('4')
-
       return (createdParticipantes)
+
     } catch (error) {
       return (null)
     }
@@ -49,9 +42,11 @@ export class ParticipanteEmGrupoController {
     }
 
     const participantes = await participantesController.searchByInGameName(participantesEmGrupoData[0].participanteID)
+
     if (!participantes) {
       return (null)
     }
+
 
     const grupos = await prisma.participanteEmGrupo.findMany({
       where: {
