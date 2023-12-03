@@ -106,7 +106,18 @@ routes.post('/participantesEmGrupo/create', async (req, res) => {
   }
   return res.status(200).json(newParticipantesEmGrupo)
 })
-routes.post('/participantesEmGrupo/search', new ParticipanteEmGrupoController().searchGruposDeParticipante) 
+
+routes.post('/participantesEmGrupo/search', async (req, res) => {
+  const participanteEmGrupoController = new ParticipanteEmGrupoController()
+  const playerEmGrupo = req.body.participanteEmGrupo
+  const participantesEmGrupo = await participanteEmGrupoController.searchGruposDeParticipante(playerEmGrupo) 
+
+  if (!participantesEmGrupo) {
+    return res.status(400).send('Erro ao buscar participantes de um grupo')
+  }
+  return res.status(200).json(participantesEmGrupo)
+}) 
+
 routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParticipantesEmGrupo)
 
 routes.post('/users/create', async (req, res) => {
