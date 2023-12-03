@@ -94,6 +94,9 @@ CREATE UNIQUE INDEX "Torneio_nome_key" ON "Torneio"("nome");
 -- CreateIndex
 CREATE UNIQUE INDEX "Participante_inGameName_key" ON "Participante"("inGameName");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "VencedorGrupo_posicao_key" ON "VencedorGrupo"("posicao");
+
 -- AddForeignKey
 ALTER TABLE "Rodada" ADD CONSTRAINT "Rodada_torneioID_fkey" FOREIGN KEY ("torneioID") REFERENCES "Torneio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
