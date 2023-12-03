@@ -1,23 +1,36 @@
 import { Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
-
+import prisma from '../../../client'
 import { TorneioController } from '../Torneio/TorneioController'
 import { ParticipantesController } from '../Participantes/ParticipantesController'
 import { IPlayerEmGrupoDataProps } from '../../types/types'
 
-const prisma = new PrismaClient()
-
 export class ParticipanteEmGrupoController {
   async create(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
     try {
+
+      console.log('1')
+
+      if (!participantesEmGrupoData) {
+        return (null)
+      }
+
+      console.log('2')
+
       const createdParticipantes = await prisma.participanteEmGrupo.createMany({
         data: participantesEmGrupoData,
         skipDuplicates: true,
       })
 
+      console.log('3')
+
+      if (!createdParticipantes || createdParticipantes.count === 0) {
+        return (null)
+      }
+
+      console.log('4')
+
       return (createdParticipantes)
     } catch (error) {
-      console.error('Error creating participants:', error)
       return (null)
     }
   }
@@ -25,6 +38,10 @@ export class ParticipanteEmGrupoController {
   async searchGruposDeParticipante(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
     const torneioController = new TorneioController()
     const participantesController = new ParticipantesController()
+
+    if (!participantesEmGrupoData) {
+      return (null)
+    }
 
     const torneio = await torneioController.searchByName(participantesEmGrupoData[0].torneioID)
     if (!torneio) {
@@ -44,7 +61,7 @@ export class ParticipanteEmGrupoController {
     })
 
     return (grupos)
-    
+
   }
 
   async getParticipantesEmGrupo(req: Request, res: Response) {
