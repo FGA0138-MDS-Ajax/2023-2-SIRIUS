@@ -42,8 +42,8 @@ model Torneio {
 }
 
 model Rodada {
-    id           String  @id @default(uuid())
-    torneio      Torneio @relation(fields: [torneioID], references: [id])
+    id           String     @id @default(uuid())
+    torneio      Torneio    @relation(fields: [torneioID], references: [id])
     torneioID    String
     grupo        Grupo[]
     numeroRodada EnumRodada
@@ -95,5 +95,5 @@ model VencedorGrupo {
     participanteID String
     grupo          Grupo               @relation(fields: [grupoID], references: [id])
     grupoID        String
-    posicao        EnumVencedorPosicao
+    posicao        EnumVencedorPosicao @unique
 }

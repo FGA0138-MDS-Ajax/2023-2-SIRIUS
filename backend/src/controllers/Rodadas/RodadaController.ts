@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { IRodadaDataProps } from '../../types/types'
+import { Request, Response } from 'express'
 
 const prisma = new PrismaClient()
 
@@ -29,5 +30,15 @@ export class RodadaController {
     const deletedRodada = await prisma.rodada.delete({ where: { id } })
 
     return (deletedRodada)
+  }
+
+  async getRodadas(req: Request, res: Response) {
+    const rodadas = await prisma.rodada.findMany()
+
+    if (!rodadas) {
+      return res.status(400).send('Nenhuma rodada encontrado!')
+    }
+
+    return res.status(200).json(rodadas)
   }
 }

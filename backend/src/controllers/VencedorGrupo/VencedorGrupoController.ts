@@ -8,12 +8,11 @@ const prisma = new PrismaClient()
 export class VencedorGrupoController {
   async create(dadosVencedor: IVencedorGrupoDataProps) {
     const { grupoID, participanteID, posicao } = dadosVencedor
+    const grupoExiste = await new GrupoController().searchByID(grupoID)
+    if (!grupoExiste) return null
 
-    const grupoExiste = new GrupoController().searchByID(grupoID)
-    if(!grupoExiste) return null
-
-    const participanteExiste = new ParticipantesController().searchByID(participanteID)
-    if(!participanteExiste) return null
+    const participanteExiste = await new ParticipantesController().searchByID(participanteID)
+    if (!participanteExiste) return null
 
     const newVencedorGrupo = await prisma.vencedorGrupo.create({
       data: { grupoID, participanteID, posicao }
@@ -28,11 +27,26 @@ export class VencedorGrupoController {
 
   async createVariosVencedores(dadosVencedores: IVencedorGrupoDataProps[]) {
     try {
-      dadosVencedores.forEach(async (vencedor) => { await this.create(vencedor) })
+      const createdVencedores = await prisma.vencedorGrupo.createMany({
+        data: dadosVencedores,
+        skipDuplicates: true,
+      })
+
+      return (createdVencedores)
     } catch (error) {
-      console.error('Erro ao definir vencedores', error)
+      console.error('Erro ao definir vencedores:', error)
       return (null)
     }
+  }
+
+  async getVencedoresByGrupoID(grupoID: string) {
+    const vencedores = await prisma.vencedorGrupo.findMany({
+      where: {
+        grupoID: grupoID
+      }
+    })
+
+    return (vencedores)
   }
 }
 

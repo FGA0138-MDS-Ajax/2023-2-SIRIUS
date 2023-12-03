@@ -57,6 +57,7 @@ routes.post('/rodadas/create', async (req, res) => {
   }
   return res.status(200).json(newRodada)
 })
+routes.get('/rodadas', new RodadaController().getRodadas)
 
 
 routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
@@ -73,6 +74,7 @@ routes.post('/grupos/create', async (req, res) => {
   }
   return res.status(200).json(newGrupo)
 })
+routes.get('/grupos', new GrupoController().getGrupos)
 
 
 routes.post('/participantes/create', async (req, res) => {
@@ -124,7 +126,7 @@ routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParti
 
 routes.post('/vencedores/grupo', async (req, res) => {
   const vencedorGrupoController = new VencedorGrupoController()
-  const vencedoresGrupo = req.body
+  const vencedoresGrupo = req.body.vencedores
 
   const newVencedor = await vencedorGrupoController.createVariosVencedores(vencedoresGrupo)
 
@@ -132,6 +134,17 @@ routes.post('/vencedores/grupo', async (req, res) => {
     return res.status(400).send('Erro ao definir vencedores de grupo')
   }
   return res.status(200).json(newVencedor)
+})
+routes.get('/vencedores/grupo/:grupoID', async (req, res) => {
+  const vencedorGrupoController = new VencedorGrupoController()
+  const grupoID = req.params.grupoID
+
+  const vencedores = await vencedorGrupoController.getVencedoresByGrupoID(grupoID)
+
+  if (!vencedores) {
+    return res.status(400).send('Erro ao buscar vencedores de grupo')
+  }
+  return res.status(200).json(vencedores)
 })
 
 routes.post('/users/create', async (req, res) => {
