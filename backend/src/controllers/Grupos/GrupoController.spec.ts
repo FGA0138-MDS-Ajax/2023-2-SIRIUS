@@ -121,12 +121,10 @@ describe('Testes unitários para Controle de Dados na Tabela Grupos', () => {
       expect(result).toEqual({ jogadoresPorGrupo: [8, 8, 8, 8] })
     })
 
-    /*
     it('should return 5 groups with a number not divisible by 8', async () => {
       const result = grupoController.calcularQuantidadeGrupos(37)
-      expect(result).toEqual({ jogadoresPorGrupo: [7,7,7,7,5] })
+      expect(result).toEqual({ jogadoresPorGrupo: [7, 7, 7, 8, 8] })
     })
-    */
 
   })
 

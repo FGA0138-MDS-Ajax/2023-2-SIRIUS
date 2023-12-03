@@ -20,9 +20,11 @@ export class GrupoController {
   }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
+    if (Num_checkin < 16) {
+      throw new Error('Erro ao calcular a quantidade de grupos.');
+    }
+
     switch (Num_checkin) {
-      case 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14 || 15 || 16:
-        throw new Error('Erro ao calcular a quantidade de grupos.');
       case 17:
         return { jogadoresPorGrupo: [6, 6, 5] }
       case 18:
@@ -58,14 +60,18 @@ export class GrupoController {
           const quantidade = Num_checkin / 8
           return { jogadoresPorGrupo: Array(quantidade).fill(8) }
         } else {
-          const gruposCom7 = Math.floor(Num_checkin / 8)
-          const resto = Num_checkin % 8
+          const gruposCom7 = 8 - (Num_checkin % 8)
+
+          const gruposTotais = (Num_checkin + gruposCom7) / 8
+
+          let gruposCom8 = gruposTotais - gruposCom7
+
           const jogadoresPorGrupo = Array(gruposCom7).fill(7)
-          if (resto >= 1) {
-            jogadoresPorGrupo.push(resto)
+
+          while (gruposCom8--) {
+            jogadoresPorGrupo.push(8)
           }
-          // Analizar com os meninos
-          // Inserir validação para os 2 ultimos arrais para este caso (esta vindo errado, Ex: Num_checkin === 37)
+
           return { jogadoresPorGrupo }
         }
     }

@@ -31,8 +31,6 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
     it('should return null if "findUnique" returns true', async () => {
       const newTorneio = 'Teste'
 
-      jest.mocked(prismaMock.torneio.findUnique).mockResolvedValueOnce(null)
-
       jest.spyOn(prismaMock.torneio, 'findUnique').mockResolvedValueOnce({
         id: '1',
         nome: newTorneio
@@ -62,6 +60,7 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
   })
 
   describe('searchByName', () => {
+
     it('should return null if "nome" is invalid', async () => {
       const nome = ''
 
@@ -97,9 +96,11 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
       })
       expect(prismaMock.torneio.findUnique).toHaveBeenCalledWith({ where: { nome } })
     })
+
   })
 
   describe('getTorneios', () => {
+
     it('should return 400 if "findMany" returns false', async () => {
       req.body = { nome: 'teste' }
 
@@ -125,5 +126,6 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
         nome: 'Teste'
       }])
     })
+
   })
 })
