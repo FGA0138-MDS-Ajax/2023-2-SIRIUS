@@ -1,11 +1,12 @@
 import { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
+import { TorneioProps } from '../../types/types'
 
 
 const prisma = new PrismaClient()
 
 export class TorneioController {
-  async create(nome: string) {
+  async create(nome: TorneioProps) {
 
     const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
 
@@ -24,7 +25,7 @@ export class TorneioController {
     return (newTorneio)
   }
 
-  async searchByName(nome: string) {
+  async searchByName(nome: TorneioProps) {
 
     try {
       const torneio = await prisma.torneio.findUnique({ where: { nome: nome } })

@@ -1,10 +1,11 @@
 import { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
+import { GrupoProps } from '../../types/types'
 
 const prisma = new PrismaClient()
 
 export class GrupoController {
-  async create(rodadaID: string) {
+  async create(rodadaID: GrupoProps) {
 
     const newGrupo = await prisma.grupo.create({
       data: { rodadaID },
