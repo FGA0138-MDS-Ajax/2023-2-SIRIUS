@@ -21,7 +21,7 @@ enum EnumVencedorPosicao {
 enum EnumRodada {
     UM
     DOIS
-    TRÊS
+    TRES
     SEMIFINAL
 }
 
