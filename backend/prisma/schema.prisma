@@ -27,7 +27,7 @@ enum EnumRodada {
 }
 
 model User {
-    id       Int     @id @default(autoincrement())
+    id       String     @id @default(uuid())
     email    String  @unique
     name     String?
     password String

@@ -39,13 +39,6 @@ export interface IPlayerEmGrupoDataProps {
   torneioID: string
 }
 
-// Tipo usado para criar um Usuario
-export interface IUserDataProps {
-  name: string
-  email: string
-  password: string
-}
-
 // Tipo usado para criar uma Rodada
 export interface IRodadaDataProps {
   numeroRodada: EnumRodada

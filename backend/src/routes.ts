@@ -8,12 +8,31 @@ import { ParticipantesController } from './controllers/Participantes/Participant
 import { ParticipanteEmGrupoController } from './controllers/ParticipanteEmGrupo/ParticipanteEmGrupoController'
 import { VencedorGrupoController } from './controllers/VencedorGrupo/VencedorGrupoController'
 import { VencedorTorneioController } from './controllers/VencedorTorneio/VencedorTorneioController'
+import { authMiddleware } from './middlewares/authMiddleware'
 
 const routes = Router()
 
 routes.get('/', (req, res) => {
   res.send('Hello World! Você está na raiz da API!')
 })
+
+routes.post('/participantesEmGrupo/search', async (req, res) => {
+  const participanteEmGrupoController = new ParticipanteEmGrupoController()
+  const playerEmGrupo = req.body
+  const participantesEmGrupo = await participanteEmGrupoController.searchGruposDeParticipante(playerEmGrupo) 
+
+  if (!participantesEmGrupo) {
+    return res.status(400).send('Erro ao buscar participantes de um grupo')
+  }
+  return res.status(200).json(participantesEmGrupo)
+})
+
+routes.post('/users/create', new UserController().create)
+routes.post('/login', new UserController().login)
+
+routes.use(authMiddleware)
+
+routes.get('/profile', new UserController().getProfile)
 
 routes.post('/csv', (req, res) => {
   const csvController = new CSVController()
@@ -112,17 +131,6 @@ routes.post('/participantesEmGrupo/create', async (req, res) => {
   return res.status(200).json(newParticipantesEmGrupo)
 })
 
-routes.post('/participantesEmGrupo/search', async (req, res) => {
-  const participanteEmGrupoController = new ParticipanteEmGrupoController()
-  const playerEmGrupo = req.body
-  const participantesEmGrupo = await participanteEmGrupoController.searchGruposDeParticipante(playerEmGrupo) 
-
-  if (!participantesEmGrupo) {
-    return res.status(400).send('Erro ao buscar participantes de um grupo')
-  }
-  return res.status(200).json(participantesEmGrupo)
-}) 
-
 routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParticipantesEmGrupo)
 
 routes.post('/vencedores/grupo', async (req, res) => {
@@ -171,28 +179,6 @@ routes.get('/vencedores/grupo/:grupoID', async (req, res) => {
   }
   return res.status(200).json(vencedores)
 })
-
-routes.post('/users/create', async (req, res) => {
-  const userController = new UserController()
-  const userData = req.body
-
-  const newUser = await userController.create(userData)
-  if (!newUser) {
-    return res.status(400).send('Erro ao criar usuário')
-  }
-  return res.status(200).json(newUser)
-})
-routes.post('/login', async (req, res) => {
-  const userController = new UserController()
-  const userData = req.body
-
-  const user = await userController.login(userData)
-  if (!user) {
-    return res.status(400).send('Erro ao logar usuário')
-  }
-  return res.status(200).json(user)
-}) // Não testado
-routes.get('/profile', new UserController().getProfile)
 
 export { routes }
 
