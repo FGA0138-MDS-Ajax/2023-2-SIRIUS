@@ -19,7 +19,7 @@ export class VencedorTorneioController {
     }
   }
 
-  async getVencedoresByGrupoID(torneioID: string) {
+  async getVencedoresByTorneioID(torneioID: string) {
     const vencedores = await prisma.vencedorTorneio.findMany({
       where: {
         torneioID: torneioID

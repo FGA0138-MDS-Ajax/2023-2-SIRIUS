@@ -7,7 +7,7 @@ import { GrupoController } from './controllers/Grupos/GrupoController'
 import { ParticipantesController } from './controllers/Participantes/ParticipantesController'
 import { ParticipanteEmGrupoController } from './controllers/ParticipanteEmGrupo/ParticipanteEmGrupoController'
 import { VencedorGrupoController } from './controllers/VencedorGrupo/VencedorGrupoController'
-import { VencedorTorneioController } from './controllers/VencedorTorneio/VencedorGrupoController'
+import { VencedorTorneioController } from './controllers/VencedorTorneio/VencedorTorneioController'
 
 const routes = Router()
 
@@ -147,6 +147,17 @@ routes.post('/vencedores/torneio', async (req, res) => {
     return res.status(400).send('Erro ao definir vencedores de torneio')
   }
   return res.status(200).json(newVencedor)
+})
+routes.get('/vencedores/torneio/:torneioID', async (req, res) => {
+  const vencedorTorneioController = new VencedorTorneioController()
+  const torneioID = req.params.torneioID
+
+  const vencedores = await vencedorTorneioController.getVencedoresByTorneioID(torneioID)
+
+  if (!vencedores) {
+    return res.status(400).send('Erro ao buscar vencedores de torneio')
+  }
+  return res.status(200).json(vencedores)
 })
 
 routes.get('/vencedores/grupo/:grupoID', async (req, res) => {
