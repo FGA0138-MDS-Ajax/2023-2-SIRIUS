@@ -53,3 +53,53 @@ const Login = () => {
 }
 
 export default Login
+
+/*
+
+const schema = yup.object({
+    email: yup.string().email('Email inválido').required('Email obrigatório'),
+    password: yup.string().min(8, 'No minimo 8 caracteres').required('Senha obrigatória'),
+}).required();
+
+const Login = () => {
+
+    const navigate = useNavigate();
+
+    const { control, handleSubmit, formState: { errors } } = useForm<IFormData>({
+
+        resolver: yupResolver(schema),
+        mode: 'onChange',
+    });
+
+
+    const onSubmit = async (formData: IFormData) => {
+        try {
+            const { data } = await api.get(`users?email${formData.email}&password=${formData.password}`);
+            if (data.length === 1) {
+                navigate('/csvUpload');
+            } else {
+                alert('Email ou senha incorretos');
+            }
+        } catch {
+            alert('Erro ao fazer login');
+        }
+    }
+
+
+
+    const handleClickSignIn = () => {
+        navigate('/csvUpload');
+    }
+
+    <form onSubmit={handleSubmit(onSubmit)}>
+        <Input name="email" errorMessage={errors?.email?.message} control={control} placeholder="Email" />
+        <Input name="password" errorMessage={errors?.password?.message} control={control} placeholder="Senha" type="password" />
+        <Button title="Entrar" variant="secondary" onClick={handleClickSignIn} type="submit" />
+    </form>
+
+
+    interface IFormData {
+    email: string;
+    password: string;
+}
+*/
