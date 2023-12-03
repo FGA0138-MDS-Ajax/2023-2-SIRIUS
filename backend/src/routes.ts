@@ -48,8 +48,9 @@ routes.get('/torneios', new TorneioController().getTorneios)
 routes.post('/rodadas/create', async (req, res) => {
   const rodadaController = new RodadaController()
   const torneioID = req.body.torneioID
+  const numeroRodada = req.body.numeroRodada
 
-  const newRodada = await rodadaController.create(torneioID)
+  const newRodada = await rodadaController.create({torneioID, numeroRodada})
   if (!newRodada) {
     return res.status(400).send('Erro ao criar rodada')
   }

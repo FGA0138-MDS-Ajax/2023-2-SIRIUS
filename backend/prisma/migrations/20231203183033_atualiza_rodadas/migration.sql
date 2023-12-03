@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "EnumVencedorPosicao" AS ENUM ('PRIMEIRO', 'SEGUNDO', 'TERCEIRO', 'QUARTO');
 
+-- CreateEnum
+CREATE TYPE "EnumRodada" AS ENUM ('UM', 'DOIS', 'TRES', 'SEMIFINAL');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
@@ -23,6 +26,7 @@ CREATE TABLE "Torneio" (
 CREATE TABLE "Rodada" (
     "id" TEXT NOT NULL,
     "torneioID" TEXT NOT NULL,
+    "numeroRodada" "EnumRodada" NOT NULL,
 
     CONSTRAINT "Rodada_pkey" PRIMARY KEY ("id")
 );
@@ -40,6 +44,7 @@ CREATE TABLE "ParticipanteEmGrupo" (
     "id" TEXT NOT NULL,
     "participanteID" TEXT NOT NULL,
     "grupoID" TEXT NOT NULL,
+    "torneioID" TEXT NOT NULL,
 
     CONSTRAINT "ParticipanteEmGrupo_pkey" PRIMARY KEY ("id")
 );
@@ -85,6 +90,9 @@ CREATE UNIQUE INDEX "Torneio_id_key" ON "Torneio"("id");
 -- CreateIndex
 CREATE UNIQUE INDEX "Torneio_nome_key" ON "Torneio"("nome");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Participante_inGameName_key" ON "Participante"("inGameName");
+
 -- AddForeignKey
 ALTER TABLE "Rodada" ADD CONSTRAINT "Rodada_torneioID_fkey" FOREIGN KEY ("torneioID") REFERENCES "Torneio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -96,6 +104,9 @@ ALTER TABLE "ParticipanteEmGrupo" ADD CONSTRAINT "ParticipanteEmGrupo_participan
 
 -- AddForeignKey
 ALTER TABLE "ParticipanteEmGrupo" ADD CONSTRAINT "ParticipanteEmGrupo_grupoID_fkey" FOREIGN KEY ("grupoID") REFERENCES "Grupo"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ParticipanteEmGrupo" ADD CONSTRAINT "ParticipanteEmGrupo_torneioID_fkey" FOREIGN KEY ("torneioID") REFERENCES "Torneio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "VencedorTorneio" ADD CONSTRAINT "VencedorTorneio_participanteID_fkey" FOREIGN KEY ("participanteID") REFERENCES "Participante"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

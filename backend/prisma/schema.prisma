@@ -23,6 +23,7 @@ enum EnumRodada {
     DOIS
     TRES
     SEMIFINAL
+    FINAL
 }
 
 model User {

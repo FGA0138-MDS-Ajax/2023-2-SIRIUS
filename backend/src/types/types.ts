@@ -18,3 +18,16 @@ export interface IUserDataProps {
   email: string
   password: string
 }
+
+export enum EnumRodada {
+    UM = "UM",
+    DOIS = "DOIS",
+    TRES = "TRES",
+    SEMIFINAL = "SEMIFINAL",
+    FINAL = "FINAL",
+}
+
+export interface ICriarRodada {
+    numeroRodada: EnumRodada
+    torneioID: string
+}
