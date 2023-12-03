@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client'
-import { ICriarRodada } from '../../types/types'
+import { IRodadaDataProps } from '../../types/types'
 
 const prisma = new PrismaClient()
 
 export class RodadaController {
-  async create({torneioID, numeroRodada}: ICriarRodada) {
+  async create({torneioID, numeroRodada}: IRodadaDataProps) {
 
     const newRodadas = await prisma.rodada.create({
       data: { torneioID, numeroRodada },

@@ -16,6 +16,7 @@ export interface IPlayerDataProps {
 
 export interface IPlayerEmGrupoDataProps {
   participanteID: string
+  numeroRodada: EnumRodada
   grupoID: string
   torneioID: string
 }

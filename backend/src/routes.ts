@@ -110,7 +110,7 @@ routes.post('/participantesEmGrupo/create', async (req, res) => {
 
 routes.post('/participantesEmGrupo/search', async (req, res) => {
   const participanteEmGrupoController = new ParticipanteEmGrupoController()
-  const playerEmGrupo = req.body.participanteEmGrupo
+  const playerEmGrupo = req.body
   const participantesEmGrupo = await participanteEmGrupoController.searchGruposDeParticipante(playerEmGrupo) 
 
   if (!participantesEmGrupo) {

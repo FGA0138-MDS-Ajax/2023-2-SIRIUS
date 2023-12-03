@@ -2,7 +2,7 @@
 CREATE TYPE "EnumVencedorPosicao" AS ENUM ('PRIMEIRO', 'SEGUNDO', 'TERCEIRO', 'QUARTO');
 
 -- CreateEnum
-CREATE TYPE "EnumRodada" AS ENUM ('UM', 'DOIS', 'TRES', 'SEMIFINAL');
+CREATE TYPE "EnumRodada" AS ENUM ('UM', 'DOIS', 'TRES', 'SEMIFINAL', 'FINAL');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -45,6 +45,7 @@ CREATE TABLE "ParticipanteEmGrupo" (
     "participanteID" TEXT NOT NULL,
     "grupoID" TEXT NOT NULL,
     "torneioID" TEXT NOT NULL,
+    "numeroRodada" "EnumRodada" NOT NULL,
 
     CONSTRAINT "ParticipanteEmGrupo_pkey" PRIMARY KEY ("id")
 );
