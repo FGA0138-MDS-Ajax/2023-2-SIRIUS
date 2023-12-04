@@ -19,7 +19,10 @@ export enum EnumVencedorPosicao {
 export type GrupoProps = string
 
 // Tipo usado para criar um Torneio
-export type TorneioProps = string
+export interface ITorneioProps {
+  nome: string
+  grupos: Array<IPlayerDataProps[]>
+}
 
 // Tipo usado para criar um Participante
 export interface IPlayerDataProps {

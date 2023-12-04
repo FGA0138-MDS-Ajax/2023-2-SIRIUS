@@ -8,7 +8,6 @@ import { ParticipantesController } from './controllers/Participantes/Participant
 import { ParticipanteEmGrupoController } from './controllers/ParticipanteEmGrupo/ParticipanteEmGrupoController'
 import { VencedorGrupoController } from './controllers/VencedorGrupo/VencedorGrupoController'
 import { VencedorTorneioController } from './controllers/VencedorTorneio/VencedorTorneioController'
-import { authMiddleware } from './middlewares/authMiddleware'
 
 const routes = Router()
 
@@ -30,7 +29,7 @@ routes.post('/participantesEmGrupo/search', async (req, res) => {
 routes.post('/users/create', new UserController().create)
 routes.post('/login', new UserController().login)
 
-routes.use(authMiddleware)
+// routes.use(authMiddleware)
 
 routes.get('/profile', new UserController().getProfile)
 
@@ -43,8 +42,9 @@ routes.post('/csv', (req, res) => {
 routes.post('/torneios/create', async (req, res) => {
   const torneioController = new TorneioController()
   const nome = req.body.nome
+  const grupos = req.body.grupos
 
-  const newTorneio = await torneioController.create(nome)
+  const newTorneio = await torneioController.create(nome, grupos)
   if (!newTorneio) {
     return res.status(400).send('Erro ao criar torneio')
   }
