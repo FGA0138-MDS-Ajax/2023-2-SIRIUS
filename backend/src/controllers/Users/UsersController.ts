@@ -78,24 +78,4 @@ export class UserController {
       return res.status(500).send('Erro ao obter dados de usuario')
     }
   }
-
-  async delete(req: Request, res: Response) {
-    const { id } = req.params
-
-    try {
-
-      const user = await prisma.user.findUnique({ where: { id } })
-
-      if (!user) {
-        return res.status(400).send('Usuário não encontrado')
-      }
-
-      await prisma.user.delete({ where: { id } })
-
-      return res.status(200).send('Usuário deletado com sucesso')
-    } catch(e) {
-      console.log('Erro ao deletar usuario')
-      return res.status(500).send('Erro ao deletar usuario')
-    }
-  }
 }
