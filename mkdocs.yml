@@ -11,6 +11,7 @@ nav:
   - Documento de arquitetura: documento-arquitetura.md
   - Atas de reunião:
       - Reunião de 12 de setembro de 2023: ata-reuniao-12-set.md
+  - Métricas ágeis: metricas.md
   - Sprints:
       - Sprint 1: 
         - Planning: sprints/sprint-1/s1-planning.md
