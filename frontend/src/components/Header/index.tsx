@@ -8,6 +8,7 @@ import { Menu, X } from 'lucide-react'
 
 import Logo from '../Logo'
 import MenuNavLink from '../MenuNavLink'
+import { IHeader } from './type'
 
 const navLinks = [
   { title: 'Sobre', to: '/sobre' },
@@ -16,7 +17,7 @@ const navLinks = [
   { title: 'Contato', to: '/contato' },
 ]
 
-const Header = () => {
+const Header = ({ autenticado }: IHeader) => {
   const [open, setOpen] = useState(false)
   const toggleMenu = () => {
     setOpen((prevOpen) => !prevOpen)
@@ -93,13 +94,21 @@ const Header = () => {
             ))}
           </div>
         </motion.div>
-
-        <motion.div
-          variants={reveal}
-          className="mx-12 md:mx-4 md:flex text-lg items-center hidden"
-        >
-          <Link to={'/login'} className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Login</Link>
-        </motion.div>
+        {autenticado ? (
+          <motion.div
+            variants={reveal}
+            className="mx-12 md:flex gap-6 text-lg items-center cursor-pointer hidden text-[#C5C5C5]"
+          >
+            <Link to={'/'} className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Sair</Link>
+          </motion.div>
+        ) :
+          <motion.div
+            variants={reveal}
+            className="mx-12 md:mx-4 md:flex text-lg items-center hidden"
+          >
+            <Link to={'/login'} className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Login</Link>
+          </motion.div>
+        }
         <div
           className="cursor-pointer md:hidden text-lg mx-6 text-[#C5C5C5]"
           onClick={toggleMenu}
@@ -126,7 +135,7 @@ const Header = () => {
                     className="cursor-pointer text-lg mt-12 text-[#C5C5C5]"
                     onClick={toggleMenu}
                   >
-                    <X size={30} color='#C5C5C5'/>
+                    <X size={30} color='#C5C5C5' />
                   </div>
                 </div>
                 <motion.div
@@ -146,7 +155,11 @@ const Header = () => {
                       </div>
                     )
                   })}
-                  <Link to={'/login'} className='mt-4 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-4 px-16 bg-[#C5C5C5] rounded-lg shadow-xl text-2xl text-[#383E4A] text-center font-caustenBd hover:scale-110 duration-300 ease-in-out'>Login</Link>
+                  {autenticado ? (
+                    <Link to={'/'} className='mt-4 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-4 px-16 bg-[#C5C5C5] rounded-lg shadow-xl text-2xl text-[#383E4A] text-center font-caustenBd hover:scale-110 duration-300 ease-in-out'>Sair</Link>
+                  ) :
+                    <Link to={'/login'} className='mt-4 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-4 px-16 bg-[#C5C5C5] rounded-lg shadow-xl text-2xl text-[#383E4A] text-center font-caustenBd hover:scale-110 duration-300 ease-in-out'>Login</Link>
+                  }
                 </motion.div>
               </div>
             </motion.div>
