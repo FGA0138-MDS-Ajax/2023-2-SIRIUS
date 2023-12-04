@@ -25,13 +25,9 @@ export class ParticipantesController {
     try {
       const participante = await prisma.participante.findUnique({ where: { inGameName } })
 
-      console.log("searchByInGameName", inGameName, participante, !participante)
-
       if (!participante) {
         return (null)
       }
-
-      console.log("searchByInGameName", "Vai Retornar diferente de nulo")
 
       return (participante)
     }
