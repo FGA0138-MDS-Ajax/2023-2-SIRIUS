@@ -19,6 +19,9 @@ routes.get('/', (req, res) => {
 routes.post('/participantesEmGrupo/search', async (req, res) => {
   const participanteEmGrupoController = new ParticipanteEmGrupoController()
   const playerEmGrupo = req.body
+
+  if (!playerEmGrupo) return res.status(400).send('Erro na requisicao.')
+
   const participantesEmGrupo = await participanteEmGrupoController.searchGruposDeParticipante(playerEmGrupo) 
 
   if (!participantesEmGrupo) {
@@ -44,6 +47,7 @@ routes.post('/torneios/create', async (req, res) => {
   const torneioController = new TorneioController()
   const nome = req.body.nome
   const grupos = req.body.grupos
+  if(!nome || !grupos) return res.status(400).send('Erro na requisicao.')
 
   const newTorneio = await torneioController.create(nome, grupos)
   if (!newTorneio) {
@@ -56,6 +60,8 @@ routes.post('/torneios/create', async (req, res) => {
 routes.post('/torneios/search', async (req, res) => {
   const torneioController = new TorneioController()
   const nome = req.body.nome
+
+  if (!nome) return res.status(400).send('Erro na requisicao. Insira o nome do torneio!')
 
   const torneio = await torneioController.searchByName(nome)
   if (!torneio) {
@@ -72,6 +78,8 @@ routes.post('/rodadas/create', async (req, res) => {
   const torneioID = req.body.torneioID
   const numeroRodada = req.body.numeroRodada
 
+  if(!torneioID || !numeroRodada) return res.status(400).send('Erro na requisicao.')
+
   const newRodada = await rodadaController.create({torneioID, numeroRodada})
   if (!newRodada) {
     return res.status(400).send('Erro ao criar rodada')
@@ -85,9 +93,12 @@ routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
   const grupoController = new GrupoController()
   return grupoController.calcularQuantidadeGruposHandler(req, res)
 })
+
 routes.post('/grupos/create', async (req, res) => {
   const grupoController = new GrupoController()
   const rodadaID = req.body.rodadaID
+
+  if(!rodadaID) return res.status(400).send('Erro na requisicao. Insira um ID de rodada valido!')
 
   const newGrupo = await grupoController.create(rodadaID)
   if (!newGrupo) {
@@ -95,12 +106,14 @@ routes.post('/grupos/create', async (req, res) => {
   }
   return res.status(200).json(newGrupo)
 })
+
 routes.get('/grupos', new GrupoController().getGrupos)
 
 
 routes.post('/participantes/create', async (req, res) => {
   const participantesController = new ParticipantesController()
   const participantes = req.body.participantes
+  if(!participantes) return res.status(400).send('Erro na requisicao.')
 
   const newParticipantes = await participantesController.create(participantes)
   if (!newParticipantes) {
@@ -108,9 +121,11 @@ routes.post('/participantes/create', async (req, res) => {
   }
   return res.status(200).json(newParticipantes)
 })
+
 routes.post('/participantes/search', async (req, res) => {
   const participantesController = new ParticipantesController()
   const inGameName = req.body.inGameName
+  if(!inGameName) return res.status(400).send('Erro na requisicao. Insira um inGameName!')
 
   const participante = await participantesController.searchByInGameName(inGameName)
   if (!participante) {
@@ -118,12 +133,14 @@ routes.post('/participantes/search', async (req, res) => {
   }
   return res.status(200).json(participante)
 })
+
 routes.get('/participantes', new ParticipantesController().getParticipantes)
 
 
 routes.post('/participantesEmGrupo/create', async (req, res) => {
   const participanteEmGrupoController = new ParticipanteEmGrupoController()
   const participantesEmGrupo = req.body.participanteEmGrupo
+  if(!participantesEmGrupo) return res.status(400).send('Erro na requisicao.')
 
   const newParticipantesEmGrupo = await participanteEmGrupoController.create(participantesEmGrupo)
   if (!newParticipantesEmGrupo) {
@@ -137,6 +154,7 @@ routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParti
 routes.post('/vencedores/grupo', async (req, res) => {
   const vencedorGrupoController = new VencedorGrupoController()
   const vencedoresGrupo = req.body.vencedores
+  if(!vencedoresGrupo) return res.status(400).send('Erro na requisicao.')
 
   const newVencedor = await vencedorGrupoController.createVariosVencedores(vencedoresGrupo)
 
@@ -149,6 +167,7 @@ routes.post('/vencedores/grupo', async (req, res) => {
 routes.post('/vencedores/torneio', async (req, res) => {
   const vencedorTorneioController = new VencedorTorneioController()
   const vencedoresTorneio = req.body.vencedores
+  if(!vencedoresTorneio) return res.status(400).send('Erro na requisicao.')
 
   const newVencedor = await vencedorTorneioController.createVariosVencedores(vencedoresTorneio)
 
@@ -157,9 +176,12 @@ routes.post('/vencedores/torneio', async (req, res) => {
   }
   return res.status(200).json(newVencedor)
 })
+
 routes.get('/vencedores/torneio/:torneioID', async (req, res) => {
   const vencedorTorneioController = new VencedorTorneioController()
   const torneioID = req.params.torneioID
+
+  if(!torneioID) return res.status(400).send('Erro na requisicao. Insira um ID de torneio valido!')
 
   const vencedores = await vencedorTorneioController.getVencedoresByTorneioID(torneioID)
 
@@ -173,6 +195,7 @@ routes.get('/vencedores/grupo/:grupoID', async (req, res) => {
   const vencedorGrupoController = new VencedorGrupoController()
   const grupoID = req.params.grupoID
 
+  if(!grupoID) return res.status(400).send('Erro na requisicao. Insira um ID de grupo valido!')
   const vencedores = await vencedorGrupoController.getVencedoresByGrupoID(grupoID)
 
   if (!vencedores) {
