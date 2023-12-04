@@ -26,11 +26,13 @@ export class GrupoController {
   }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
-    if (Num_checkin < 16) {
+    if (Num_checkin < 16 && Num_checkin !== 12) {
       throw new Error('Erro ao calcular a quantidade de grupos.')
     }
 
     switch (Num_checkin) {
+    case 12:
+      return { jogadoresPorGrupo: [6,6] }
     case 17:
       return { jogadoresPorGrupo: [6, 6, 5] }
     case 18:
