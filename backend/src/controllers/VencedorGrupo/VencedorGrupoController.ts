@@ -58,6 +58,14 @@ export class VencedorGrupoController {
       return null
     }
 
+    for(let i = 0; i < dadosVencedores.length; i++) {
+      for(let j = i+1; j < dadosVencedores.length; j++) {
+        if(dadosVencedores[i].posicao === dadosVencedores[j].posicao) {
+          return null
+        }
+      }
+    }
+
     try {
       const createdVencedores = await prisma.vencedorGrupo.createMany({
         data: dadosVencedores,
