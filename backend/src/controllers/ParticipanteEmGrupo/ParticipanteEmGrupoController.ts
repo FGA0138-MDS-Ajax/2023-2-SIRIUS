@@ -8,27 +8,18 @@ export class ParticipanteEmGrupoController {
   async create(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
     try {
 
-      console.log('participantesEmGrupoData-1', participantesEmGrupoData)
-
       if (!participantesEmGrupoData) {
         return (null)
       }
-
-      console.log('participantesEmGrupoData-2', participantesEmGrupoData)
-
 
       const createdParticipantes = await prisma.participanteEmGrupo.createMany({
         data: participantesEmGrupoData,
         skipDuplicates: true,
       })
 
-      console.log('participantesEmGrupoData-3', createdParticipantes, createdParticipantes.count)
-
       if (!createdParticipantes || createdParticipantes.count === 0) {
         return (null)
       }
-
-      console.log('participantesEmGrupoData-4', createdParticipantes)
 
       return (createdParticipantes)
 

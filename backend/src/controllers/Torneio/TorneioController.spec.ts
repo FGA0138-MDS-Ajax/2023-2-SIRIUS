@@ -53,13 +53,54 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
       const nome = 'Teste'
       const rodada = {
         data: {
-          rodada: {
-            nome: 'Teste',
-            numeroRodada: 'UM',
-            torneioID: '1',
-          }
+          numeroRodada: 'UM',
+          torneioID: '1',
         }
       }
+      const grupo =
+      {
+        data: {
+          rodadaID: '1'
+        },
+      }
+      {
+        data: {
+          rodadaID: '1'
+        }
+      }
+
+      const participantetorneio =
+      {
+        data: [
+          {
+            checkedInAt: 'string',
+            teamName: 'string',
+            inGameName: 'string',
+            id: 'string',
+            discordID: 'string',
+            email: 'string',
+          },
+
+        ],
+        "skipDuplicates": true
+      };
+
+      const participanteemgrupo =
+      {
+        data:
+          [
+            {
+              grupoID: '1',
+              numeroRodada: 'UM',
+              participanteID: 'string',
+              torneioID: '1',
+            }
+          ],
+        skipDuplicates: true
+      }
+
+
+
       const playertorneio: Array<IPlayerDataProps[]> = [
         [
           {
@@ -118,21 +159,21 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
       })
 
       jest.spyOn(prismaMock.participante, 'createMany').mockResolvedValue({
-        count: 1,
+        count: 2,
       })
 
       jest.spyOn(prismaMock.participanteEmGrupo, 'createMany').mockResolvedValue({
-        count: 1,
+        count: 2,
       })
 
       const torneio = await torneioController.create(nome, playertorneio)
 
       expect(torneio).not.toBeNull()
       expect(prismaMock.torneio.create).toHaveBeenCalledWith({ data: { nome } })
-      expect(prismaMock.rodada.create).toHaveBeenCalledWith({ rodada: { data: { rodada } } })
-      //expect(prismaMock.grupo.create).toHaveBeenCalledWith({ data: {  } })
-      //expect(prismaMock.participante.create).toHaveBeenCalledWith({ data: { nome } })
-      //expect(prismaMock.participanteEmGrupo.create).toHaveBeenCalledWith({ data: { nome } })
+      expect(prismaMock.rodada.create).toHaveBeenCalledWith(rodada)
+      expect(prismaMock.grupo.create).toHaveBeenCalledWith(grupo)
+      expect(prismaMock.participante.createMany).toHaveBeenCalledWith(participantetorneio)
+      expect(prismaMock.participanteEmGrupo.createMany).toHaveBeenCalledWith(participanteemgrupo)
     })
   })
 
