@@ -1,9 +1,10 @@
 import { Request, Response } from 'express'
 import prisma from '../../../client'
 import { error } from 'node:console'
+import { GrupoProps } from '../../types/types'
 
 export class GrupoController {
-  async create(rodadaID: string) {
+  async create(rodadaID: GrupoProps) {
 
     if (!rodadaID) {
       return (null)
@@ -85,6 +86,33 @@ export class GrupoController {
       res.status(200).json({ jogadoresPorGrupo })
     } catch (error) {
       res.status(400).json({ error: 'Erro ao calcular a quantidade de grupos.' })
+    }
+  }
+
+  async getGrupos(req: Request, res: Response) {
+    const grupo = await prisma.grupo.findMany()
+
+    if (!grupo) {
+      return res.status(400).send('Nenhum grupo encontrado!')
+    }
+
+    return res.status(200).json(grupo)
+  }
+
+  async searchByID(id: string) {
+
+    try {
+      const grupo = await prisma.grupo.findUnique({ where: { id } })
+
+      if (!grupo) {
+        return (null)
+      }
+
+      return (grupo)
+    }
+    catch (error) {
+      console.error('Error searching grupo:', error)
+      return (null)
     }
   }
 }

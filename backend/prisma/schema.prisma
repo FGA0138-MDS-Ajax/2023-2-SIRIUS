@@ -18,8 +18,16 @@ enum EnumVencedorPosicao {
   QUARTO
 }
 
+enum EnumRodada {
+    UM
+    DOIS
+    TRES
+    SEMIFINAL
+    FINAL
+}
+
 model User {
-  id       Int     @id @default(autoincrement())
+  id       String     @id @default(uuid())
   email    String  @unique
   name     String?
   password String
@@ -34,10 +42,11 @@ model Torneio {
 }
 
 model Rodada {
-  id        String  @id @default(uuid())
-  torneio   Torneio @relation(fields: [torneioID], references: [id])
-  torneioID String
-  grupo     Grupo[]
+  id           String     @id @default(uuid())
+  torneio      Torneio    @relation(fields: [torneioID], references: [id])
+  torneioID    String
+  grupo        Grupo[]
+  numeroRodada EnumRodada
 }
 
 model Grupo {
@@ -56,6 +65,7 @@ model ParticipanteEmGrupo {
   grupoID        String
   torneioID      String
   torneio        Torneio      @relation(fields: [torneioID], references: [id])
+  numeroRodada   EnumRodada
 }
 
 model Participante {
@@ -85,5 +95,5 @@ model VencedorGrupo {
   participanteID String
   grupo          Grupo               @relation(fields: [grupoID], references: [id])
   grupoID        String
-  posicao        EnumVencedorPosicao
+  posicao        EnumVencedorPosicao @unique
 }

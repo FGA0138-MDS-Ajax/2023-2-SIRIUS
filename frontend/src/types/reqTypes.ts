@@ -1,7 +1,7 @@
-import { IPlayerData } from './playerType'
+import { IPlayerDataProps } from './playerType'
 
 export interface ICriarParticipantesProps {
-    participantes: IPlayerData[]
+    participantes: IPlayerDataProps[]
 }
 
 export interface ICriarTorneioProps {

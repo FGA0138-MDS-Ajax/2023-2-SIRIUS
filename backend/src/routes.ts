@@ -6,12 +6,32 @@ import { RodadaController } from './controllers/Rodadas/RodadaController'
 import { GrupoController } from './controllers/Grupos/GrupoController'
 import { ParticipantesController } from './controllers/Participantes/ParticipantesController'
 import { ParticipanteEmGrupoController } from './controllers/ParticipanteEmGrupo/ParticipanteEmGrupoController'
+import { VencedorGrupoController } from './controllers/VencedorGrupo/VencedorGrupoController'
+import { VencedorTorneioController } from './controllers/VencedorTorneio/VencedorTorneioController'
 
 const routes = Router()
 
 routes.get('/', (req, res) => {
   res.send('Hello World! Você está na raiz da API!')
 })
+
+routes.post('/participantesEmGrupo/search', async (req, res) => {
+  const participanteEmGrupoController = new ParticipanteEmGrupoController()
+  const playerEmGrupo = req.body
+  const participantesEmGrupo = await participanteEmGrupoController.searchGruposDeParticipante(playerEmGrupo) 
+
+  if (!participantesEmGrupo) {
+    return res.status(400).send('Erro ao buscar participantes de um grupo')
+  }
+  return res.status(200).json(participantesEmGrupo)
+})
+
+routes.post('/users/create', new UserController().create)
+routes.post('/login', new UserController().login)
+
+// routes.use(authMiddleware)
+
+routes.get('/profile', new UserController().getProfile)
 
 routes.post('/csv', (req, res) => {
   const csvController = new CSVController()
@@ -22,8 +42,9 @@ routes.post('/csv', (req, res) => {
 routes.post('/torneios/create', async (req, res) => {
   const torneioController = new TorneioController()
   const nome = req.body.nome
+  const grupos = req.body.grupos
 
-  const newTorneio = await torneioController.create(nome)
+  const newTorneio = await torneioController.create(nome, grupos)
   if (!newTorneio) {
     return res.status(400).send('Erro ao criar torneio')
   }
@@ -48,13 +69,15 @@ routes.get('/torneios', new TorneioController().getTorneios)
 routes.post('/rodadas/create', async (req, res) => {
   const rodadaController = new RodadaController()
   const torneioID = req.body.torneioID
+  const numeroRodada = req.body.numeroRodada
 
-  const newRodada = await rodadaController.create(torneioID)
+  const newRodada = await rodadaController.create({torneioID, numeroRodada})
   if (!newRodada) {
     return res.status(400).send('Erro ao criar rodada')
   }
   return res.status(200).json(newRodada)
 })
+routes.get('/rodadas', new RodadaController().getRodadas)
 
 
 routes.get('/grupos/quantidade/:Num_checkin', (req, res) => {
@@ -71,6 +94,7 @@ routes.post('/grupos/create', async (req, res) => {
   }
   return res.status(200).json(newGrupo)
 })
+routes.get('/grupos', new GrupoController().getGrupos)
 
 
 routes.post('/participantes/create', async (req, res) => {
@@ -106,30 +130,55 @@ routes.post('/participantesEmGrupo/create', async (req, res) => {
   }
   return res.status(200).json(newParticipantesEmGrupo)
 })
-routes.post('/participantesEmGrupo/search', new ParticipanteEmGrupoController().searchGruposDeParticipante)
+
 routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParticipantesEmGrupo)
 
-routes.post('/users/create', async (req, res) => {
-  const userController = new UserController()
-  const userData = req.body
+routes.post('/vencedores/grupo', async (req, res) => {
+  const vencedorGrupoController = new VencedorGrupoController()
+  const vencedoresGrupo = req.body.vencedores
 
-  const newUser = await userController.create(userData)
-  if (!newUser) {
-    return res.status(400).send('Erro ao criar usuário')
+  const newVencedor = await vencedorGrupoController.createVariosVencedores(vencedoresGrupo)
+
+  if (!newVencedor) {
+    return res.status(400).send('Erro ao definir vencedores de grupo')
   }
-  return res.status(200).json(newUser)
+  return res.status(200).json(newVencedor)
 })
-routes.post('/login', async (req, res) => {
-  const userController = new UserController()
-  const userData = req.body
 
-  const user = await userController.login(userData)
-  if (!user) {
-    return res.status(400).send('Erro ao logar usuário')
+routes.post('/vencedores/torneio', async (req, res) => {
+  const vencedorTorneioController = new VencedorTorneioController()
+  const vencedoresTorneio = req.body.vencedores
+
+  const newVencedor = await vencedorTorneioController.createVariosVencedores(vencedoresTorneio)
+
+  if (!newVencedor) {
+    return res.status(400).send('Erro ao definir vencedores de torneio')
   }
-  return res.status(200).json(user)
-}) // Não testado
-routes.get('/profile', new UserController().getProfile)
+  return res.status(200).json(newVencedor)
+})
+routes.get('/vencedores/torneio/:torneioID', async (req, res) => {
+  const vencedorTorneioController = new VencedorTorneioController()
+  const torneioID = req.params.torneioID
+
+  const vencedores = await vencedorTorneioController.getVencedoresByTorneioID(torneioID)
+
+  if (!vencedores) {
+    return res.status(400).send('Erro ao buscar vencedores de torneio')
+  }
+  return res.status(200).json(vencedores)
+})
+
+routes.get('/vencedores/grupo/:grupoID', async (req, res) => {
+  const vencedorGrupoController = new VencedorGrupoController()
+  const grupoID = req.params.grupoID
+
+  const vencedores = await vencedorGrupoController.getVencedoresByGrupoID(grupoID)
+
+  if (!vencedores) {
+    return res.status(400).send('Erro ao buscar vencedores de grupo')
+  }
+  return res.status(200).json(vencedores)
+})
 
 export { routes }
 

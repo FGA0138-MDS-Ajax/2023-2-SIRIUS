@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react'
 import { API } from '../../server/api'
 import { motion } from 'framer-motion'
-import { PlayerData } from '../../types/playerType'
+import { IPlayerDataProps } from '../../types/playerType'
 
-const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[]}) => {
-  const [playerData, setPlayerData] = useState<PlayerData[]>([])
+const GroupButton = ({ dadosJson }: { dadosJson: IPlayerDataProps[]}) => {
+  const [playerData, setPlayerData] = useState<IPlayerDataProps[]>([])
 
   useEffect(() => {
     setPlayerData(dadosJson.filter((player: any) => player.checkedInAt !== ''))
@@ -21,7 +21,7 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[]}) => {
       await API.get(`/grupos/quantidade/${qtdJogadoresQueFizeramCheckin}`)
     ).data.jogadoresPorGrupo
     
-    const gruposDoTorneio: Array<Array<PlayerData>> = []
+    const gruposDoTorneio: Array<Array<IPlayerDataProps>> = []
     let playerPos = 0
     for (let i = 0; i < quantidadeJogadoresPorGrupo.length; i++) {
       const groupSize = quantidadeJogadoresPorGrupo[i]
@@ -39,7 +39,14 @@ const GroupButton = ({ dadosJson }: { dadosJson: PlayerData[]}) => {
     // Sendo assim, a variável abaixo constitui um vetor de grupos.
     // Esse vetor deve ser usado para formar as tabelas no frontend.
     // Além disso, deve ser enviado ao backend para salvar no banco de dados.
-    console.log(gruposDoTorneio)
+    const criarTorneioDados = {
+      nome: 'Torneio de Teste',
+      grupos: gruposDoTorneio
+    }
+
+    const response = await API.post('/torneios/create', criarTorneioDados)
+    console.log(response.data)
+
   }
 
   return (

@@ -2,11 +2,12 @@
 import React, { useState } from 'react'
 import { API } from '../../server/api'
 import GroupButton from '../GroupButton'
-import BounceLoader from 'react-spinners/BounceLoader'
 import { AnimatePresence, motion } from 'framer-motion'
 import NewUploadButton from '../NewUploadButton'
 import SubmitButton from '../SubmitButton'
 import ParticipantsTable from '../ParticipantsTable'
+import LoadingSpinner from '../LoadingSpinner'
+
 
 const InputCSV = () => {
   const [fileContents, setFileContents] = useState<string>('')
@@ -16,19 +17,24 @@ const InputCSV = () => {
   const [error, setError] = useState<string | null>()
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null)
 
-  const fileIsValid = (file?: File) => {
-    return file && file.type === 'text/csv'
+  const CSV_FILE_TYPE = 'text/csv'
+  const isFileValid = (file?: File) => file && file.type === CSV_FILE_TYPE
+
+  const resetForm = () => {
+    setFileContents('')
+    setValidInput(false)
+    setdataJSON(null)
+    setError(null)
+    setSelectedFileName(null)
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
 
-    if (!file || !fileIsValid(file)) {
+    if (!file || !isFileValid(file)) {
       setError('Selecione um arquivo CSV válido.')
       event.target.value = ''
-      setFileContents('')
-      setValidInput(false)
-      setSelectedFileName(null) // Limpa o nome do arquivo se não for válido
+      resetForm()
       return
     }
 
@@ -42,7 +48,7 @@ const InputCSV = () => {
     }
 
     reader.readAsText(file)
-    setSelectedFileName(file.name) // Atualiza o nome do arquivo
+    setSelectedFileName(file.name)
   }
 
   const handleSubmit = async () => {
@@ -73,12 +79,10 @@ const InputCSV = () => {
   }
 
   const handleNewUpload = () => {
-    setFileContents('')
-    setValidInput(false)
-    setdataJSON(null)
-    setError(null)
-    setSelectedFileName(null) // Limpa o nome do arquivo
+    resetForm()
   }
+
+  const ErrorDisplay = () => error && <p className="text-red-500 mt-2 text-center font-bold text-xl">Erro: {error}</p>
 
   return (
     <section className="md:py-[6rem] pt-12 pb-8">
@@ -133,20 +137,9 @@ const InputCSV = () => {
         </div>
         <div className='flex flex-col items-start justify-center text-gray-200'>
           <div className='flex items-center justify-center'>
-            {loading && (
-              <div className="flex items-center">
-                <BounceLoader
-                  color={'#344981'}
-                  loading={loading}
-                  size={70}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
-                <p className='text-gray-200 text-2xl ml-4 font-caustenBd'>Carregando Dados...</p>
-              </div>
-            )}
+            {loading && <LoadingSpinner loading={loading} />}
           </div>
-          {error && <p className="text-red-500 mt-2 text-center font-bold text-xl">Erro: {error}</p>}
+          <ErrorDisplay />
           {dataJSON && (
             <ParticipantsTable dadosJSON={dataJSON} />
           )}

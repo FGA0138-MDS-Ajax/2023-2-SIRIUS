@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "migrate": "rm -rf /prisma/migrations && npx prisma migrate dev --name init",
     "start": "tsx src/index.ts",
     "dev": "tsx watch src/index.ts",
     "build": "tsup src",

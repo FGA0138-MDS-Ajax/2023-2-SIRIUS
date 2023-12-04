@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import prisma from '../../../client'
 import { TorneioController } from '../Torneio/TorneioController'
 import { ParticipantesController } from '../Participantes/ParticipantesController'
-import { IPlayerEmGrupoDataProps } from '../../types/types'
+import { IPlayerEmGrupoDataProps, IBuscaPlayerEmGrupoProps } from '../../types/types'
 
 export class ParticipanteEmGrupoController {
   async create(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
@@ -28,20 +28,17 @@ export class ParticipanteEmGrupoController {
     }
   }
 
-  async searchGruposDeParticipante(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
+  async searchGruposDeParticipante(participantesEmGrupoData: IBuscaPlayerEmGrupoProps) {
     const torneioController = new TorneioController()
     const participantesController = new ParticipantesController()
 
-    if (!participantesEmGrupoData) {
-      return (null)
-    }
-
-    const torneio = await torneioController.searchByName(participantesEmGrupoData[0].torneioID)
+    const torneio = await torneioController.searchByName(participantesEmGrupoData.nomeTorneio)
+    
     if (!torneio) {
       return (null)
     }
 
-    const participantes = await participantesController.searchByInGameName(participantesEmGrupoData[0].participanteID)
+    const participantes = await participantesController.searchByInGameName(participantesEmGrupoData.inGameName)
 
     if (!participantes) {
       return (null)
@@ -51,12 +48,24 @@ export class ParticipanteEmGrupoController {
     const grupos = await prisma.participanteEmGrupo.findMany({
       where: {
         torneioID: torneio.id,
-        participanteID: participantes.id
+        participanteID: participantes.id,
+        numeroRodada: participantesEmGrupoData.numeroRodada
       }
     })
 
-    return (grupos)
+    if (!grupos) {
+      return (null)
+    }
 
+    const grupoID = grupos[0].grupoID
+
+    return (await prisma.participanteEmGrupo.findMany({
+      where: {
+        grupoID: grupoID
+      }
+    }))
+
+    
   }
 
   async getParticipantesEmGrupo(req: Request, res: Response) {

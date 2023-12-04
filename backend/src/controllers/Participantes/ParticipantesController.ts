@@ -46,4 +46,21 @@ export class ParticipantesController {
 
     return res.status(200).json(participantes)
   }
+
+  async searchByID(id: string) {
+
+    try {
+      const participante = await prisma.participante.findUnique({ where: { id } })
+
+      if (!participante) {
+        return (null)
+      }
+
+      return (participante)
+    }
+    catch (error) {
+      console.error('Error searching participante:', error)
+      return (null)
+    }
+  }
 }
