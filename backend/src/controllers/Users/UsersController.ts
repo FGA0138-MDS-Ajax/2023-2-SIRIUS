@@ -3,9 +3,8 @@
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import prisma from '../../../client'
+import { IUserDataProps } from '../../types/types'
 
 export class UserController {
   async create(req: Request, res: Response) {
@@ -27,7 +26,7 @@ export class UserController {
       }
     })
 
-    const { password: _, ...user } = newUser
+    const { password: _, ...user } = newUser || {}
 
     return res.status(201).json(user)
   }

@@ -1,8 +1,6 @@
 import { Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../client'
 import { IPlayerDataProps } from '../../types/types'
-
-const prisma = new PrismaClient()
 
 export class ParticipantesController {
   async create(participantesData: IPlayerDataProps[]) {
@@ -11,6 +9,10 @@ export class ParticipantesController {
         data: participantesData,
         skipDuplicates: true,
       })
+
+      if (!createdParticipantes || createdParticipantes.count === 0) {
+        return (null)
+      }
 
       return (createdParticipantes)
     } catch (error) {

@@ -1,11 +1,14 @@
-import { PrismaClient } from '@prisma/client'
+import { Request, Response } from 'express'
+import prisma from '../../../client'
 import { IRodadaDataProps } from '../../types/types'
 import { Request, Response } from 'express'
 
-const prisma = new PrismaClient()
-
 export class RodadaController {
   async create({torneioID, numeroRodada}: IRodadaDataProps) {
+
+    if (!torneioID) {
+      return (null)
+    }
 
     const newRodadas = await prisma.rodada.create({
       data: { torneioID, numeroRodada },
@@ -21,6 +24,11 @@ export class RodadaController {
   // Método para Deleção dos Rodadas na DataBase.
 
   async delete(id: string) {
+
+    if (!id) {
+      return (null)
+    }
+
     const rodada = await prisma.rodada.findUnique({ where: { id } })
 
     if (!rodada) {

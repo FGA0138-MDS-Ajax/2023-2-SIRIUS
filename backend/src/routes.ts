@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { UserController } from './controllers/Users/UsersController'
-import CSVController from './controllers/CSV/CSVController'
+import { CSVController } from './controllers/CSV/CSVController'
 import { TorneioController } from './controllers/Torneio/TorneioController'
 import { RodadaController } from './controllers/Rodadas/RodadaController'
 import { GrupoController } from './controllers/Grupos/GrupoController'
@@ -117,7 +117,7 @@ routes.post('/participantes/search', async (req, res) => {
   }
   return res.status(200).json(participante)
 })
-routes.get('/participantes', new ParticipantesController().getParticipantes) 
+routes.get('/participantes', new ParticipantesController().getParticipantes)
 
 
 routes.post('/participantesEmGrupo/create', async (req, res) => {

@@ -1,23 +1,29 @@
 import { Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
-
+import prisma from '../../../client'
 import { TorneioController } from '../Torneio/TorneioController'
 import { ParticipantesController } from '../Participantes/ParticipantesController'
 import { IPlayerEmGrupoDataProps, IBuscaPlayerEmGrupoProps } from '../../types/types'
 
-const prisma = new PrismaClient()
-
 export class ParticipanteEmGrupoController {
   async create(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
     try {
+
+      if (!participantesEmGrupoData) {
+        return (null)
+      }
+
       const createdParticipantes = await prisma.participanteEmGrupo.createMany({
         data: participantesEmGrupoData,
         skipDuplicates: true,
       })
 
+      if (!createdParticipantes || createdParticipantes.count === 0) {
+        return (null)
+      }
+
       return (createdParticipantes)
+
     } catch (error) {
-      console.error('Error creating participants:', error)
       return (null)
     }
   }
@@ -27,14 +33,17 @@ export class ParticipanteEmGrupoController {
     const participantesController = new ParticipantesController()
 
     const torneio = await torneioController.searchByName(participantesEmGrupoData.nomeTorneio)
+    
     if (!torneio) {
       return (null)
     }
 
     const participantes = await participantesController.searchByInGameName(participantesEmGrupoData.inGameName)
+
     if (!participantes) {
       return (null)
     }
+
 
     const grupos = await prisma.participanteEmGrupo.findMany({
       where: {
@@ -55,6 +64,7 @@ export class ParticipanteEmGrupoController {
         grupoID: grupoID
       }
     }))
+
     
   }
 

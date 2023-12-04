@@ -1,12 +1,10 @@
 import { Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../client'
 import { EnumRodada, IPlayerDataProps, IPlayerEmGrupoDataProps } from '../../types/types'
 import { RodadaController } from '../Rodadas/RodadaController'
 import { GrupoController } from '../Grupos/GrupoController'
 import { ParticipantesController } from '../Participantes/ParticipantesController'
 import { ParticipanteEmGrupoController } from '../ParticipanteEmGrupo/ParticipanteEmGrupoController'
-
-const prisma = new PrismaClient()
 
 export class TorneioController {
   async create(nome: string, participantesData: Array<IPlayerDataProps[]>) {
@@ -70,6 +68,11 @@ export class TorneioController {
   async searchByName(nome: string) {
 
     try {
+
+      if (!nome) {
+        return (null)
+      }
+
       const torneio = await prisma.torneio.findUnique({ where: { nome: nome } })
 
       if (!torneio) {
@@ -85,9 +88,9 @@ export class TorneioController {
   }
 
   async getTorneios(req: Request, res: Response) {
-    const torneios = await prisma.torneio.findMany()
+    const torneios = await prisma.torneio.findMany(req.body)
 
-    if (!torneios) {
+    if (!torneios.length) {
       return res.status(400).send('Nenhum torneio encontrado!')
     }
 
