@@ -16,4 +16,19 @@ nav:
         - Planning: sprints/sprint-1/s1-planning.md
         - Dailies: sprints/sprint-1/s1-dailies.md
         - Review e retrospective: sprints/sprint-1/s1-review-retrospective.md
-
+      - Sprint 2: 
+        - Planning: sprints/sprint-2/s2-planning.md
+        - Dailies: sprints/sprint-2/s2-dailies.md
+        - Review e retrospective: sprints/sprint-2/s2-review-retrospective.md
+      - Sprint 3: 
+        - Planning: sprints/sprint-3/s3-planning.md
+        - Dailies: sprints/sprint-3/s3-dailies.md
+        - Review e retrospective: sprints/sprint-3/s3-review-retrospective.md
+      - Sprint 4: 
+        - Planning: sprints/sprint-4/s4-planning.md
+        - Dailies: sprints/sprint-4/s4-dailies.md
+        - Review e retrospective: sprints/sprint-4/s4-review-retrospective.md
+      - Sprint 5: 
+        - Planning: sprints/sprint-5/s5-planning.md
+        - Dailies: sprints/sprint-5/s5-dailies.md
+        - Review e retrospective: sprints/sprint-5/s5-review-retrospective.md

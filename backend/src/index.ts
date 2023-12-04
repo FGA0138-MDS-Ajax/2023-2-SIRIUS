@@ -16,7 +16,7 @@ const startServer = async () => {
   app.use(routes)
 
   app.listen(process.env.PORT ? Number(process.env.PORT): 3000, () => {
-    console.log('HTTP Server Running')
+    console.log(`HTTP Server Running in PORT:${process.env.PORT ? Number(process.env.PORT): 3000}`)
   })
 }
 

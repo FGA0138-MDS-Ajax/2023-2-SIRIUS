@@ -1,6 +1,12 @@
 import { Request, Response } from 'express'
 
-export default class CSVController {
+/**
+ * Classe Para Controle do Métodos Controlador do CSV.
+ */
+export class CSVController {
+  /**
+   * Método para Trabalhar o Arquivo .CSV e retornar um JSON para o FrontEnd.
+   */
   async importCSV(req: Request, res: Response) {
     try {
       const { fileContents } = req.body
@@ -9,7 +15,7 @@ export default class CSVController {
       }
 
       const csvContents = this.parseCSV(fileContents)
-    
+
       if (!csvContents) {
         return res.status(400).send('CSV Inválido')
       }
@@ -18,15 +24,19 @@ export default class CSVController {
       const csvRandom = this.arrayToCSV(arrord)
       const chaves = this.extractKeys(csvRandom)
       const jsonRetorno = this.generateJSONData(csvRandom, chaves)
-      
+
+
       return res.json(jsonRetorno)
     } catch (error) {
-      return res.status(500).send('Erro no Processamento do CSV: ' + (error as string))
+      return res.status(500).send('Erro no Processamento do CSV')
     }
   }
 
   public parseCSV(fileContents: string): string[] | null {
     try {
+      if (!fileContents) {
+        return null
+      }
       return fileContents.replaceAll('"', '').split('\n')
     } catch (error) {
       return null
@@ -36,6 +46,7 @@ export default class CSVController {
   public extractKeys(csvContents: string[]): string[] {
     if (csvContents.length > 0) {
       return csvContents.shift()!.split(',').map((chave: string) => {
+        if (chave.includes('userID')) return 'id'
         if (chave.includes('ID Discord')) return 'discordID'
         if (chave.includes('Email')) return 'email'
         return chave
@@ -44,11 +55,11 @@ export default class CSVController {
     return []
   }
 
-  public fillArray(csvContents: string[]){
+  public fillArray(csvContents: string[]) {
     const arrayord: string[][] = []
-    csvContents.forEach((linha) =>{
+    csvContents.forEach((linha) => {
       const colunas = linha.split(',')
-      arrayord.push(colunas)    
+      arrayord.push(colunas)
     })
     this.shuffleArray(arrayord)
     return arrayord
@@ -56,10 +67,10 @@ export default class CSVController {
 
   public shuffleArray(inputArray: string[][]) {
     inputArray.sort(() => Math.random() - 0.5)
-  } 
+  }
   public arrayToCSV(array: string[][]) {
     const csvRows = []
-    this.moveSubarrayToFirstPosition(array,['teamName','inGameName','checkedInAt','userID','ID Discord (Exemplo#1234)','Email de Contato'])
+    this.moveSubarrayToFirstPosition(array, ['teamName', 'inGameName', 'checkedInAt', 'userID', 'ID Discord (Exemplo#1234)', 'Email de Contato'])
     for (const row of array) {
       const csvRow = row.map(value => `${value}`).join(',')
       csvRows.push(csvRow)
@@ -87,5 +98,7 @@ export default class CSVController {
       })
       return dados
     })
-  } 
+  }
+
+
 }
