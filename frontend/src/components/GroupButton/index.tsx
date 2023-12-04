@@ -40,7 +40,7 @@ const GroupButton = ({ dadosJson }: { dadosJson: IPlayerDataProps[]}) => {
     // Esse vetor deve ser usado para formar as tabelas no frontend.
     // Além disso, deve ser enviado ao backend para salvar no banco de dados.
     const criarTorneioDados = {
-      nome: 'Torneio de Teste',
+      nome: 'Torneio das Lendas',
       grupos: gruposDoTorneio
     }
 
