@@ -29,52 +29,68 @@ export class ParticipanteEmGrupoController {
   }
 
   async searchGruposDeParticipante(participantesEmGrupoData: IBuscaPlayerEmGrupoProps) {
-    const torneioController = new TorneioController()
-    const participantesController = new ParticipantesController()
+    try {
+      const torneioController = new TorneioController()
+      const participantesController = new ParticipantesController()
 
-    const torneio = await torneioController.searchByName(participantesEmGrupoData.nomeTorneio)
-    
-    if (!torneio) {
-      return (null)
-    }
+      const torneio = await torneioController.searchByName(participantesEmGrupoData.nomeTorneio)
 
-    const participantes = await participantesController.searchByInGameName(participantesEmGrupoData.inGameName)
-
-    if (!participantes) {
-      return (null)
-    }
-
-
-    const grupos = await prisma.participanteEmGrupo.findMany({
-      where: {
-        torneioID: torneio.id,
-        participanteID: participantes.id,
-        numeroRodada: participantesEmGrupoData.numeroRodada
+      if (!torneio) {
+        return (null)
       }
-    })
 
-    if (!grupos) {
-      return (null)
-    }
+      const participantes = await participantesController.searchByInGameName(participantesEmGrupoData.inGameName)
 
-    const grupoID = grupos[0].grupoID
-
-    return (await prisma.participanteEmGrupo.findMany({
-      where: {
-        grupoID: grupoID
+      if (!participantes) {
+        return (null)
       }
-    }))
 
-    
+      const grupos = await prisma.participanteEmGrupo.findMany({
+        where: {
+          torneioID: torneio.id,
+          participanteID: participantes.id,
+          numeroRodada: participantesEmGrupoData.numeroRodada
+        }
+      })
+
+      if (!grupos) {
+        return (null)
+      }
+
+      const grupoID = grupos[0].grupoID
+ 
+      const participantesNoGrupo = (await prisma.participanteEmGrupo.findMany({
+        where: {
+          grupoID: grupoID
+        }
+      }))
+      const participantesNoGrupoData = []
+      for (const participante of participantesNoGrupo) {
+        const participanteData = await participantesController.searchByID(participante.participanteID)
+        participantesNoGrupoData.push(participanteData?.inGameName)
+      }
+      return (participantesNoGrupoData)
+    } catch(e) {
+      console.log('Erro ao obter grupos de participantes.')
+      return null
+    }
   }
 
   async getParticipantesEmGrupo(req: Request, res: Response) {
-    const participantesEmGrupo = await prisma.participanteEmGrupo.findMany()
+    try {
 
-    if (!participantesEmGrupo) {
-      return res.status(400).send('Nenhum participante encontrado!')
+      const participantesEmGrupo = await prisma.participanteEmGrupo.findMany()
+
+      if (!participantesEmGrupo) {
+        return res.status(400).send('Nenhum participante encontrado!')
+      }
+
+      return res.status(200).json(participantesEmGrupo)
     }
-
-    return res.status(200).json(participantesEmGrupo)
+    catch(e) {
+      const msgErro = 'Erro ao obter participantes em grupo'
+      console.log(msgErro)
+      return res.status(500).send(msgErro)
+    }
   }
 }

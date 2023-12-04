@@ -27,8 +27,8 @@ enum EnumRodada {
 }
 
 model User {
-  id       String     @id @default(uuid())
-  email    String  @unique
+  id       Int        @id @default(autoincrement())
+  email    String     @unique
   name     String?
   password String
 }
@@ -65,7 +65,7 @@ model ParticipanteEmGrupo {
   grupoID        String
   torneioID      String
   torneio        Torneio      @relation(fields: [torneioID], references: [id])
-  numeroRodada   EnumRodada
+  numeroRodada   EnumRodada  
 }
 
 model Participante {
@@ -95,5 +95,5 @@ model VencedorGrupo {
   participanteID String
   grupo          Grupo               @relation(fields: [grupoID], references: [id])
   grupoID        String
-  posicao        EnumVencedorPosicao @unique
+  posicao        EnumVencedorPosicao
 }

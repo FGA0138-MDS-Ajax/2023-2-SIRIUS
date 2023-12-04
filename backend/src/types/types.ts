@@ -57,14 +57,14 @@ export interface IBuscaPlayerEmGrupoProps {
 
 // Tipo usado para criar um Vencedor de Grupo
 export interface IVencedorGrupoDataProps {
-    participanteID: string
-    grupoID:        string
-    posicao:        EnumVencedorPosicao
+  participanteID: string
+  grupoID: string
+  posicao: EnumVencedorPosicao
 }
 
 // Tipo usado para criar um Vencedor de Torneio
 export interface IVencedorTorneioDataProps {
-    participanteID: string
-    torneioID:      string
-    posicao:        EnumVencedorPosicao
+  participanteID: string
+  torneioID: string
+  posicao: EnumVencedorPosicao
 }
