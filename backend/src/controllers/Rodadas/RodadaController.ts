@@ -3,7 +3,7 @@ import prisma from '../../../client'
 import { IRodadaDataProps } from '../../types/types'
 
 export class RodadaController {
-  async create({torneioID, numeroRodada}: IRodadaDataProps) {
+  async create({ torneioID, numeroRodada }: IRodadaDataProps) {
     try {
 
       if (!torneioID) {
@@ -27,7 +27,7 @@ export class RodadaController {
       }
 
       return (newRodadas)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao criar rodada!')
       return null
     }
@@ -52,7 +52,7 @@ export class RodadaController {
       const deletedRodada = await prisma.rodada.delete({ where: { id } })
 
       return (deletedRodada)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao deletar rodada')
       return null
     }
@@ -69,7 +69,7 @@ export class RodadaController {
       }
 
       return res.status(200).json(rodadas)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter rodadas')
       return res.status(500).send('Nenhuma rodada encontrado!')
     }
@@ -89,7 +89,7 @@ export class RodadaController {
       }
 
       return (rodadas)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter rodadas por id de torneio')
       return null
     }

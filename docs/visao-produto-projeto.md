@@ -12,39 +12,39 @@
 | 03/10/2023 | 0.6    | Atualização da Visão Geral do Projeto                 | João Pedro da Silva             |
 | 03/10/2023 | 1.0    | Revisão do documento                                  | Lucas Queiroz                   |
 | 05/10/2023 | 1.1    | Documento atualizado com o feedback do professor      | Lucas Queiroz                   |
-| 31/10/2023 | 1.2    | Alteração de tecnologia do Banco de Dados      | Philipe Morais                  |
-
+| 06/11/2023 | 1.2    | Documento atualizado com o feedback do professor      | Todo o grupo                    |
 
 
 ## Visão Geral do Produto
 
 ### Problema
 
-- Contexto: torneios de esportes eletrônicos.
-- Problema: o chaveamento dos torneios ainda é realizado de forma manual, em que organizadores precisam verificar longos arquivos .csv para definir os confrontos.
-- Solução: automatizar o processo de chaveamento dos torneios.
+- Contexto: Administração/manutenção de competições de esportes eletrônicos.
+- Problema: A realização de competições de campeonatos de Teamfight Tactics (TFT), por exemplo, ainda não possui um sistema dedicado de chaveamento e manutenção visto sua diferença de estilo de partida para 8 jogadores em uma mesma sala, dos quais um número definido pelo organizador da competição irá passar à próxima rodada da mesma.
+- Solução: automatizar o processo de chaveamento e realização dos torneios.
 
 ### Declaração de Posição do Produto
 
 | Para:          | Organizadores de torneios de e-sports           |
 | -------------- | ----------------------------------------------- |
-| Necessidade:   | Chavear os jogadores do torneio                 |
-| O Bracket:     | é uma solução web                               |
-| Que:           | Auxilia no processo de chaveamento dos torneios |
+| Necessidade:   | Chavear os jogadores do torneio de TFT                 |
+| O Matcher:     | é uma solução web                               |
+| Que:           | Auxilia no processo de chaveamento e realização dos torneios de TFT |
 | Ao contrário:  | Battlefy, Challengermode                        |
 | Nosso produto: | Realiza o chaveamento de maneira automatizada   |
 
-**OBS**: Vale ressaltar que o produto é a melhoria de uma solução já existente. Além disso, é possível que o produto seja vendido à empresa cliente.
+**OBS**: Vale ressaltar que o produto é a melhoria de uma solução já existente. Além disso, é possível que o produto seja vendido à empresa cliente ou até integrado a uma empresa maior, sendo esta a Battlefy.
+Atualmente o cliente primário utiliza um chaveamento baseado em múltiplas planilhas da Google com scripts feitos à mão para acelerar e reduzir o processo manual ao máximo e evitar grandes esperas dos jogadores durante o evento da competição propriamente dita.
 
 ### Objetivos do Produto
 
-- Automatizar o processo de chaveamento de torneios;
+- Automatizar o processo de chaveamento de torneios, o que inclui, mas não se limita a: chaveamento de rodadas, reconhecimento de vencedores de rodada, análise de dados cadastrados, ajuste de presença de jogadores.;
 - Gerar relatórios de torneios (rodadas, jogadores, vencedores, etc);
 - Reconhecer dados repetidos em torneios separados;
 
 ### Tecnologias a serem utilizadas
 
-O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido.
+O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido. Além disso, elas são, todas, padrões de mercado, já bem testadas e consolidadas, utilizadas em vários projetos de grande escala (o facebook e o instagram, por exemplo, foram construídos utilizando React).
 
 - Front-end: [React](https://react.dev)
 - Back-end: [PostgreSQL](https://postgresql.org/), [Node](https://nodejs.org), [Express](https://expressjs.com), [Prisma](https://prisma.io)
@@ -54,32 +54,40 @@ O principal critério para a escolha das tecnologias abaixo foi a familiaridade 
 ## Visão Geral do Projeto
 
 ### Ciclo de vida do projeto de desenvolvimento de software
-Durante o ciclo de vida do projeto, adotaremos a metodologia Ágil para garantir uma interação contínua com nossos clientes. Isso nos permitirá receber feedback constante ao longo do processo de desenvolvimento. Para implementar essa abordagem, utilizaremos as práticas do SCRUM/XP, que se baseiam no "Guia do Scrum" e nas aulas disponibilizadas pela disciplina.
 
-No que diz respeito ao desenvolvimento, utilizaremos o GitHub para gerenciar alterações e submissões de código, além do MkDocs para manter a documentação do projeto atualizada. Também incorporaremos outras ferramentas de desenvolvimento à medida que avançarmos no projeto.
-
-Em relação ao método de trabalho, adotaremos o "Pair Programming", promovendo a colaboração entre os membros da equipe para o desenvolvimento e análise dos componentes trabalhados. Além disso, implementaremos revisões de código ("Code Review") como uma etapa essencial após cada sprint, garantindo o controle adequado das fases de desenvolvimento do projeto.
+- **Metodologia**: ágil. Isso garante contato contínuo com nossos clientes. Além disso, podemos receber feedback constante ao longo do processo de desenvolvimento.
+- **Processo**: SCRUM/XP. Esse processo é um híbrido entre SCRUM e XP. Para as atividades e conceitos relativos ao SCRUM, vamos nos basear no "Guia do Scrum". Para as atividades e conceitos relativos ao XP, vamos nos basear no livro "Programação extrema(xp) explicada", do autor Kent Beck. 
+- **Ferramentas**: utilizaremos o GitHub para gerenciar alterações e submissões de código, além do MkDocs para manter a documentação do projeto atualizada. Para reuniões, encontros e afins, utilizaremos como ferramental de apoio o [Gather Town](https://www.gather.town/) (aplicação web que promove um contexto similar a um jogo e possui ferramentas similares à um escritório online), criando um ambiente virtual mais atraente e descontraido para os membros envolvidos, além de permitir que membros possam acompanhar e interagir de modo mais casual uns com os outros.
+- **Métodos**: como citado acima, utilizaremos dos métodos que vem do SCRUM/XP. Ou seja, vamos utilizar de Pair Programming, Code Review, Integração Contínua, Refatoração, Jogo do Planejamento, Sprint Daily, Sprint Planning, Sprint Review, Sprint Retrospective e Refinamento de Backlog do Produto. 
 
 
 ### Organização do Projeto
 
 | Papel         | Atribuições                                                  | Responsável    | Participantes |
 | ------------- | ------------------------------------------------------------ | -------------- | ------------- |
-| Product Owner | Definir e organizar o Backlog do Produto;<br>Definir e organizar o Backlog da Sprint; | Lucas Meireles | Todo o grupo  |
+| Product Owner | Definir e organizar o Backlog do Produto;<br>Definir e organizar o Backlog da Sprint; | Lucas Meireles | Lucas Meireles |
 | Desenvolvedor | Escrever os códigos da aplicação;<br>Escrever códigos de testes;<br>Documentar o código da aplicação. | Philipe Morais | Todo o grupo  |
 | Analista de Qualidade | Definir padrões para a qualidade do produto;<br>Estipular o cumprimento dos tópicos definidos do produto;<br>Trabalhar na análise da consistência do código fonte do produto; | ---------------  | Todo o grupo  |
-| Cliente       | Verificar se o que foi definido no escopo está sendo entregue;<br>Auxiliar o Product Owner a definir o escopo do produto; | Lucas Meireles | Todo o grupo  |
-| Scrum Master | Garantir que os artefatos, rituais e princípios do Scrum sejam seguidos de acordo com o Guia do Scrum. | Lucas Queiroz | Todo o grupo |
+| Cliente       | Verificar se o que foi definido no escopo está sendo entregue;<br>Auxiliar o Product Owner a definir o escopo do produto; | Lucas Meireles | Lucas Meireles |
+| Scrum Master | Garantir que os artefatos, rituais e princípios do Scrum sejam seguidos de acordo com o Guia do Scrum. | Lucas Queiroz | Lucas Queiroz |
 
 
 
 ### Planejamento das Fases e/ou Iterações do Projeto
 
-| Sprint   | Produto (entrega)                               | Data Início | Data Fim | Entregável(eis)                                 | Responsáveis | % conclusão |
-| -------- | ----------------------------------------------- | ----------- | -------- | ----------------------------------------------- | ------------ | ----------- |
-| Sprint 1 | Documento de visão, powerpoint e ata de reunião | 02/10       | 09/10    | Documento de visão, powerpoint e ata de reunião | Todo o grupo | 2%          |
+| Sprint        | Produto (entrega)                                            | Data Início | Data Fim | Entregável(eis)                                              | Responsáveis | % conclusão |
+| ------------- | ------------------------------------------------------------ | ----------- | -------- | ------------------------------------------------------------ | ------------ | ----------- |
+| Pré-SCRUM/XP* | Definir visão e escopo (de forma generalizada) do produto e do projeto. | 02/10       | 24/10    | Documento de visão, documento de escopo, powerpoint e atas de reunião realizadas | Todo o grupo | 40%         |
+| Sprint 1      | Definir a arquitetura do produto e  entregar US1             | 24/10/2023  | 31/10    | Documento de arquitetura, backlog da sprint, incremento, meta da sprint, US1 | Todo o grupo | 50%         |
+| Sprint 2      | Corrigir os documentos de visão, escopo e arquitetura, e entregar a US1** | 01/11       | 07/11    | Documentos atualizados, US1, backlog da sprint, incremento, meta da sprint | Todo o grupo | 60%         |
+| Sprint 3      | Entregar US2                                                 | 08/11       | 14/11    | US2, backlog da sprint, incremento, meta da sprint           | Todo o grupo | 70%         |
+| Sprint 4      | Entregar US3                                                 | 15/11       | 21/11    | US3, backlog da sprint, incremento, meta da sprint           | Todo o grupo | 80%         |
+| Sprint 5      | Entregar US6 e US7                                           | 22/11       | 27/11    | US6 e US7, backlog da sprint, incremento, meta da sprint     | Todo o grupo | 90%         |
+| Sprint 6      | Entregar US8 e US9                                           | 29/11       | 04/11    | US8 e US9, backlog da sprint, incremento, meta da sprint     | Todo o grupo | 100%        |
 
+*: não é sprint devidamente, pois nesse momento ainda não começamos a utilizar da metodologia SCRUM, muito menos dos rituais, artefatos, pilares, etc.
 
+**: não conseguimos entregar, de fato, a US1 na sprint 1.
 
 ### Matriz de Comunicação
 
@@ -102,7 +110,7 @@ Em relação ao método de trabalho, adotaremos o "Pair Programming", promovendo
 | Riscos | Grau de exposição | Mitigação | Plano de Contigência |
 | -------------- | --------------- | ------------- | ---------------- |
 | Trancamento de matrícula por parte de algum membro | Baixo (o grupo está comprometido com a matéria) | Definir de forma equilibrada as responsabilidades de cada membro | Mudar as responsabilidades dos membros, a fim de suprir a ausência do membro que trancou |
-| Desentendimento entre membros do grupo | Baixo | Cada membro deve ter, antes de mais nada, respeito pelo outro, a fim de evitar brigas desnecessárias. | O grupo deve se reunir como um todo a fim de encontrar uma solução para o conflito. |
+| Desentendimento entre membros do grupo | Alta | Cada membro deve ter, antes de mais nada, respeito pelo outro, a fim de evitar brigas desnecessárias. | O grupo deve se reunir como um todo a fim de encontrar uma solução para o conflito. |
 | Problemas técnicos | Médio | Utilizar de tecnologias (como o docker) que evitem problemas técnicos. | Buscar soluções com pessoas que já passaram e resolveram o problema. |
 | Falta de instrumento de desenvolvimento para algum membro | Baixo | Cada membro deve ser cuidadoso no uso e manutenção de seu computador. | Utilizar os computadores da BCE. |
 | Falta de comunicação adequada entre os membros do grupo | Alta | Deve ser reforçada a importância dos meios definidos de comunicação, além da participação nos rituais Scrum. | Realizar reunião emergencial, com o intuito de que todos entendam o andamento do projeto. |
@@ -121,7 +129,7 @@ Em relação ao método de trabalho, adotaremos o "Pair Programming", promovendo
 
 ## Processo de Desenvolvimento de Software
 
-Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de acordo com o Guia do Scrum. Ou seja: vamos utilizar dos rituais (sprint planning, dailies, review e retrospective), além dos artefatos (sprint backlog e product backlog). 
+Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de acordo com o Guia do Scrum e com o livro "Programação extrema(xp) explicada", do autor Kent Beck. Ou seja: vamos utilizar dos rituais (sprint planning, dailies, review e retrospective) e dos artefatos (sprint backlog e product backlog) SCRUM, além dos princípios, valores e processos que fazem o XP (pair programming, code review, etc. Explicado com mais detalhes acima, na sessão "ciclo de vida do projeto de desenvolvimento de software"). 
 
 
 ## Detalhamento de atividades do projeto
@@ -188,15 +196,14 @@ Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de aco
 
 ...
 
-### Unidade 4
-
-...
-
-
-
-## Próximos passos
-
 
 
 ## Referências Bibliográficas
 
+SCHWABER, Ken; SUTHERLAND, Jeff. **Guia do Scrum**: as regras do jogo. 2ª ed.
+Rio de Janeiro: Elsevier, 2020.
+
+
+
+BECK, Kent. **Programação extrema (xp) explicada**: acolha as mudanças. Porto
+Alegre: Bookman, 2004.

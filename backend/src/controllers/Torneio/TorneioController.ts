@@ -9,7 +9,6 @@ import { ParticipanteEmGrupoController } from '../ParticipanteEmGrupo/Participan
 export class TorneioController {
   async create(nome: string, participantesData: Array<IPlayerDataProps[]>) {
     try {
-
       const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
       console.log('passou aqui1')
       if (TorneioNameExists) {
@@ -54,14 +53,14 @@ export class TorneioController {
           })
         })
         const participantesEmGrupoCriado = await new ParticipanteEmGrupoController().create(participantes)
-        console.log('passou aqui6')
+        console.log('passou aqui6', participantesEmGrupoCriado)
         if (!participantesEmGrupoCriado) {
           return (null)
         }
       }
       console.log('passou aqui7')
       return (newTorneio)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao criar torneio')
       return null
     }
@@ -99,7 +98,7 @@ export class TorneioController {
       }
 
       return res.status(200).json(torneios)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter torneios!')
       return res.status(500).send('Erro ao obter torneios!')
     }

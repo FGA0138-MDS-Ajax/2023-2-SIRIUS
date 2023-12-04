@@ -5,6 +5,12 @@ import { IPlayerDataProps } from '../../types/types'
 export class ParticipantesController {
   async create(participantesData: IPlayerDataProps[]) {
     try {
+
+
+      console.log(participantesData.length)
+      if (participantesData.length === 0) {
+        return null
+      }
       const createdParticipantes = await prisma.participante.createMany({
         data: participantesData,
         skipDuplicates: true,
@@ -43,7 +49,7 @@ export class ParticipantesController {
       }
 
       return res.status(200).json(participantes)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter participantes')
       return res.status(500).send('Erro ao obter participantes')
     }

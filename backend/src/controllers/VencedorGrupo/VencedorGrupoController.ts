@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../client'
 import { IVencedorGrupoDataProps } from '../../types/types'
 import { ParticipantesController } from '../Participantes/ParticipantesController'
 import { GrupoController } from '../Grupos/GrupoController'
-
-const prisma = new PrismaClient()
 
 export class VencedorGrupoController {
   async create(dadosVencedor: IVencedorGrupoDataProps) {
@@ -36,6 +34,7 @@ export class VencedorGrupoController {
       const participantesController = new ParticipantesController()
       for (const participante of dadosVencedores) {
         const participanteExiste = await participantesController.searchByID(participante.participanteID)
+        console.log(participanteExiste)
         if (!participanteExiste) throw new Error('Participante nao existe')
       }
     }
@@ -58,9 +57,9 @@ export class VencedorGrupoController {
       return null
     }
 
-    for(let i = 0; i < dadosVencedores.length; i++) {
-      for(let j = i+1; j < dadosVencedores.length; j++) {
-        if(dadosVencedores[i].posicao === dadosVencedores[j].posicao) {
+    for (let i = 0; i < dadosVencedores.length; i++) {
+      for (let j = i + 1; j < dadosVencedores.length; j++) {
+        if (dadosVencedores[i].posicao === dadosVencedores[j].posicao) {
           return null
         }
       }

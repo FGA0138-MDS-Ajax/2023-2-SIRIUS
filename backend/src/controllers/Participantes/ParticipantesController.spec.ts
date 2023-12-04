@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { ParticipantesController } from './ParticipantesController'
 import { prismaMock } from '../../../singleton'
-import { IPlayerDataProps } from '../../types/types'
+import { EnumRodada, EnumVencedorPosicao, IPlayerDataProps } from '../../types/types'
 
 
 describe('Testes unitários para Controle de Dados na Tabela Participantes', () => {
@@ -22,7 +22,19 @@ describe('Testes unitários para Controle de Dados na Tabela Participantes', () 
   describe('create', () => {
 
     it('should return null if "data" is invalid', async () => {
+
       const createdparticipantesData: IPlayerDataProps[] = []
+
+      jest.spyOn(prismaMock.participante, 'createMany').mockResolvedValueOnce({
+        data: [{
+          id: '1',
+          teamName: '1',
+          inGameName: '1',
+          checkedInAt: '1',
+          discordID: '1',
+          email: '1',
+        }]
+      } as any);
 
       const newParticipantesData = await participantesController.create(createdparticipantesData)
 
@@ -30,6 +42,30 @@ describe('Testes unitários para Controle de Dados na Tabela Participantes', () 
     })
 
     it('should return "createdParticipantes" if create was a success', async () => {
+
+      const participantetorneio =
+      {
+        data: [
+          {
+            checkedInAt: 'string',
+            teamName: 'string',
+            inGameName: 'string',
+            id: 'string',
+            discordID: 'string',
+            email: 'string',
+          },
+          {
+            checkedInAt: 'string1',
+            teamName: 'string1',
+            inGameName: 'string1',
+            id: 'string1',
+            discordID: 'string1',
+            email: 'string1',
+          },
+
+        ],
+        "skipDuplicates": true,
+      };
 
       const createdparticipantesData: IPlayerDataProps[] = [
         {
@@ -50,25 +86,19 @@ describe('Testes unitários para Controle de Dados na Tabela Participantes', () 
         },
       ]
 
+      jest.spyOn(prismaMock.participante, 'createMany').mockResolvedValueOnce(
+        {
+          count: 2
+        });
 
-      jest.spyOn(prismaMock.participante, 'createMany').mockResolvedValueOnce({
-        count: 2,
-      })
+      await participantesController.create(createdparticipantesData)
 
-
-      const createdParticipantes = await participantesController.create(createdparticipantesData)
-
-      expect(createdParticipantes).toEqual({ "count": 2 });
+      expect(prismaMock.participante.createMany).toHaveBeenCalledWith({ data: createdparticipantesData, skipDuplicates: true })
     })
 
   })
 
-
-
-
-  describe('searchDeParticipante', () => {
-
-
+  describe('searchByInGameName', () => {
 
     it('should return null if "searchByInGameName" returns null', async () => {
       const newParticipante: IPlayerDataProps[] = [{
@@ -130,9 +160,9 @@ describe('Testes unitários para Controle de Dados na Tabela Participantes', () 
     /* Função Buscando sem parâmetros
     it('should return 400 if "findMany" returns false', async () => {
         jest.spyOn(prismaMock.participanteEmGrupo, 'findMany').mockResolvedValueOnce([])
-
+   
         await participanteEmGrupoController.getParticipantesEmGrupo(req, res)
-
+   
         expect(res.status).toHaveBeenCalledWith(400)
         expect(res.send).toHaveBeenCalledWith('Nenhum participante encontrado!')
     })
@@ -151,6 +181,58 @@ describe('Testes unitários para Controle de Dados na Tabela Participantes', () 
       await participantesController.getParticipantes(req, res)
 
       expect(res.status).toHaveBeenCalledWith(200)
+    })
+
+  })
+
+  describe('searchByID', () => {
+
+    it('should return null if "searchByID" returns null', async () => {
+      const newParticipante: IPlayerDataProps[] = [{
+        teamName: 'string',
+        inGameName: 'string',
+        checkedInAt: 'string',
+        id: 'string',
+        discordID: 'string',
+        email: 'string',
+      }]
+
+      jest.spyOn(prismaMock.participante, 'findUnique').mockResolvedValueOnce(null)
+
+      const participante = await participantesController.searchByID('string')
+
+      expect(participante).toBeNull()
+    })
+
+    it('should return "participante" if "findUnique" returns true', async () => {
+      const newParticipante: IPlayerDataProps[] = [{
+        teamName: 'string',
+        inGameName: 'string',
+        checkedInAt: 'string',
+        id: 'string',
+        discordID: 'string',
+        email: 'string',
+      }]
+
+      jest.spyOn(prismaMock.participante, 'findUnique').mockResolvedValueOnce({
+        id: '1',
+        teamName: '1',
+        inGameName: '1',
+        checkedInAt: '1',
+        discordID: '1',
+        email: '1',
+      })
+
+      const participante = await participantesController.searchByID('1')
+
+      expect(participante).toEqual({
+        id: '1',
+        teamName: '1',
+        inGameName: '1',
+        checkedInAt: '1',
+        discordID: '1',
+        email: '1',
+      })
     })
 
   })

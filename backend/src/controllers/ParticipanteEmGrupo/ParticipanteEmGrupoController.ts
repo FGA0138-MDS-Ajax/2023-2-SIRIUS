@@ -58,7 +58,7 @@ export class ParticipanteEmGrupoController {
       }
 
       const grupoID = grupos[0].grupoID
- 
+
       const participantesNoGrupo = (await prisma.participanteEmGrupo.findMany({
         where: {
           grupoID: grupoID
@@ -70,7 +70,7 @@ export class ParticipanteEmGrupoController {
         participantesNoGrupoData.push(participanteData?.inGameName)
       }
       return (participantesNoGrupoData)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter grupos de participantes.')
       return null
     }
@@ -87,7 +87,7 @@ export class ParticipanteEmGrupoController {
 
       return res.status(200).json(participantesEmGrupo)
     }
-    catch(e) {
+    catch (e) {
       const msgErro = 'Erro ao obter participantes em grupo'
       console.log(msgErro)
       return res.status(500).send(msgErro)

@@ -1,6 +1,11 @@
 import { Request, Response } from 'express'
 import { TorneioController } from './TorneioController'
 import { prismaMock } from '../../../singleton'
+import { EnumRodada, IPlayerDataProps, IPlayerEmGrupoDataProps } from '../../types/types'
+import { RodadaController } from '../Rodadas/RodadaController'
+import { GrupoController } from '../Grupos/GrupoController'
+import { ParticipantesController } from '../Participantes/ParticipantesController'
+import { ParticipanteEmGrupoController } from '../ParticipanteEmGrupo/ParticipanteEmGrupoController'
 
 describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
   let torneioController: TorneioController
@@ -19,44 +24,157 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
 
   describe('create', () => {
 
+    //Validar no Controller se o nome é invalido
     it('should return null if "nome" is invalid', async () => {
-      const newTorneio = ''
+      const nome = ''
 
-      const createtorneio = await torneioController.create(newTorneio)
+      const torneio = await torneioController.create(nome, [])
 
-      expect(createtorneio).toBeNull()
+      expect(torneio).toBeNull()
     })
 
+    it('should return null if "create" returns false', async () => {
+      const nome = 'Teste'
 
-    it('should return null if "findUnique" returns true', async () => {
-      const newTorneio = 'Teste'
-
-      jest.spyOn(prismaMock.torneio, 'findUnique').mockResolvedValueOnce({
-        id: '1',
-        nome: newTorneio
+      jest.spyOn(prismaMock.torneio, 'create').mockResolvedValueOnce({
+        id: '',
+        nome: ''
       })
 
-      const createdTorneio = await torneioController.create(newTorneio)
+      const torneio = await torneioController.create(nome, [])
 
-      expect(createdTorneio).toBeNull()
-      expect(prismaMock.torneio.findUnique).toHaveBeenCalledWith({ where: { nome: newTorneio } })
+      expect(torneio).toBeNull()
+      expect(prismaMock.torneio.create).toHaveBeenCalledWith({ data: { nome } })
     })
 
-    it('should return "torneio" if create was a success', async () => {
-      const newTorneio = 'Teste'
+
+
+    it('should return "torneio" if "create" returns true', async () => {
+      const nome = 'Teste'
+      const rodada = {
+        data: {
+          numeroRodada: 'UM',
+          torneioID: '1',
+        }
+      }
+      const grupo =
+      {
+        data: {
+          rodadaID: '1'
+        },
+      }
+      {
+        data: {
+          rodadaID: '1'
+        }
+      }
+
+      const participantetorneio =
+      {
+        data: [
+          {
+            checkedInAt: 'string',
+            teamName: 'string',
+            inGameName: 'string',
+            id: 'string',
+            discordID: 'string',
+            email: 'string',
+          },
+
+        ],
+        "skipDuplicates": true
+      };
+
+      const participanteemgrupo =
+      {
+        data:
+          [
+            {
+              grupoID: '1',
+              numeroRodada: 'UM',
+              participanteID: 'string',
+              torneioID: '1',
+            }
+          ],
+        skipDuplicates: true
+      }
+
+
+
+      const playertorneio: Array<IPlayerDataProps[]> = [
+        [
+          {
+            teamName: 'string',
+            inGameName: 'string',
+            checkedInAt: 'string',
+            id: 'string',
+            discordID: 'string',
+            email: 'string',
+          },
+        ],
+        [
+          {
+            teamName: 'string2',
+            inGameName: 'string2',
+            checkedInAt: 'string2',
+            id: 'string2',
+            discordID: 'string2',
+            email: 'string2',
+          },
+        ],
+      ];
+      [
+        {
+          teamName: 'string3',
+          inGameName: 'string3',
+          checkedInAt: 'string3',
+          id: 'string3',
+          discordID: 'string3',
+          email: 'string3',
+        },
+        {
+          teamName: 'string4',
+          inGameName: 'string5',
+          checkedInAt: 'string6',
+          id: 'string7',
+          discordID: 'string8',
+          email: 'string9',
+        },
+      ]
 
       jest.spyOn(prismaMock.torneio, 'create').mockResolvedValueOnce({
         id: '1',
-        nome: newTorneio
+        nome: 'nome'
       })
 
-      await torneioController.create(newTorneio)
-
-      expect(prismaMock.torneio.create).toHaveBeenCalledWith({
-        data: { nome: newTorneio },
+      jest.spyOn(prismaMock.rodada, 'create').mockResolvedValueOnce({
+        id: '1',
+        torneioID: 'nome',
+        numeroRodada: EnumRodada.UM
       })
+
+      jest.spyOn(prismaMock.grupo, 'create').mockResolvedValue({
+        id: '1',
+        rodadaID: 'nome'
+      })
+
+      jest.spyOn(prismaMock.participante, 'createMany').mockResolvedValue({
+        count: 2,
+      })
+
+      jest.spyOn(prismaMock.participanteEmGrupo, 'createMany').mockResolvedValue({
+        count: 2,
+      })
+
+      const torneio = await torneioController.create(nome, playertorneio)
+
+      expect(torneio).not.toBeNull()
+      expect(prismaMock.torneio.create).toHaveBeenCalledWith({ data: { nome } })
+      expect(prismaMock.rodada.create).toHaveBeenCalledWith(rodada)
+      expect(prismaMock.grupo.create).toHaveBeenCalledWith(grupo)
+      expect(prismaMock.participante.createMany).toHaveBeenCalledWith(participantetorneio)
+      expect(prismaMock.participanteEmGrupo.createMany).toHaveBeenCalledWith(participanteemgrupo)
     })
-
   })
 
   describe('searchByName', () => {
@@ -77,23 +195,6 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
       const torneio = await torneioController.searchByName(nome)
 
       expect(torneio).toBeNull()
-      expect(prismaMock.torneio.findUnique).toHaveBeenCalledWith({ where: { nome } })
-    })
-
-    it('should return "torneio" if "findUnique" returns true', async () => {
-      const nome = 'Teste'
-
-      jest.spyOn(prismaMock.torneio, 'findUnique').mockResolvedValueOnce({
-        id: '1',
-        nome: nome
-      })
-
-      const torneio = await torneioController.searchByName(nome)
-
-      expect(torneio).toEqual({
-        id: '1',
-        nome: nome
-      })
       expect(prismaMock.torneio.findUnique).toHaveBeenCalledWith({ where: { nome } })
     })
 
