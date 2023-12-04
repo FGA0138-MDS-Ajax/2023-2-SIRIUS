@@ -1,15 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-storyPoint = [11,9,5,4,4]
-userStory = ['01','02','03','06','07']
-media = (11+9+5+4+4)/5
+sprints = ['01','02','03','04','05','06']
+tasks = [6, 3 , 0 , 0, 3, 8 + 5 + 4 + 4]
 
-plt.bar(storyPoint,userStory,media,color="orange")
+i = 1
+count = 0
+final = []
+for t in tasks:
+    count += t/i
+    i += 1
+    final.append(count)
 
-plt.xticks(storyPoint)
-plt.ylabel('userStory')
-plt.xlabel('storyPoint')
-plt.title('Velocity')
+print(final)
+
+plt.bar(sprints,final,color="purple")
+
+plt.xticks(sprints)
+plt.ylabel('Tasks')
+plt.xlabel('Sprints')
+plt.title('velocity')
 plt.grid(True)
 plt.show()
