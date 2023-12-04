@@ -1,0 +1,1878 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="../visao-produto-projeto/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>Declaração do escopo - Matcher - Chaveamento de torneios</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#declaracao-de-escopo-matcher" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Matcher - Chaveamento de torneios" class="md-header__button md-logo" aria-label="Matcher - Chaveamento de torneios" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Matcher - Chaveamento de torneios
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Declaração do escopo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Matcher - Chaveamento de torneios" class="md-nav__button md-logo" aria-label="Matcher - Chaveamento de torneios" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Matcher - Chaveamento de torneios
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Declaração do escopo
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Declaração do escopo
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemasistema-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema/Sistema de software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problema/Sistema de software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicao-da-equipe-de-trabalho" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definição da equipe de trabalho
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaracao-do-problema-metodologia-tecnologias-e-atividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração do problema, metodologia, tecnologias e atividades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlog do Produto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backlog do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfis-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfis de acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cenários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backlog-do-produto_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprints-previstas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprints previstas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definicao-de-readydone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definição de ready/done
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us-user-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      US - User Stories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de casos de uso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MVP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visao-produto-projeto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do produto e do projeto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documento-arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de arquitetura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de reunião
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ata-reuniao-12-set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reunião de 12 de setembro de 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metricas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Métricas ágeis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprints
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Sprints
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-1/s1-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-1/s1-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-1/s1-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-2/s2-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-2/s2-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-2/s2-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-3/s3-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-3/s3-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-3/s3-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-4/s4-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-4/s4-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-4/s4-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 5
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-5/s5-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-5/s5-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-5/s5-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 6
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-6/s6-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-6/s6-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-6/s6-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemasistema-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema/Sistema de software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problema/Sistema de software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicao-da-equipe-de-trabalho" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definição da equipe de trabalho
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaracao-do-problema-metodologia-tecnologias-e-atividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração do problema, metodologia, tecnologias e atividades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlog do Produto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backlog do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfis-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfis de acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cenários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backlog-do-produto_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprints-previstas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprints previstas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definicao-de-readydone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definição de ready/done
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us-user-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      US - User Stories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de casos de uso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      MVP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="declaracao-de-escopo-matcher">Declaração de escopo - Matcher</h1>
+<h2 id="historico-de-revisao">Histórico de Revisão</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16/10/2023</td>
+<td>0.1</td>
+<td>Criação do documento</td>
+<td>Lucas Queiroz<br>João Eduardo<br>Rodrigo Mattos</td>
+</tr>
+<tr>
+<td>23/10/2023</td>
+<td>1.0</td>
+<td>Documento para entrega</td>
+<td>Lucas Queiroz<br>Lucas Meireles<br>João Pedro<br>Rodrigo Mattos</td>
+</tr>
+<tr>
+<td>31/10/2023</td>
+<td>1.1</td>
+<td>Alteração do Banco de Dados</td>
+<td>Philipe Morais</td>
+</tr>
+</tbody>
+</table>
+<h2 id="problemasistema-de-software">Problema/Sistema de software</h2>
+<h3 id="definicao-da-equipe-de-trabalho">Definição da equipe de trabalho</h3>
+<table>
+<thead>
+<tr>
+<th>Aluno</th>
+<th>Matrícula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JOÃO EDUARDO PEREIRA RABELO</td>
+<td>180053299</td>
+</tr>
+<tr>
+<td>FABIO ALESSANDRO TORRES SANTOS</td>
+<td>200037170</td>
+</tr>
+<tr>
+<td>JOAO PEDRO DA SILVA RODRIGUES</td>
+<td>211031074</td>
+</tr>
+<tr>
+<td>LUCAS HENRIQUE LIMA DE QUEIROZ</td>
+<td>190091703</td>
+</tr>
+<tr>
+<td>LUCAS OLIVEIRA MEIRELES</td>
+<td>190016647</td>
+</tr>
+<tr>
+<td>PHILIPE BARBOSA DE MORAIS</td>
+<td>211062830</td>
+</tr>
+<tr>
+<td>RODRIGO MATTOS DE FIGUEIREDO AYRES BEZERRA</td>
+<td>180108875</td>
+</tr>
+</tbody>
+</table>
+<h3 id="declaracao-do-problema-metodologia-tecnologias-e-atividades">Declaração do problema, metodologia, tecnologias e atividades</h3>
+<p>O chaveamento de torneios de e-sports para algumas formas especiais de competição é realizado manualmente, de forma que organizadores precisam verificar longos arquivos .csv para definir os confrontos. O Matcher surge como uma oportunidade para automatizar esse processo. Além disso, ele será usado para reconhecer dados repetidos em torneios separados e para gerar relatórios de torneios.</p>
+<p>Utilizaremos, como tecnologias, React com Typescript, para o Front-end. Para o Back-end, utilizaremos o SGBD PostgreSQL, o ambiente de runtime NodeJS, também com Typescript, o ORM Prisma e o framework Express. Também usaremos o Docker para conteinerização. Git e Github serão empregados no versionamento do software. O MkDocs será usufruído para a documentação. Escolhemos essas tecnologias porque alguns membros do grupo já as conhecem.</p>
+<p>Nossa abordagem é ágil, com ciclo de vida ScrumXP. Com base no Scrum vamos utilizar dos rituais de Daily Scrum, Sprint Planning, Sprint Review e Sprint Retrospective. A duração de uma sprint é de uma semana. Além disso, vamos aproveitar as técnicas de Pair Programming, Code Review e Integração Contínua. </p>
+<p>Vamos utilizar as métricas Velocity e Throughput. Como abordagem de testes, usaremos de Testes Unitários e de Integração. Escreveremos os testes unitários ao longo da implementação de uma história de usuário.</p>
+<h2 id="backlog-do-produto">Backlog do Produto</h2>
+<h3 id="perfis-de-acesso">Perfis de acesso</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Nome do perfil</th>
+<th>Características do perfil</th>
+<th>Permissões de acesso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Supervisor</td>
+<td>Responsável por verificar e analisar todos os aspectos a todo momento da realização dos eventos. É também a pessoa capaz de acessar dados extras de recorrências de jogadores e/ou vencedores nos eventos.</td>
+<td>Acesso completo às funcionalidades da aplicação.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Administrador</td>
+<td>Será o principal indivíduo a organizar a competição, sendo responsável por indicar quais serão os jogadores e grupos de partidas, além de ser o suporte ativo durante todo o decorrer do evento para garantir que este ocorra e os jogadores estejam seguindo os procedimentos e regras.</td>
+<td>Acesso a dados dos jogadores, grupos da competição, resultados de partidas, relatório final.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Jogador</td>
+<td>Indivíduo que não possui permissões de organização, seu uso é limitado a ter o conhecimento de qual o grupo a que pertence na competição.</td>
+<td>Grupos de tabela ao qual pertence.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenarios">Cenários</h3>
+<table>
+<thead>
+<tr>
+<th>Numeração do cenário</th>
+<th>Nome do cenário</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Processamento de arquivo CSV</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Agrupamento de confrontos</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Partidas</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Persistência de dados dos jogadores</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backlog-do-produto_1">Backlog do produto</h3>
+<table>
+<thead>
+<tr>
+<th>Numeração (Cenário/Requisito)</th>
+<th>Nome do requisito</th>
+<th>Tipo de requisito</th>
+<th>Priorização do requisito</th>
+<th>Descrição sucinta do requisito</th>
+<th>User Stories associadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1-R1</td>
+<td>Importação de CSV</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>A aplicação importa um arquivo CSV.</td>
+<td>US 1</td>
+</tr>
+<tr>
+<td>C1-R2</td>
+<td>Interpretação de CSV</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>A aplicação interpreta e organiza os dados do CSV.</td>
+<td>US 1</td>
+</tr>
+<tr>
+<td>C1-R3</td>
+<td>Visualização de dados</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>A aplicação apresenta os dados organizados do CSV ao usuário</td>
+<td>US 1</td>
+</tr>
+<tr>
+<td>C2-R1</td>
+<td>Sortear as chaves</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Sorteio dos nomes de jogadores</td>
+<td>US 2</td>
+</tr>
+<tr>
+<td>C2-R2</td>
+<td>Exportação de tabela</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Exportação de uma tabela dos confrontos</td>
+<td>US 3</td>
+</tr>
+<tr>
+<td>C3-R1</td>
+<td>Confirmar presença dos jogadores</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Deverá ser possível confirmar e registrar os nomes que compareceram à partida ou não.</td>
+<td>US 4</td>
+</tr>
+<tr>
+<td>C3-R2</td>
+<td>Punir jogadores</td>
+<td>Funcional</td>
+<td>Could</td>
+<td>Deverá ser possível registrar punições em jogadores durante o evento</td>
+<td>US 5</td>
+</tr>
+<tr>
+<td>C3-R3</td>
+<td>Receber dados da partida</td>
+<td>Funcional</td>
+<td>Could</td>
+<td>Receber os dados de uma partida, após o seu fim.</td>
+<td>US 6</td>
+</tr>
+<tr>
+<td>C3-R4</td>
+<td>Busca de dados de partida</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Buscar os dados de uma partida utilizando API externa.</td>
+<td>US 6</td>
+</tr>
+<tr>
+<td>C3-R5</td>
+<td>Registro manual dos vencedores</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Registrar manualmente a posição final dos jogadores do grupo na rodada.</td>
+<td>US 6</td>
+</tr>
+<tr>
+<td>C3-R6</td>
+<td>Obtenção de vencedores de cada grupo</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>A aplicação deverá ser capaz de identificar os vencedores de cada grupo por rodada.</td>
+<td>US 6</td>
+</tr>
+<tr>
+<td>C4-R1</td>
+<td>Obtenção de vencedores de competição</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>A aplicação deverá ser capaz de repassar ao usuário o resultado final da competição.</td>
+<td>US 7</td>
+</tr>
+<tr>
+<td>C4-R2</td>
+<td>Persistir dados do torneio</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>A aplicação deverá registrar a informação dos jogadores em documento geral para frequências de participantes e vencedores.</td>
+<td>US 7 e US 8</td>
+</tr>
+<tr>
+<td>C4-R3</td>
+<td>Gerar relatório do torneio</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>A  aplicação deverá ser capaz de emitir um relatório de finalização do evento</td>
+<td>US 8</td>
+</tr>
+<tr>
+<td>C4-R4</td>
+<td>Emitir os dados de torneios de um conjunto de jogadores</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>A aplicação deve ser capaz de emitir um relatório do banco de dados de todos os eventos</td>
+<td>US 9</td>
+</tr>
+<tr>
+<td>C4-R5</td>
+<td>Armazenar dados dos jogadores</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>A aplicação armazena os dados dos jogadores recebidos via CSV no banco de dados</td>
+<td>US 9</td>
+</tr>
+<tr>
+<td>RNF1</td>
+<td>Usabilidade</td>
+<td>Não funcional</td>
+<td>Must</td>
+<td>A aplicação deverá conter as cores principais da empresa Megalodon, sendo elas Azul, Preto e Branco. A aplicação não poderá ter cores claras como composição principal de suas telas.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>RNF2</td>
+<td>Desempenho</td>
+<td>Não funcional</td>
+<td>Must</td>
+<td>A aplicação não poderá ter tempo de resposta superior a 1 minuto entre ações.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>RNF3</td>
+<td>Segurança</td>
+<td>Não funcional</td>
+<td>Must</td>
+<td>O acesso aos recursos dos sistemas deve ser limitado a cada perfil de usuário, seguindo as especificações dos perfis de acesso.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>RNF4</td>
+<td>Suportabilidade</td>
+<td>Não funcional</td>
+<td>Must</td>
+<td>O sistema deve funcionar para navegadores Google Chrome cuja versão é maior ou igual a 118.0.5993.88.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>RNF5</td>
+<td>Confiabilidade</td>
+<td>Não funcional</td>
+<td>Must</td>
+<td>O administrador deve ser capaz de identificar mensagens de erro auto-explicativas em ações que venham a falhar durante o uso da aplicação. O sistema deve manter os dados recebidos salvos para que consiga recuperá-los em caso de parada total do sistema por problemas com baixa previsibilidade, como perda de conexão.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sprints-previstas">Sprints previstas</h3>
+<table>
+<thead>
+<tr>
+<th># Sprint</th>
+<th>Descrição</th>
+<th>Objetivos</th>
+<th>Composição de itens do backlog(lista conforme tabela Backlog do produto)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Pré-requisitos para os itens da próxima sprint</td>
+<td>Gerar os itens prévios para a realização dos requisitos de C2-R1 e C2-R2</td>
+<td>C1: R1, R2 e R3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Iniciar requisitos de chaveamento</td>
+<td>Iniciar o desenvolvimento da parte com valor de negócio para o cliente do produto</td>
+<td>C2: R1 e R2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Itens para registro de resultados</td>
+<td>Completa a sequência de ações para prosseguir com o torneio.</td>
+<td>C3: R3, R5 e R6</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Itens para controle de presença</td>
+<td>Expande a quantidade de ações para realização de partidas pelo administrador para controle de jogadores no torneio.</td>
+<td>C3: R1 e R2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Resultado automatizado e vencedores</td>
+<td>Integrar o sistema à API já existente da empresa do jogo foco para identificar o resultado de partida e trazer informe dos vencedores da competição</td>
+<td>C3-R4 e C4-R1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Dados de jogadores entre torneios</td>
+<td>Os dados dos jogadores são registrados em um banco de dados persistentes para registrar frequências e vitórias de jogadores</td>
+<td>C4: R2 e R5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Relatórios de informações para uso comercial</td>
+<td>Finalizar os itens de valor de negócio para o cliente para uso externo.</td>
+<td>C4: R3 e R4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="definicao-de-readydone">Definição de ready/done</h3>
+<p>Definition of Ready: a história de usuário deve estar no formato: “Eu, como (Role), quero/desejo/necessito (verbo no infinitivo) para que (descrição do objetivo do usuário com aquela funcionalidade)". Além disso, os critérios de aceitação devem estar de acordo com as regras de negócio, e os habilitadores técnicos devem estar bem definidos.</p>
+<p>Definition of Done: a história deve ter testes unitários escritos e passar em 100% deles. Além disso, testes anteriores de histórias anteriores não podem ser quebrados. A história deve passar por integração contínua. O código novo deve passar por uma revisão por outro membro da equipe. Todo o código novo (classes, métodos, funções, variavéis novas, etc) deve estar bem documentado no próprio código.</p>
+<h3 id="us-user-stories">US - User Stories</h3>
+<p>Todas as User Stories estarão sujeitas a todos os critérios de Ready e Done descritos acima.</p>
+<table>
+<thead>
+<tr>
+<th>Identificador</th>
+<th>Descrição</th>
+<th>Técnica de elicitação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>US1</td>
+<td>Eu, como administrador, desejo enviar o CSV com os dados dos jogadores do torneio à aplicação para que possa identificar quem está presente e suas informações de cadastro.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US2</td>
+<td>Eu, como administrador, desejo realizar o sorteamento dos grupos da competição para que então os jogadores possam prosseguir com o torneio.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US3</td>
+<td>Eu, como jogador, desejo visualizar o grupo em que fui sorteado para que consiga realizar a disputa com os oponentes corretos.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US4</td>
+<td>Eu, como administrador, desejo ser capaz de registrar e identificar jogadores que não compareceram às suas partidas, assim tendo acesso à lista correta do resultado dos jogadores.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US5</td>
+<td>Eu, como administrador, desejo ser capaz de registrar punições à jogadores quando necessário para que possa manter um bom controle das regras do evento e de um ambiente esportivo com o devido respeito.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US6</td>
+<td>Eu, como administrador, desejo registrar os vencedores de cada grupo em cada rodada para que o evento possa prosseguir até sua finalização.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US7</td>
+<td>Eu, como administrador, desejo receber os vencedores da competição para que possa identificá-los e registrar sua conquista aos demais jogadores via canal de comunicação externo.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US8</td>
+<td>Eu, como administrador, desejo receber os dados necessários para realizar o relatório ao final do evento para que os vencedores possam receber suas premiações.</td>
+<td>Brainstorm</td>
+</tr>
+<tr>
+<td>US9</td>
+<td>Eu, como supervisor, desejo acessar as informações de frequência de participação e vitórias de um ou mais jogadores quando analisados no decorrer de diversos torneios e/ou tempo específico para que possa ter esses dados.</td>
+<td>Brainstorm</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diagrama-de-casos-de-uso">Diagrama de casos de uso</h2>
+<p><img alt="Diagrama de casos de uso" src="../casos-uso.jpeg" /></p>
+<h2 id="mvp">MVP</h2>
+<p>Para o MVP, o cliente, juntamente com os desenvolvedores, chegou em um consenso para serem trabalhadas as U.S.s de numerações 1, 2, 3, 6, 7. Estas são as histórias que delimitam a maior necessidade do cliente no momento e trarão retorno mais rápido e viável ao cliente quando se trata de valor de negócio. As histórias 4 e 5 são itens adicionais que o mesmo já realiza de modo externo e que não necessitam de desenvolvimento rápido ou com urgência, pois o valor de negócio é menor e mais voltado ao controle interno da qualidade do torneio. As histórias 8 e 9 são relacionadas a itens dos torneios, mas também itens extras para uso do cliente em reuniões externas, análise de dados e desempenho de sua empresa, não necessariamente ligado à execução do torneio em si, que é o foco do produto a ser desenvolvido.
+ Foi definido com o cliente que no caso de o desenvolvimento não conseguir abranger os itens externos ao MVP, que eles seriam desenvolvidos durante a primeira atualização do produto para potencial integração a uma aplicação externa.</p>
+<h2 id="referencias">Referências</h2>
+<p>SCHWABER, Ken; SUTHERLAND, Jeff. <strong>Guia do Scrum:</strong> as regras do jogo. 2ª ed. Rio de Janeiro: Elsevier, 2020.</p>
+<p>BECK, Kent. <strong>Programação extrema (xp) explicada</strong>: acolha as mudanças. Porto Alegre: Bookman, 2004.</p>
+<p>Nimble. <strong>What is velocity in agile?</strong>. Disponível em: <a href="https://www.nimblework.com/agile/what-is-velocity/">https://www.nimblework.com/agile/what-is-velocity/.</a> Acesso em: 16 de outubro de 2023.</p>
+<p>MACKESY-BUCKLEY, Austin. <strong>The Dark Horse Metric: a case for using Throughput</strong>. Disponível em: https://medium.com/swlh/the-dark-horse-metric-a-case-for-using-throughput-c486094913a0. Acesso em: 23 de outubro de 2023.</p>
+<p>Businessmap. <strong>6 Agile Metrics that matter</strong>. Disponível em: <a href="https://businessmap.io/agile/project-management/agile-metrics#:~:text=2.-,Throughput,weekly%2C monthly%2C etc">https://businessmap.io/agile/project-management/agile-metrics#:~:text=2.-,Throughput,weekly%2C%20monthly%2C%20etc</a>. Acesso em: 16 de outubro de 2023.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+    
+  </body>
+</html>

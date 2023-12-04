@@ -1,0 +1,2162 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../escopo/">
+      
+      
+        <link rel="next" href="../documento-arquitetura/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>Visão do produto e do projeto - Matcher - Chaveamento de torneios</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#visao-do-produto-e-do-projeto-matcher" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Matcher - Chaveamento de torneios" class="md-header__button md-logo" aria-label="Matcher - Chaveamento de torneios" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Matcher - Chaveamento de torneios
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Visão do produto e do projeto
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Matcher - Chaveamento de torneios" class="md-nav__button md-logo" aria-label="Matcher - Chaveamento de torneios" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Matcher - Chaveamento de torneios
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../escopo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Declaração do escopo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Visão do produto e do projeto
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Visão do produto e do projeto
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral do Produto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visão Geral do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração de Posição do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-a-serem-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tecnologias a serem utilizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral do Projeto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visão Geral do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo de vida do projeto de desenvolvimento de software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planejamento das Fases e/ou Iterações do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matriz de Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerenciamento de Riscos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de Replanejamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processo de Desenvolvimento de Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detalhamento-de-atividades-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detalhamento de atividades do projeto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detalhamento de atividades do projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#atividade-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#licoes-aprendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lições Aprendidas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lições Aprendidas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unidade-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unidade 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unidade-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unidade 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unidade-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unidade 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências Bibliográficas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documento-arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de arquitetura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de reunião
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ata-reuniao-12-set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reunião de 12 de setembro de 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metricas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Métricas ágeis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprints
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Sprints
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-1/s1-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-1/s1-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-1/s1-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-2/s2-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-2/s2-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-2/s2-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-3/s3-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-3/s3-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-3/s3-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-4/s4-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-4/s4-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-4/s4-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 5
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-5/s5-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-5/s5-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-5/s5-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sprint 6
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-6/s6-planning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-6/s6-dailies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dailies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/sprint-6/s6-review-retrospective/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Review e retrospective
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral do Produto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visão Geral do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração de Posição do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-a-serem-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tecnologias a serem utilizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral do Projeto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visão Geral do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo de vida do projeto de desenvolvimento de software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planejamento das Fases e/ou Iterações do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matriz de Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerenciamento de Riscos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de Replanejamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processo de Desenvolvimento de Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detalhamento-de-atividades-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detalhamento de atividades do projeto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detalhamento de atividades do projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#atividade-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atividade-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#licoes-aprendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lições Aprendidas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lições Aprendidas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unidade-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unidade 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unidade-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unidade 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unidade-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unidade 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências Bibliográficas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="visao-do-produto-e-do-projeto-matcher">Visão do produto e do projeto - Matcher</h1>
+<h2 id="historico-de-revisao">Histórico de Revisão</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>03/10/2023</td>
+<td>0.1</td>
+<td>Criação do documento (apenas o esqueleto)</td>
+<td>Lucas Queiroz</td>
+</tr>
+<tr>
+<td>03/10/2023</td>
+<td>0.2</td>
+<td>Adição de tecnologias a serem utilizadas</td>
+<td>Lucas Queiroz<br>Philipe Morais</td>
+</tr>
+<tr>
+<td>03/10/2023</td>
+<td>0.3</td>
+<td>Adição de alguns dos papéis na organização do projeto</td>
+<td>Lucas Queiroz</td>
+</tr>
+<tr>
+<td>03/10/2023</td>
+<td>0.4</td>
+<td>Adição do Ciclo de vida do projeto</td>
+<td>João Eduardo P.</td>
+</tr>
+<tr>
+<td>03/10/2023</td>
+<td>0.5</td>
+<td>Adição de dados do produto</td>
+<td>Lucas Queiroz<br>Lucas Meireles</td>
+</tr>
+<tr>
+<td>03/10/2023</td>
+<td>0.6</td>
+<td>Atualização da Visão Geral do Projeto</td>
+<td>João Pedro da Silva</td>
+</tr>
+<tr>
+<td>03/10/2023</td>
+<td>1.0</td>
+<td>Revisão do documento</td>
+<td>Lucas Queiroz</td>
+</tr>
+<tr>
+<td>05/10/2023</td>
+<td>1.1</td>
+<td>Documento atualizado com o feedback do professor</td>
+<td>Lucas Queiroz</td>
+</tr>
+<tr>
+<td>06/11/2023</td>
+<td>1.2</td>
+<td>Documento atualizado com o feedback do professor</td>
+<td>Todo o grupo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="visao-geral-do-produto">Visão Geral do Produto</h2>
+<h3 id="problema">Problema</h3>
+<ul>
+<li>Contexto: Administração/manutenção de competições de esportes eletrônicos.</li>
+<li>Problema: A realização de competições de campeonatos de Teamfight Tactics (TFT), por exemplo, ainda não possui um sistema dedicado de chaveamento e manutenção visto sua diferença de estilo de partida para 8 jogadores em uma mesma sala, dos quais um número definido pelo organizador da competição irá passar à próxima rodada da mesma.</li>
+<li>Solução: automatizar o processo de chaveamento e realização dos torneios.</li>
+</ul>
+<h3 id="declaracao-de-posicao-do-produto">Declaração de Posição do Produto</h3>
+<table>
+<thead>
+<tr>
+<th>Para:</th>
+<th>Organizadores de torneios de e-sports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Necessidade:</td>
+<td>Chavear os jogadores do torneio de TFT</td>
+</tr>
+<tr>
+<td>O Matcher:</td>
+<td>é uma solução web</td>
+</tr>
+<tr>
+<td>Que:</td>
+<td>Auxilia no processo de chaveamento e realização dos torneios de TFT</td>
+</tr>
+<tr>
+<td>Ao contrário:</td>
+<td>Battlefy, Challengermode</td>
+</tr>
+<tr>
+<td>Nosso produto:</td>
+<td>Realiza o chaveamento de maneira automatizada</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OBS</strong>: Vale ressaltar que o produto é a melhoria de uma solução já existente. Além disso, é possível que o produto seja vendido à empresa cliente ou até integrado a uma empresa maior, sendo esta a Battlefy.
+Atualmente o cliente primário utiliza um chaveamento baseado em múltiplas planilhas da Google com scripts feitos à mão para acelerar e reduzir o processo manual ao máximo e evitar grandes esperas dos jogadores durante o evento da competição propriamente dita.</p>
+<h3 id="objetivos-do-produto">Objetivos do Produto</h3>
+<ul>
+<li>Automatizar o processo de chaveamento de torneios, o que inclui, mas não se limita a: chaveamento de rodadas, reconhecimento de vencedores de rodada, análise de dados cadastrados, ajuste de presença de jogadores.;</li>
+<li>Gerar relatórios de torneios (rodadas, jogadores, vencedores, etc);</li>
+<li>Reconhecer dados repetidos em torneios separados;</li>
+</ul>
+<h3 id="tecnologias-a-serem-utilizadas">Tecnologias a serem utilizadas</h3>
+<p>O principal critério para a escolha das tecnologias abaixo foi a familiaridade de alguns membros do grupo com elas. Assim, torna-se mais fácil o desenvolvimento, pois membros experientes podem ensinar os que estão aprendendo, e o número de gargalos devido ao desconhecimento técnico é reduzido. Além disso, elas são, todas, padrões de mercado, já bem testadas e consolidadas, utilizadas em vários projetos de grande escala (o facebook e o instagram, por exemplo, foram construídos utilizando React).</p>
+<ul>
+<li>Front-end: <a href="https://react.dev">React</a></li>
+<li>Back-end: <a href="https://postgresql.org/">PostgreSQL</a>, <a href="https://nodejs.org">Node</a>, <a href="https://expressjs.com">Express</a>, <a href="https://prisma.io">Prisma</a></li>
+<li>Documentação: <a href="https://https://www.mkdocs.org/">MkDocs</a></li>
+<li>Conteinerização: <a href="https://docker.com">Docker</a></li>
+</ul>
+<h2 id="visao-geral-do-projeto">Visão Geral do Projeto</h2>
+<h3 id="ciclo-de-vida-do-projeto-de-desenvolvimento-de-software">Ciclo de vida do projeto de desenvolvimento de software</h3>
+<ul>
+<li><strong>Metodologia</strong>: ágil. Isso garante contato contínuo com nossos clientes. Além disso, podemos receber feedback constante ao longo do processo de desenvolvimento.</li>
+<li><strong>Processo</strong>: SCRUM/XP. Esse processo é um híbrido entre SCRUM e XP. Para as atividades e conceitos relativos ao SCRUM, vamos nos basear no "Guia do Scrum". Para as atividades e conceitos relativos ao XP, vamos nos basear no livro "Programação extrema(xp) explicada", do autor Kent Beck. </li>
+<li><strong>Ferramentas</strong>: utilizaremos o GitHub para gerenciar alterações e submissões de código, além do MkDocs para manter a documentação do projeto atualizada. Para reuniões, encontros e afins, utilizaremos como ferramental de apoio o <a href="https://www.gather.town/">Gather Town</a> (aplicação web que promove um contexto similar a um jogo e possui ferramentas similares à um escritório online), criando um ambiente virtual mais atraente e descontraido para os membros envolvidos, além de permitir que membros possam acompanhar e interagir de modo mais casual uns com os outros.</li>
+<li><strong>Métodos</strong>: como citado acima, utilizaremos dos métodos que vem do SCRUM/XP. Ou seja, vamos utilizar de Pair Programming, Code Review, Integração Contínua, Refatoração, Jogo do Planejamento, Sprint Daily, Sprint Planning, Sprint Review, Sprint Retrospective e Refinamento de Backlog do Produto. </li>
+</ul>
+<h3 id="organizacao-do-projeto">Organização do Projeto</h3>
+<table>
+<thead>
+<tr>
+<th>Papel</th>
+<th>Atribuições</th>
+<th>Responsável</th>
+<th>Participantes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product Owner</td>
+<td>Definir e organizar o Backlog do Produto;<br>Definir e organizar o Backlog da Sprint;</td>
+<td>Lucas Meireles</td>
+<td>Lucas Meireles</td>
+</tr>
+<tr>
+<td>Desenvolvedor</td>
+<td>Escrever os códigos da aplicação;<br>Escrever códigos de testes;<br>Documentar o código da aplicação.</td>
+<td>Philipe Morais</td>
+<td>Todo o grupo</td>
+</tr>
+<tr>
+<td>Analista de Qualidade</td>
+<td>Definir padrões para a qualidade do produto;<br>Estipular o cumprimento dos tópicos definidos do produto;<br>Trabalhar na análise da consistência do código fonte do produto;</td>
+<td>---------------</td>
+<td>Todo o grupo</td>
+</tr>
+<tr>
+<td>Cliente</td>
+<td>Verificar se o que foi definido no escopo está sendo entregue;<br>Auxiliar o Product Owner a definir o escopo do produto;</td>
+<td>Lucas Meireles</td>
+<td>Lucas Meireles</td>
+</tr>
+<tr>
+<td>Scrum Master</td>
+<td>Garantir que os artefatos, rituais e princípios do Scrum sejam seguidos de acordo com o Guia do Scrum.</td>
+<td>Lucas Queiroz</td>
+<td>Lucas Queiroz</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planejamento-das-fases-eou-iteracoes-do-projeto">Planejamento das Fases e/ou Iterações do Projeto</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Produto (entrega)</th>
+<th>Data Início</th>
+<th>Data Fim</th>
+<th>Entregável(eis)</th>
+<th>Responsáveis</th>
+<th>% conclusão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pré-SCRUM/XP*</td>
+<td>Definir visão e escopo (de forma generalizada) do produto e do projeto.</td>
+<td>02/10</td>
+<td>24/10</td>
+<td>Documento de visão, documento de escopo, powerpoint e atas de reunião realizadas</td>
+<td>Todo o grupo</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>Sprint 1</td>
+<td>Definir a arquitetura do produto e  entregar US1</td>
+<td>24/10/2023</td>
+<td>31/10</td>
+<td>Documento de arquitetura, backlog da sprint, incremento, meta da sprint, US1</td>
+<td>Todo o grupo</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>Sprint 2</td>
+<td>Corrigir os documentos de visão, escopo e arquitetura, e entregar a US1**</td>
+<td>01/11</td>
+<td>07/11</td>
+<td>Documentos atualizados, US1, backlog da sprint, incremento, meta da sprint</td>
+<td>Todo o grupo</td>
+<td>60%</td>
+</tr>
+<tr>
+<td>Sprint 3</td>
+<td>Entregar US2</td>
+<td>08/11</td>
+<td>14/11</td>
+<td>US2, backlog da sprint, incremento, meta da sprint</td>
+<td>Todo o grupo</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>Sprint 4</td>
+<td>Entregar US3</td>
+<td>15/11</td>
+<td>21/11</td>
+<td>US3, backlog da sprint, incremento, meta da sprint</td>
+<td>Todo o grupo</td>
+<td>80%</td>
+</tr>
+<tr>
+<td>Sprint 5</td>
+<td>Entregar US6 e US7</td>
+<td>22/11</td>
+<td>27/11</td>
+<td>US6 e US7, backlog da sprint, incremento, meta da sprint</td>
+<td>Todo o grupo</td>
+<td>90%</td>
+</tr>
+<tr>
+<td>Sprint 6</td>
+<td>Entregar US8 e US9</td>
+<td>29/11</td>
+<td>04/11</td>
+<td>US8 e US9, backlog da sprint, incremento, meta da sprint</td>
+<td>Todo o grupo</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<p>*: não é sprint devidamente, pois nesse momento ainda não começamos a utilizar da metodologia SCRUM, muito menos dos rituais, artefatos, pilares, etc.</p>
+<p>**: não conseguimos entregar, de fato, a US1 na sprint 1.</p>
+<h3 id="matriz-de-comunicacao">Matriz de Comunicação</h3>
+<table>
+<thead>
+<tr>
+<th>Descrição</th>
+<th>Área/Envolvidos</th>
+<th>Periodicidade</th>
+<th>Produtos Gerados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprint planning</td>
+<td>Todo o grupo</td>
+<td>No início de cada sprint</td>
+<td>Backlog da sprint</td>
+</tr>
+<tr>
+<td>Daily Scrum</td>
+<td>Todo o grupo</td>
+<td>Diário</td>
+<td>Ata de reunião</td>
+</tr>
+<tr>
+<td>Sprint Review</td>
+<td>Todo o grupo</td>
+<td>Ao final de cada sprint</td>
+<td>Ata de sprint review</td>
+</tr>
+<tr>
+<td>Sprint Retrospective</td>
+<td>Todo o grupo</td>
+<td>Ao final de cada sprint</td>
+<td>Ata de sprint retrospective</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gerenciamento-de-riscos">Gerenciamento de Riscos</h3>
+<h3 id="_1"></h3>
+<table>
+<thead>
+<tr>
+<th>Riscos</th>
+<th>Grau de exposição</th>
+<th>Mitigação</th>
+<th>Plano de Contigência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trancamento de matrícula por parte de algum membro</td>
+<td>Baixo (o grupo está comprometido com a matéria)</td>
+<td>Definir de forma equilibrada as responsabilidades de cada membro</td>
+<td>Mudar as responsabilidades dos membros, a fim de suprir a ausência do membro que trancou</td>
+</tr>
+<tr>
+<td>Desentendimento entre membros do grupo</td>
+<td>Alta</td>
+<td>Cada membro deve ter, antes de mais nada, respeito pelo outro, a fim de evitar brigas desnecessárias.</td>
+<td>O grupo deve se reunir como um todo a fim de encontrar uma solução para o conflito.</td>
+</tr>
+<tr>
+<td>Problemas técnicos</td>
+<td>Médio</td>
+<td>Utilizar de tecnologias (como o docker) que evitem problemas técnicos.</td>
+<td>Buscar soluções com pessoas que já passaram e resolveram o problema.</td>
+</tr>
+<tr>
+<td>Falta de instrumento de desenvolvimento para algum membro</td>
+<td>Baixo</td>
+<td>Cada membro deve ser cuidadoso no uso e manutenção de seu computador.</td>
+<td>Utilizar os computadores da BCE.</td>
+</tr>
+<tr>
+<td>Falta de comunicação adequada entre os membros do grupo</td>
+<td>Alta</td>
+<td>Deve ser reforçada a importância dos meios definidos de comunicação, além da participação nos rituais Scrum.</td>
+<td>Realizar reunião emergencial, com o intuito de que todos entendam o andamento do projeto.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="criterios-de-replanejamento">Critérios de Replanejamento</h3>
+<ul>
+<li>Os critério de replanejamento  consistem nos problemas que obrigam os membros do grupo a replanejarem todo o projeto, e são baseados nos riscos envolvidos no projeto. Por isso um dos critérios de replanejamento são problemas de desentendimento entre os membros do grupo, que exigem que certas partes do projeto seja refeitas. Pois dependendo da gravidade das discussões internas, certos membros do grupo que anteriormente trabalhavam juntos precisam ser separados ou certas partes do produto precisam a ser refeitas. </li>
+<li>Outro critério de replanejamento é para o caso  de o grupo entender errado um requisito exigido pelo cliente e que faz com que o grupo seja obrigado a refazer o projeto ou replanejar certas etapas do projeto para cumprir os requisitos do cliente. </li>
+<li>Por fim, o último critério de replanejamento é no caso de problemas técnicos que exijam que a dinâmica do projeto deja repensada para que a mão de obra do grupo não seja afetada. </li>
+</ul>
+<h2 id="processo-de-desenvolvimento-de-software">Processo de Desenvolvimento de Software</h2>
+<p>Vamos utilizar o framework Scrum/XP. Assim, todo o nosso processo vai ser de acordo com o Guia do Scrum e com o livro "Programação extrema(xp) explicada", do autor Kent Beck. Ou seja: vamos utilizar dos rituais (sprint planning, dailies, review e retrospective) e dos artefatos (sprint backlog e product backlog) SCRUM, além dos princípios, valores e processos que fazem o XP (pair programming, code review, etc. Explicado com mais detalhes acima, na sessão "ciclo de vida do projeto de desenvolvimento de software"). </p>
+<h2 id="detalhamento-de-atividades-do-projeto">Detalhamento de atividades do projeto</h2>
+<h3 id="atividade-1">Atividade 1</h3>
+<table>
+<thead>
+<tr>
+<th>Atividade</th>
+<th>Método</th>
+<th>Ferramenta</th>
+<th>Entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codificar a aplicação</td>
+<td>Construir, a partir dos requisitos, o código da aplicação; Pair programming</td>
+<td>Editores de texto e IDEs (de acordo com preferência individual)</td>
+<td>Funcionalidade da aplicação</td>
+</tr>
+</tbody>
+</table>
+<h3 id="atividade-2">Atividade 2</h3>
+<table>
+<thead>
+<tr>
+<th>Atividade</th>
+<th>Método</th>
+<th>Ferramenta</th>
+<th>Entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Definir os requisitos do produto</td>
+<td>Construir, a partir dos objetivos do cliente, a lista de requisitos do produto</td>
+<td>Microsoft Teams (para comunicação com o cliente)</td>
+<td>Requisitos do produto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="atividade-3">Atividade 3</h3>
+<table>
+<thead>
+<tr>
+<th>Atividade</th>
+<th>Método</th>
+<th>Ferramenta</th>
+<th>Entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprint planning</td>
+<td>A partir do backlog, definir o escopo da sprint, ou seja, histórias de usuário e tasks adicionais que serão de utilidade para o projeto ou produto</td>
+<td>Product Backlog<br>Sistemas de issue do github</td>
+<td>Sprint Backlog<br>Meta da sprint</td>
+</tr>
+</tbody>
+</table>
+<h3 id="atividade-4">Atividade 4</h3>
+<table>
+<thead>
+<tr>
+<th>Atividade</th>
+<th>Método</th>
+<th>Ferramenta</th>
+<th>Entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprint Review</td>
+<td>Verificar se o trabalho realizado numa sprint atende à meta da sprint</td>
+<td>Sprint Backlog<br>Meta da sprint</td>
+<td>Parte do documento de review e retrospective</td>
+</tr>
+</tbody>
+</table>
+<h3 id="atividade-5">Atividade 5</h3>
+<table>
+<thead>
+<tr>
+<th>Atividade</th>
+<th>Método</th>
+<th>Ferramenta</th>
+<th>Entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprint Retrospective</td>
+<td>Verificar o trabalho realizado e entender o que poderíamos ter feito de melhor;<br>Metrificar o trabalho realizado e comparar com sprints anteriores</td>
+<td>Sistema de issues do github<br>Meta da Sprint<br>Dados de sprints anteriores</td>
+<td>Parte do documento de review e retrospective</td>
+</tr>
+</tbody>
+</table>
+<h3 id="atividade-6">Atividade 6</h3>
+<table>
+<thead>
+<tr>
+<th>Atividade</th>
+<th>Método</th>
+<th>Ferramenta</th>
+<th>Entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code review</td>
+<td>Revisar o trabalho (código feito) de uma task qualquer. Essa revisão é em busca de erros e melhorias.</td>
+<td>Github</td>
+<td>Código atualizado</td>
+</tr>
+</tbody>
+</table>
+<h2 id="licoes-aprendidas">Lições Aprendidas</h2>
+<h3 id="unidade-1">Unidade 1</h3>
+<p>...</p>
+<h3 id="unidade-2">Unidade 2</h3>
+<p>...</p>
+<h3 id="unidade-3">Unidade 3</h3>
+<p>...</p>
+<h2 id="referencias-bibliograficas">Referências Bibliográficas</h2>
+<p>SCHWABER, Ken; SUTHERLAND, Jeff. <strong>Guia do Scrum</strong>: as regras do jogo. 2ª ed.
+Rio de Janeiro: Elsevier, 2020.</p>
+<p>BECK, Kent. <strong>Programação extrema (xp) explicada</strong>: acolha as mudanças. Porto
+Alegre: Bookman, 2004.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+    
+  </body>
+</html>
