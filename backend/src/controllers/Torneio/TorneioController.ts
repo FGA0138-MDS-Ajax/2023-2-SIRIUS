@@ -8,59 +8,63 @@ import { ParticipanteEmGrupoController } from '../ParticipanteEmGrupo/Participan
 
 export class TorneioController {
   async create(nome: string, participantesData: Array<IPlayerDataProps[]>) {
-      try {
+    try {
 
-          const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
-
-          if (TorneioNameExists) {
-              return (null)
-          }
-
-          const newTorneio = await prisma.torneio.create({
-              data: { nome },
-          })
-
-
-          if (!newTorneio) {
-              return (null)
-          }
-
-          const rodadaController = new RodadaController()
-          const newRodada = await rodadaController.create({ torneioID: newTorneio.id, numeroRodada: EnumRodada.UM })
-          if (!newRodada) {
-              return (null)
-          }
-
-          const grupoController = new GrupoController()
-          for (let i = 0; i < participantesData.length; i++) {
-              const newGrupo = await grupoController.create(newRodada.id)
-              if (!newGrupo) {
-                  return (null)
-              }
-
-              const participantesCriado = await new ParticipantesController().create(participantesData[i])
-              if (!participantesCriado) {
-                  return (null)
-              }
-              const participantes: IPlayerEmGrupoDataProps[] = participantesData[i].map((participante) => {
-                  return ({
-                      participanteID: participante.id,
-                      numeroRodada: EnumRodada.UM,
-                      grupoID: newGrupo.id,
-                      torneioID: newTorneio.id
-                  })
-              })
-              const participantesEmGrupoCriado = await new ParticipanteEmGrupoController().create(participantes)
-              if (!participantesEmGrupoCriado) {
-                  return (null)
-              }
-          }
-
-          return (newTorneio)
-      } catch(e) {
-          console.log('Erro ao criar torneio')
-          return null
+      const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
+      console.log('passou aqui1')
+      if (TorneioNameExists) {
+        return (null)
       }
+
+      const newTorneio = await prisma.torneio.create({
+        data: { nome }
+      })
+      console.log('passou aqui2')
+
+      if (!newTorneio) {
+        return (null)
+      }
+
+      const rodadaController = new RodadaController()
+      const newRodada = await rodadaController.create({ torneioID: newTorneio.id, numeroRodada: EnumRodada.UM })
+      console.log('passou aqui3')
+      if (!newRodada) {
+        return (null)
+      }
+
+      const grupoController = new GrupoController()
+      for (let i = 0; i < participantesData.length; i++) {
+        const newGrupo = await grupoController.create(newRodada.id)
+        console.log('passou aqui4')
+        if (!newGrupo) {
+          return (null)
+        }
+
+        const participantesCriado = await new ParticipantesController().create(participantesData[i])
+        console.log('passou aqui5')
+        if (!participantesCriado) {
+          return (null)
+        }
+        const participantes: IPlayerEmGrupoDataProps[] = participantesData[i].map((participante) => {
+          return ({
+            participanteID: participante.id,
+            numeroRodada: EnumRodada.UM,
+            grupoID: newGrupo.id,
+            torneioID: newTorneio.id
+          })
+        })
+        const participantesEmGrupoCriado = await new ParticipanteEmGrupoController().create(participantes)
+        console.log('passou aqui6')
+        if (!participantesEmGrupoCriado) {
+          return (null)
+        }
+      }
+      console.log('passou aqui7')
+      return (newTorneio)
+    } catch(e) {
+      console.log('Erro ao criar torneio')
+      return null
+    }
 
   }
 
@@ -86,19 +90,19 @@ export class TorneioController {
   }
 
   async getTorneios(req: Request, res: Response) {
-      try {
+    try {
 
-          const torneios = await prisma.torneio.findMany(req.body)
+      const torneios = await prisma.torneio.findMany(req.body)
 
-          if (!torneios.length) {
-              return res.status(400).send('Nenhum torneio encontrado!')
-          }
-
-          return res.status(200).json(torneios)
-      } catch(e) {
-          console.log('Erro ao obter torneios!')
-          return res.status(500).send('Erro ao obter torneios!')
+      if (!torneios.length) {
+        return res.status(400).send('Nenhum torneio encontrado!')
       }
+
+      return res.status(200).json(torneios)
+    } catch(e) {
+      console.log('Erro ao obter torneios!')
+      return res.status(500).send('Erro ao obter torneios!')
+    }
   }
 }
 

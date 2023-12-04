@@ -10,28 +10,40 @@ export class VencedorGrupoController {
     const { grupoID, participanteID, posicao } = dadosVencedor
     try {
 
-        const grupoExiste = await new GrupoController().searchByID(grupoID)
-        if (!grupoExiste) return null
+      const grupoExiste = await new GrupoController().searchByID(grupoID)
+      if (!grupoExiste) return null
 
-            const participanteExiste = await new ParticipantesController().searchByID(participanteID)
-            if (!participanteExiste) return null
+      const participanteExiste = await new ParticipantesController().searchByID(participanteID)
+      if (!participanteExiste) return null
 
-                const newVencedorGrupo = await prisma.vencedorGrupo.create({
-                    data: { grupoID, participanteID, posicao }
-                })
+      const newVencedorGrupo = await prisma.vencedorGrupo.create({
+        data: { grupoID, participanteID, posicao }
+      })
 
-                if (!newVencedorGrupo) {
-                    return (null)
-                }
+      if (!newVencedorGrupo) {
+        return (null)
+      }
 
-                return (newVencedorGrupo)
+      return (newVencedorGrupo)
     } catch (e) {
-        console.log('Erro ao criar vencedor de grupo')
-        return null
+      console.log('Erro ao criar vencedor de grupo')
+      return null
     }
   }
 
   async createVariosVencedores(dadosVencedores: IVencedorGrupoDataProps[]) {
+    try {
+      const participantesController = new ParticipantesController()
+      for (const participante of dadosVencedores) {
+        const participanteExiste = await participantesController.searchByID(participante.participanteID)
+        if (!participanteExiste) throw new Error('Participante nao existe')
+      }
+    }
+    catch (e) {
+      console.log(e)
+      return null
+    }
+
     try {
       const createdVencedores = await prisma.vencedorGrupo.createMany({
         data: dadosVencedores,
@@ -40,25 +52,25 @@ export class VencedorGrupoController {
 
       return (createdVencedores)
     } catch (error) {
-      console.error('Erro ao definir vencedores:', error)
+      console.log('Erro ao definir vencedores:', error)
       return (null)
     }
   }
 
   async getVencedoresByGrupoID(grupoID: string) {
-      try {
+    try {
 
-          const vencedores = await prisma.vencedorGrupo.findMany({
-              where: {
-                  grupoID: grupoID
-              }
-          })
+      const vencedores = await prisma.vencedorGrupo.findMany({
+        where: {
+          grupoID: grupoID
+        }
+      })
 
-          return (vencedores)
-      } catch(e) {
-          console.log('Erro ao obter vencedores por id de grupo')
-          return null
-      }
+      return (vencedores)
+    } catch(e) {
+      console.log('Erro ao obter vencedores por id de grupo')
+      return null
+    }
   }
 }
 
