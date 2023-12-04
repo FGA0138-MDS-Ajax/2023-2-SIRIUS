@@ -35,4 +35,3 @@ Sim, a equipe teve várias dificuldades técnicas. Alguns membros tiraram tempo 
 - O PO entende que conseguiu explicar os requisitos e minar dúvidas referentes ao produto de maneira contínua.
 - Por mais que não tenha sido perfeito, ou até de acordo com nossas expectativas, a equipe entende que conseguiu fazer bem aquilo que era mais emergente, i.e., o documento de arquitetura.
 
-## Métricas

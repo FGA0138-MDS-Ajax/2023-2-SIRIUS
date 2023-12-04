@@ -28,4 +28,3 @@ Não. Explicado acima.
 - No geral, a equipe fez o melhor que podia dentro da realidade, mas o maior problema foi a falta de organização e falta de definição de tarefas (quem faz o quê?)
 - A equipe se comprometeu bem na correção dos documentos.
 
-## Métricas
