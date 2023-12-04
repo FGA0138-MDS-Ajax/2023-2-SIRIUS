@@ -1,15 +1,15 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../client'
 import { IVencedorGrupoDataProps } from '../../types/types'
 import { ParticipantesController } from '../Participantes/ParticipantesController'
 import { GrupoController } from '../Grupos/GrupoController'
-
-const prisma = new PrismaClient()
 
 export class VencedorGrupoController {
   async create(dadosVencedor: IVencedorGrupoDataProps) {
     const { grupoID, participanteID, posicao } = dadosVencedor
     const grupoExiste = await new GrupoController().searchByID(grupoID)
-    if (!grupoExiste) return null
+    if (!grupoExiste || createdParticipantes.count === 0) {
+      return null
+    }
 
     const participanteExiste = await new ParticipantesController().searchByID(participanteID)
     if (!participanteExiste) return null

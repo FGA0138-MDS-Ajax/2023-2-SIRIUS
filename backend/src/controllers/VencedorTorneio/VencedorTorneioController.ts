@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../client'
 import { IVencedorTorneioDataProps } from '../../types/types'
-
-const prisma = new PrismaClient()
 
 export class VencedorTorneioController {
 

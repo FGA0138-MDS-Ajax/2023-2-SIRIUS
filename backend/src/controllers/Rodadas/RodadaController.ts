@@ -1,10 +1,9 @@
 import { Request, Response } from 'express'
 import prisma from '../../../client'
 import { IRodadaDataProps } from '../../types/types'
-import { Request, Response } from 'express'
 
 export class RodadaController {
-  async create({torneioID, numeroRodada}: IRodadaDataProps) {
+  async create({ torneioID, numeroRodada }: IRodadaDataProps) {
 
     if (!torneioID) {
       return (null)

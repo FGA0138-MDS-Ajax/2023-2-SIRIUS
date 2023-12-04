@@ -11,6 +11,7 @@ export class TorneioController {
     console.log(nome, participantesData.length)
     const TorneioNameExists = await prisma.torneio.findUnique({ where: { nome } })
 
+    console.log('TorneioNameExists', TorneioNameExists)
     if (TorneioNameExists) {
       return (null)
     }
@@ -19,7 +20,7 @@ export class TorneioController {
       data: { nome },
     })
 
-    console.log('criou torneio',newTorneio)
+    console.log('criou torneio', newTorneio)
 
     if (!newTorneio) {
       return (null)
@@ -27,7 +28,7 @@ export class TorneioController {
 
     const rodadaController = new RodadaController()
     const newRodada = await rodadaController.create({ torneioID: newTorneio.id, numeroRodada: EnumRodada.UM })
-    console.log('criou rodada',newRodada)
+    console.log('criou rodada', newRodada)
     if (!newRodada) {
       return (null)
     }
@@ -35,13 +36,13 @@ export class TorneioController {
     const grupoController = new GrupoController()
     for (let i = 0; i < participantesData.length; i++) {
       const newGrupo = await grupoController.create(newRodada.id)
-      console.log('criou grupo',newGrupo)
+      console.log('criou grupo', newGrupo)
       if (!newGrupo) {
         return (null)
       }
 
       const participantesCriado = await new ParticipantesController().create(participantesData[i])
-      console.log('criou participantes',participantesCriado)
+      console.log('criou participantes', participantesCriado)
       if (!participantesCriado) {
         return (null)
       }
@@ -53,9 +54,9 @@ export class TorneioController {
           torneioID: newTorneio.id
         })
       })
-      console.log('criou vetor de participantes',participantes.length)
+      console.log('criou vetor de participantes', participantes.length)
       const participantesEmGrupoCriado = await new ParticipanteEmGrupoController().create(participantes)
-      console.log('criou participantes em grupo',participantesEmGrupoCriado)
+      console.log('criou participantes em grupo', participantesEmGrupoCriado)
       if (!participantesEmGrupoCriado) {
         return (null)
       }
