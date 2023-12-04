@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import prisma from '../../../client'
-import { error } from 'node:console'
 import { GrupoProps } from '../../types/types'
 
 export class GrupoController {
@@ -9,15 +8,21 @@ export class GrupoController {
     if (!rodadaID) {
       return (null)
     }
-    const newGrupo = await prisma.grupo.create({
-      data: { rodadaID },
-    })
 
-    if (!newGrupo) {
-      return (null)
+    try {
+      const newGrupo = await prisma.grupo.create({
+        data: { rodadaID },
+      })
+
+      if (!newGrupo) {
+        return (null)
+      }
+
+      return (newGrupo)
+    } catch (e) {
+      console.log('Erro ao criar grupo.')
+      return null
     }
-
-    return (newGrupo)
   }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
@@ -85,22 +90,26 @@ export class GrupoController {
       const { jogadoresPorGrupo } = this.calcularQuantidadeGrupos(+(Num_checkin))
       res.status(200).json({ jogadoresPorGrupo })
     } catch (error) {
-      res.status(400).json({ error: 'Erro ao calcular a quantidade de grupos.' })
+      res.status(500).json({ error: 'Erro ao calcular a quantidade de grupos.' })
     }
   }
 
   async getGrupos(req: Request, res: Response) {
-    const grupo = await prisma.grupo.findMany()
+      try {
+          const grupo = await prisma.grupo.findMany()
 
-    if (!grupo) {
-      return res.status(400).send('Nenhum grupo encontrado!')
-    }
+          if (!grupo) {
+              return res.status(400).send('Nenhum grupo encontrado!')
+          }
 
-    return res.status(200).json(grupo)
+          return res.status(200).json(grupo)
+      } catch(e) {
+          console.log('Erro ao obter grupos.')
+          return res.status(500).send('Erro interno do servidor.')
+      }
   }
 
   async searchByID(id: string) {
-
     try {
       const grupo = await prisma.grupo.findUnique({ where: { id } })
 

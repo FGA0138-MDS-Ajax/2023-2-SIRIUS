@@ -38,13 +38,19 @@ export class ParticipantesController {
   }
 
   async getParticipantes(req: Request, res: Response) {
-    const participantes = await prisma.participante.findMany()
+      try {
 
-    if (!participantes) {
-      return res.status(400).send('Nenhum participante encontrado!')
-    }
+          const participantes = await prisma.participante.findMany()
 
-    return res.status(200).json(participantes)
+          if (!participantes) {
+              return res.status(400).send('Nenhum participante encontrado!')
+          }
+
+          return res.status(200).json(participantes)
+      } catch(e) {
+          console.log('Erro ao obter participantes')
+          return res.status(500).send('Erro ao obter participantes')
+      }
   }
 
   async searchByID(id: string) {

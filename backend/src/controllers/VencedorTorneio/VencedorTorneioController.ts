@@ -20,13 +20,19 @@ export class VencedorTorneioController {
   }
 
   async getVencedoresByTorneioID(torneioID: string) {
-    const vencedores = await prisma.vencedorTorneio.findMany({
-      where: {
-        torneioID: torneioID
-      }
-    })
+      try {
 
-    return (vencedores)
+          const vencedores = await prisma.vencedorTorneio.findMany({
+              where: {
+                  torneioID: torneioID
+              }
+          })
+
+          return (vencedores)
+      } catch(e) {
+          console.log('Erro ao obter vencedores por id de torneio')
+          return null
+      }
   }
 }
 
