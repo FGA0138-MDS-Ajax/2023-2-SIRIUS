@@ -20,4 +20,3 @@ Não.
 Entendemos que, para melhorar a organização, devemos mudar as datas de início e fim da sprint.
 Isso implica que a próxima sprint será menor.
 
-## Métricas

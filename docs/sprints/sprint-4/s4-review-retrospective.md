@@ -23,4 +23,3 @@ Precisamos aprender a organizar melhor o tempo.
 ### O que a equipe entendeu que fez de bom e pode refazer para a próxima sprint?
 A equipe melhorou CONSIDERAVELMENTE a comunicação interna, além da assiduidade nos rituais ágeis.
 
-## Métricas
