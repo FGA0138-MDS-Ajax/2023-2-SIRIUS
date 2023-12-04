@@ -45,6 +45,20 @@ export class VencedorGrupoController {
     }
 
     try {
+      const vencedores = await this.getVencedoresByGrupoID(dadosVencedores[0].grupoID)
+      if (vencedores) {
+        for (let i = 0; i < dadosVencedores.length; i++) {
+          const vencedorExiste = vencedores.find((vencedor) => vencedor.posicao === dadosVencedores[i].posicao)
+          if (vencedorExiste) return null
+        }
+      }
+    }
+    catch (e) {
+      console.log(e)
+      return null
+    }
+
+    try {
       const createdVencedores = await prisma.vencedorGrupo.createMany({
         data: dadosVencedores,
         skipDuplicates: true,
@@ -67,7 +81,7 @@ export class VencedorGrupoController {
       })
 
       return (vencedores)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter vencedores por id de grupo')
       return null
     }
