@@ -6,13 +6,94 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum EnumVencedorPosicao {
+  PRIMEIRO
+  SEGUNDO
+  TERCEIRO
+  QUARTO
+}
+
+enum EnumRodada {
+    UM
+    DOIS
+    TRES
+    SEMIFINAL
+    FINAL
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       String     @id @default(uuid())
+  email    String  @unique
+  name     String?
   password String
+}
+
+model Torneio {
+  id                  String                @id @unique @default(uuid())
+  nome                String                @unique
+  rodada              Rodada[]
+  vencedor            VencedorTorneio[]
+  participanteEmGrupo ParticipanteEmGrupo[]
+}
+
+model Rodada {
+  id           String     @id @default(uuid())
+  torneio      Torneio    @relation(fields: [torneioID], references: [id])
+  torneioID    String
+  grupo        Grupo[]
+  numeroRodada EnumRodada
+}
+
+model Grupo {
+  id                  String                @id @default(uuid())
+  rodada              Rodada                @relation(fields: [rodadaID], references: [id], onUpdate: Cascade)
+  rodadaID            String
+  participanteEmGrupo ParticipanteEmGrupo[]
+  vencedorGrupo       VencedorGrupo[]
+}
+
+model ParticipanteEmGrupo {
+  id             String       @id @default(uuid())
+  participante   Participante @relation(fields: [participanteID], references: [id])
+  participanteID String
+  grupo          Grupo        @relation(fields: [grupoID], references: [id])
+  grupoID        String
+  torneioID      String
+  torneio        Torneio      @relation(fields: [torneioID], references: [id])
+  numeroRodada   EnumRodada
+}
+
+model Participante {
+  id                  String                @id
+  teamName            String
+  inGameName          String                @unique
+  checkedInAt         String
+  discordID           String
+  email               String
+  participanteEmGrupo ParticipanteEmGrupo[]
+  vencedorTorneio     VencedorTorneio[]
+  vencedorGrupo       VencedorGrupo[]
+}
+
+model VencedorTorneio {
+  id             String              @id @default(uuid())
+  participante   Participante        @relation(fields: [participanteID], references: [id])
+  participanteID String
+  torneio        Torneio             @relation(fields: [torneioID], references: [id])
+  torneioID      String
+  posicao        EnumVencedorPosicao
+}
+
+model VencedorGrupo {
+  id             String              @id @default(uuid())
+  participante   Participante        @relation(fields: [participanteID], references: [id])
+  participanteID String
+  grupo          Grupo               @relation(fields: [grupoID], references: [id])
+  grupoID        String
+  posicao        EnumVencedorPosicao @unique
 }

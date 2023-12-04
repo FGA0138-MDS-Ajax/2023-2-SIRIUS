@@ -32,7 +32,7 @@ export const authMiddleware: RequestHandler = async (
 
   const { password: _, ...loggedUser } = user
 
-  req.user = { ...loggedUser }
+  req.user = loggedUser
 
   next()
 }
