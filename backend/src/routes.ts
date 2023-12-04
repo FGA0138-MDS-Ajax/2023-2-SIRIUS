@@ -154,7 +154,14 @@ routes.get('/participantesEmGrupo', new ParticipanteEmGrupoController().getParti
 routes.post('/vencedores/grupo', async (req, res) => {
   const vencedorGrupoController = new VencedorGrupoController()
   const vencedoresGrupo = req.body.vencedores
-  if (!vencedoresGrupo) return res.status(400).send('Erro na requisicao.')
+  try {
+    if (!vencedoresGrupo || vencedoresGrupo.length < 4) 
+    return res.status(400).send('Erro na requisicao.')
+  }
+  catch (e) {
+    console.log(e)
+    return res.status(400).send('Erro na requisicao.')
+  }
 
   const newVencedor = await vencedorGrupoController.createVariosVencedores(vencedoresGrupo)
 
