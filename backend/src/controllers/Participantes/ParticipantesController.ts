@@ -10,6 +10,10 @@ export class ParticipantesController {
         skipDuplicates: true,
       })
 
+      if (!createdParticipantes || createdParticipantes.count === 0) {
+        return (null)
+      }
+
       return (createdParticipantes)
     } catch (error) {
       console.error('Error creating participants:', error)

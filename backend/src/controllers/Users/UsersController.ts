@@ -3,10 +3,8 @@
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../client'
 import { IUserDataProps } from '../../types/types'
-
-const prisma = new PrismaClient()
 
 export class UserController {
   async create(userData: IUserDataProps) {
@@ -14,22 +12,22 @@ export class UserController {
     const userExists = await prisma.user.findUnique({ where: { email: userData.email } })
 
     if (userExists) {
-      return (null)
+      return null
     }
 
-    const hashPassword = await bcrypt.hash(userData.password, 10)
+    const hashPassword = await bcrypt.hash(userData.password, 10);
 
     const newUser = await prisma.user.create({
       data: {
         name: userData.name,
         email: userData.email,
-        password: hashPassword
-      }
+        password: hashPassword,
+      },
     })
 
-    const { password: _, ...user } = newUser
+    const { password: _, ...user } = newUser || {}
 
-    return (user)
+    return { user, token: null }
   }
 
   async login(userData: IUserDataProps) {

@@ -10,16 +10,13 @@ export class CSVController {
   async importCSV(req: Request, res: Response) {
     try {
       const { fileContents } = req.body
-      console.log("1", fileContents)
       if (!fileContents) {
-        console.log('CSV Vazio')
         return res.status(400).send('CSV Vazio')
       }
 
       const csvContents = this.parseCSV(fileContents)
 
       if (!csvContents) {
-        console.log('CSV Inválido')
         return res.status(400).send('CSV Inválido')
       }
 
