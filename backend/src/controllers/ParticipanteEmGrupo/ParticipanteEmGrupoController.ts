@@ -8,18 +8,27 @@ export class ParticipanteEmGrupoController {
   async create(participantesEmGrupoData: IPlayerEmGrupoDataProps[]) {
     try {
 
+      console.log('participantesEmGrupoData-1', participantesEmGrupoData)
+
       if (!participantesEmGrupoData) {
         return (null)
       }
+
+      console.log('participantesEmGrupoData-2', participantesEmGrupoData)
+
 
       const createdParticipantes = await prisma.participanteEmGrupo.createMany({
         data: participantesEmGrupoData,
         skipDuplicates: true,
       })
 
+      console.log('participantesEmGrupoData-3', createdParticipantes, createdParticipantes.count)
+
       if (!createdParticipantes || createdParticipantes.count === 0) {
         return (null)
       }
+
+      console.log('participantesEmGrupoData-4', createdParticipantes)
 
       return (createdParticipantes)
 
@@ -58,7 +67,7 @@ export class ParticipanteEmGrupoController {
       }
 
       const grupoID = grupos[0].grupoID
- 
+
       const participantesNoGrupo = (await prisma.participanteEmGrupo.findMany({
         where: {
           grupoID: grupoID
@@ -70,7 +79,7 @@ export class ParticipanteEmGrupoController {
         participantesNoGrupoData.push(participanteData?.inGameName)
       }
       return (participantesNoGrupoData)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter grupos de participantes.')
       return null
     }
@@ -87,7 +96,7 @@ export class ParticipanteEmGrupoController {
 
       return res.status(200).json(participantesEmGrupo)
     }
-    catch(e) {
+    catch (e) {
       const msgErro = 'Erro ao obter participantes em grupo'
       console.log(msgErro)
       return res.status(500).send(msgErro)

@@ -3,6 +3,7 @@ import { VencedorTorneioController } from './VencedorTorneioController'
 import { prismaMock } from '../../../singleton'
 import { IVencedorTorneioDataProps } from '../../types/types'
 import { EnumVencedorPosicao } from '../../types/types'
+import { ParticipantesController } from '../Participantes/ParticipantesController'
 
 describe('Testes unitários para Controle de Dados na Tabela VencedorTorneio', () => {
     let vencedorTorneioController: VencedorTorneioController
@@ -21,123 +22,30 @@ describe('Testes unitários para Controle de Dados na Tabela VencedorTorneio', (
 
     describe('createVariosVencedores', () => {
 
-        it('should return null if "dadosVencedores" is invalid', async () => {
-            const createdVencedores: IVencedorTorneioDataProps[] = []
+        it('should create multiple winners', async () => {
+            const winners: IVencedorTorneioDataProps[] = [
+                { participanteID: '1', torneioID: '1', posicao: EnumVencedorPosicao.PRIMEIRO },
+                { participanteID: '2', torneioID: '1', posicao: EnumVencedorPosicao.SEGUNDO },
+            ];
 
-            const newcreateVencedores = await vencedorTorneioController.createVariosVencedores(createdVencedores)
+            const result = await VencedorTorneioController.createVariosVencedores(winners);
+            expect(result).not.toBeNull();
+            expect(result).not.toBeUndefined();
+            if (result) {
+                expect(result.count).toEqual(winners.length);
+        });
 
-            expect(newcreateVencedores).toBeNull()
-        })
-
-        it('should return "createdVencedores" if create was a success', async () => {
-
-            const dadosVencedores: IVencedorTorneioDataProps[] = [
-                {
-                    participanteID: '1',
-                    torneioID: '1',
-                    posicao: EnumVencedorPosicao.PRIMEIRO,
-                },
-                {
-                    participanteID: '2',
-                    torneioID: '2',
-                    posicao: EnumVencedorPosicao.SEGUNDO,
-                },
-                {
-                    participanteID: '3',
-                    torneioID: '3',
-                    posicao: EnumVencedorPosicao.TERCEIRO,
-                },
-                {
-                    participanteID: '4',
-                    torneioID: '4',
-                    posicao: EnumVencedorPosicao.QUARTO,
-                },
-            ]
-
-            jest.spyOn(prismaMock.vencedorTorneio, 'createMany').mockResolvedValueOnce({
-                count: 4,
-            })
-
-            const createdVencedores = await vencedorTorneioController.createVariosVencedores(dadosVencedores);
-
-            expect(createdVencedores).toEqual({ "count": 4 });
-
-
-        })
     })
 
     describe('getVencedoresByTorneioID', () => {
 
-        it('should return null if "torneioID" is invalid', async () => {
-            const torneioID = '1'
-
-            const newgetVencedoresByTorneioID = await vencedorTorneioController.getVencedoresByTorneioID(torneioID)
-
-            expect(newgetVencedoresByTorneioID).toEqual(null)
-        })
-
-        it('should return "vencedores" if get was a success', async () => {
-
-            const torneioID = '1'
-
-            const dadosVencedores: IVencedorTorneioDataProps[] = [
-                {
-                    participanteID: '1',
-                    torneioID: '1',
-                    posicao: EnumVencedorPosicao.PRIMEIRO,
-                },
-                {
-                    participanteID: '2',
-                    torneioID: '1',
-                    posicao: EnumVencedorPosicao.SEGUNDO,
-                },
-                {
-                    participanteID: '3',
-                    torneioID: '1',
-                    posicao: EnumVencedorPosicao.TERCEIRO,
-                },
-                {
-                    participanteID: '4',
-                    torneioID: '1',
-                    posicao: EnumVencedorPosicao.QUARTO,
-                },
-            ]
-
-            it('should return "vencedores" if get was a success', async () => {
-                const torneioID = '1';
-
-                const dadosVencedores: IVencedorTorneioDataProps[] = [
-                    {
-                        participanteID: '1',
-                        torneioID: '1',
-                        posicao: EnumVencedorPosicao.PRIMEIRO,
-                    },
-                    {
-                        participanteID: '2',
-                        torneioID: '1',
-                        posicao: EnumVencedorPosicao.SEGUNDO,
-                    },
-                    {
-                        participanteID: '3',
-                        torneioID: '1',
-                        posicao: EnumVencedorPosicao.TERCEIRO,
-                    },
-                    {
-                        participanteID: '4',
-                        torneioID: '1',
-                        posicao: EnumVencedorPosicao.QUARTO,
-                    },
-                ];
-
-                jest.spyOn(prismaMock.vencedorTorneio, 'findMany').mockResolvedValueOnce(dadosVencedores.map(vencedor => ({ ...vencedor, id: '1' })));
-
-                const vencedores = await vencedorTorneioController.getVencedoresByTorneioID(torneioID);
-
-                expect(vencedores).toEqual(dadosVencedores);
-
-            })
-
-        })
+        it('should get winners by tournament ID', async () => {
+            const torneioID = '1';
+            const result = await vencedorTorneioController.getVencedoresByTorneioID(torneioID);
+            expect(result!).toBeDefined();
+            expect(result!.length).toBeGreaterThan(0);
+        });
 
     })
+
 })

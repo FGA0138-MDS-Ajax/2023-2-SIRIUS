@@ -53,7 +53,7 @@ export class TorneioController {
           })
         })
         const participantesEmGrupoCriado = await new ParticipanteEmGrupoController().create(participantes)
-        console.log('passou aqui6')
+        console.log('passou aqui6', participantesEmGrupoCriado)
         if (!participantesEmGrupoCriado) {
           return (null)
         }

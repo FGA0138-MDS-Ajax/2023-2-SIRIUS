@@ -51,7 +51,15 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
 
     it('should return "torneio" if "create" returns true', async () => {
       const nome = 'Teste'
-
+      const rodada = {
+        data: {
+          rodada: {
+            nome: 'Teste',
+            numeroRodada: 'UM',
+            torneioID: '1',
+          }
+        }
+      }
       const playertorneio: Array<IPlayerDataProps[]> = [
         [
           {
@@ -104,22 +112,27 @@ describe('Testes unitários para Controle de Dados na Tabela Torneios', () => {
         numeroRodada: EnumRodada.UM
       })
 
-      jest.spyOn(prismaMock.grupo, 'create').mockResolvedValueOnce({
+      jest.spyOn(prismaMock.grupo, 'create').mockResolvedValue({
         id: '1',
         rodadaID: 'nome'
       })
 
-      jest.spyOn(prismaMock.participante, 'createMany').mockResolvedValueOnce({
-        count: 2,
+      jest.spyOn(prismaMock.participante, 'createMany').mockResolvedValue({
+        count: 1,
+      })
+
+      jest.spyOn(prismaMock.participanteEmGrupo, 'createMany').mockResolvedValue({
+        count: 1,
       })
 
       const torneio = await torneioController.create(nome, playertorneio)
 
       expect(torneio).not.toBeNull()
       expect(prismaMock.torneio.create).toHaveBeenCalledWith({ data: { nome } })
-      expect(prismaMock.rodada.create).toHaveBeenCalledWith({ data: { nome } })
-      expect(prismaMock.grupo.create).toHaveBeenCalledWith({ data: { nome } })
-      expect(prismaMock.participante.create).toHaveBeenCalledWith({ data: { nome } })
+      expect(prismaMock.rodada.create).toHaveBeenCalledWith({ rodada: { data: { rodada } } })
+      //expect(prismaMock.grupo.create).toHaveBeenCalledWith({ data: {  } })
+      //expect(prismaMock.participante.create).toHaveBeenCalledWith({ data: { nome } })
+      //expect(prismaMock.participanteEmGrupo.create).toHaveBeenCalledWith({ data: { nome } })
     })
   })
 

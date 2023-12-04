@@ -26,60 +26,62 @@ export class GrupoController {
   }
 
   public calcularQuantidadeGrupos(Num_checkin: number): { jogadoresPorGrupo: number[] } {
-    if (Num_checkin < 16) {
+    if (Num_checkin < 16 && Num_checkin !== 12) {
       throw new Error('Erro ao calcular a quantidade de grupos.')
     }
 
     switch (Num_checkin) {
-    case 17:
-      return { jogadoresPorGrupo: [6, 6, 5] }
-    case 18:
-      return { jogadoresPorGrupo: [6, 6, 6] }
-    case 19:
-      return { jogadoresPorGrupo: [7, 6, 6] }
-    case 20:
-      return { jogadoresPorGrupo: [7, 7, 6] }
-    case 21:
-      return { jogadoresPorGrupo: [7, 7, 7] }
-    case 25:
-      return { jogadoresPorGrupo: [7, 6, 6, 6] }
-    case 26:
-      return { jogadoresPorGrupo: [7, 7, 6, 6] }
-    case 27:
-      return { jogadoresPorGrupo: [7, 7, 7, 6] }
-    case 28:
-      return { jogadoresPorGrupo: [7, 7, 7, 7] }
-    case 33:
-      return { jogadoresPorGrupo: [7, 7, 7, 6, 6] }
-    case 34:
-      return { jogadoresPorGrupo: [7, 7, 7, 7, 6] }
-    case 35:
-      return { jogadoresPorGrupo: [7, 7, 7, 7, 7] }
-    case 41:
-      return { jogadoresPorGrupo: [7, 7, 7, 7, 6, 6] }
-    case 42:
-      return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7] }
-    case 49:
-      return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7, 7] }
-    default:
-      if (Num_checkin % 8 === 0) {
-        const quantidade = Num_checkin / 8
-        return { jogadoresPorGrupo: Array(quantidade).fill(8) }
-      } else {
-        const gruposCom7 = 8 - (Num_checkin % 8)
+      case 12:
+        return { jogadoresPorGrupo: [6, 6] }
+      case 17:
+        return { jogadoresPorGrupo: [6, 6, 5] }
+      case 18:
+        return { jogadoresPorGrupo: [6, 6, 6] }
+      case 19:
+        return { jogadoresPorGrupo: [7, 6, 6] }
+      case 20:
+        return { jogadoresPorGrupo: [7, 7, 6] }
+      case 21:
+        return { jogadoresPorGrupo: [7, 7, 7] }
+      case 25:
+        return { jogadoresPorGrupo: [7, 6, 6, 6] }
+      case 26:
+        return { jogadoresPorGrupo: [7, 7, 6, 6] }
+      case 27:
+        return { jogadoresPorGrupo: [7, 7, 7, 6] }
+      case 28:
+        return { jogadoresPorGrupo: [7, 7, 7, 7] }
+      case 33:
+        return { jogadoresPorGrupo: [7, 7, 7, 6, 6] }
+      case 34:
+        return { jogadoresPorGrupo: [7, 7, 7, 7, 6] }
+      case 35:
+        return { jogadoresPorGrupo: [7, 7, 7, 7, 7] }
+      case 41:
+        return { jogadoresPorGrupo: [7, 7, 7, 7, 6, 6] }
+      case 42:
+        return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7] }
+      case 49:
+        return { jogadoresPorGrupo: [7, 7, 7, 7, 7, 7, 7] }
+      default:
+        if (Num_checkin % 8 === 0) {
+          const quantidade = Num_checkin / 8
+          return { jogadoresPorGrupo: Array(quantidade).fill(8) }
+        } else {
+          const gruposCom7 = 8 - (Num_checkin % 8)
 
-        const gruposTotais = (Num_checkin + gruposCom7) / 8
+          const gruposTotais = (Num_checkin + gruposCom7) / 8
 
-        let gruposCom8 = gruposTotais - gruposCom7
+          let gruposCom8 = gruposTotais - gruposCom7
 
-        const jogadoresPorGrupo = Array(gruposCom7).fill(7)
+          const jogadoresPorGrupo = Array(gruposCom7).fill(7)
 
-        while (gruposCom8--) {
-          jogadoresPorGrupo.push(8)
+          while (gruposCom8--) {
+            jogadoresPorGrupo.push(8)
+          }
+
+          return { jogadoresPorGrupo }
         }
-
-        return { jogadoresPorGrupo }
-      }
     }
   }
 
@@ -103,7 +105,7 @@ export class GrupoController {
       }
 
       return res.status(200).json(grupo)
-    } catch(e) {
+    } catch (e) {
       console.log('Erro ao obter grupos.')
       return res.status(500).send('Erro interno do servidor.')
     }

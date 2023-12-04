@@ -41,6 +41,10 @@ describe('Testes unitários para Controle de Dados na Tabela Grupos', () => {
   })
 
   describe('calcularQuantidadeGrupos', () => {
+    it('should return 2 group with 6 players', async () => {
+      const result = grupoController.calcularQuantidadeGrupos(12)
+      expect(result).toEqual({ jogadoresPorGrupo: [6, 6] })
+    })
     it('should return 3 groups with 6 and 5 players each', async () => {
       const result = grupoController.calcularQuantidadeGrupos(17)
       expect(result).toEqual({ jogadoresPorGrupo: [6, 6, 5] })
