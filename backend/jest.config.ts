@@ -3,9 +3,13 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest'
+import type { Config } from 'jest'
 
 const config: Config = {
+  verbose: true,
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  clearMocks: true,
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -16,7 +20,6 @@ const config: Config = {
   // cacheDirectory: "C:\\Users\\Ph\\AppData\\Local\\Temp\\jest",
 
   // Automatically clear mock calls, instances, contexts and results before every test
-  clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
@@ -118,6 +121,7 @@ const config: Config = {
 
   // A path to a custom resolver
   // resolver: undefined,
+  // ... outras configurações
 
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,
@@ -137,7 +141,7 @@ const config: Config = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ['<rootDir>/singleton.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -157,7 +161,8 @@ const config: Config = {
   // The glob patterns Jest uses to detect test files
   testMatch: [
     '**/__tests__/**/*.[jt]s?(x)',
-    '**/?(*.)+(spec|test).[tj]s?(x)'
+    '**/?(*.)+(spec|test).[tj]s?(x)',
+    '**/*.spec.ts'
   ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped

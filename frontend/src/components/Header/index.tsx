@@ -10,10 +10,10 @@ import Logo from '../Logo'
 import MenuNavLink from '../MenuNavLink'
 
 const navLinks = [
-  { title: 'Sobre', to: '/design' },
-  { title: 'Time', to: '/branding' },
-  { title: 'Stack', to: '/development' },
-  { title: 'Contato', to: '/about' },
+  { title: 'Sobre', to: '/sobre' },
+  { title: 'Time', to: '/time' },
+  { title: 'Stack', to: '/stack' },
+  { title: 'Contato', to: '/contato' },
 ]
 
 const Header = () => {
@@ -57,7 +57,6 @@ const Header = () => {
     },
   }
 
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -99,7 +98,7 @@ const Header = () => {
           variants={reveal}
           className="mx-12 md:mx-4 md:flex text-lg items-center hidden"
         >
-          <button className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Entrar</button>
+          <Link to={'/login'} className='inline-block lg:py-3 lg:px-8 md:py-2 md:px-6 rounded-lg shadow-xl text-2xl btn-gradient text-[#C5C5C5] text-center font-caustenBd hover:scale-105 duration-300 ease-in-out'>Login</Link>
         </motion.div>
         <div
           className="cursor-pointer md:hidden text-lg mx-6 text-[#C5C5C5]"
@@ -147,7 +146,7 @@ const Header = () => {
                       </div>
                     )
                   })}
-                  <button className='mt-4 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-4 px-16 bg-[#C5C5C5] rounded-lg shadow-xl text-2xl text-[#383E4A] text-center font-caustenBd hover:scale-110 duration-300 ease-in-out'>Login</button>
+                  <Link to={'/login'} className='mt-4 inline-block lg:py-4 lg:px-12 md:py-4 md:px-12 py-4 px-16 bg-[#C5C5C5] rounded-lg shadow-xl text-2xl text-[#383E4A] text-center font-caustenBd hover:scale-110 duration-300 ease-in-out'>Login</Link>
                 </motion.div>
               </div>
             </motion.div>

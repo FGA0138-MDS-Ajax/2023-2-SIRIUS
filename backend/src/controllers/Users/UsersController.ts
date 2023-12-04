@@ -3,58 +3,79 @@
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import prisma from '../../../client'
 
 export class UserController {
   async create(req: Request, res: Response) {
-    const { name, email, password } = req.body
+    try {
 
-    const userExists = await prisma.user.findUnique({ where: { email } })
+      const { name, email, password } = req.body
 
-    if (userExists) {
-      return res.status(400).json({ error: 'Email already exists!' })
+      const userExists = await prisma.user.findUnique({ where: { email } })
+
+      if (userExists) {
+        return res.status(400).send('E-mail já existe')
+      }
+
+      const hashPassword = await bcrypt.hash(password, 10)
+
+      const newUser = await prisma.user.create({
+        data: {
+          name,
+          email,
+          password: hashPassword
+        }
+      })
+
+      const { password: _, ...user } = newUser || {}
+
+      return res.status(201).json(user)
+    } catch(e) {
+      console.log('Erro ao criar usuario!')
+      return res.status(500).send('Erro ao criar usuario')
     }
-
-    const hashPassword = await bcrypt.hash(password, 10)
-
-    const newUser = await prisma.user.create({
-      data: { name, email, password: hashPassword },
-    })
-
-    const { password: _, ...user } = newUser
-
-    return res.status(201).json(user)
   }
 
   async login(req: Request, res: Response) {
     const { email, password } = req.body
+    try {
 
-    const user = await prisma.user.findUnique({ where: { email } })
+      const user = await prisma.user.findUnique({ where: { email } })
 
-    if (!user) {
-      return res.status(400).json({ error: 'Email or password invalids' })
+      if (!user) {
+        return res.status(400).send('E-mail ou senha inválidos')
+      }
+
+      const verifyPass = await bcrypt.compare(password, user.password)
+
+      console.log(verifyPass)
+      if (!verifyPass) {
+        return res.status(400).send('E-mail ou senha inválidos')
+      }
+
+      const token = jwt.sign({ id: user.id }, process.env.JWT_PASS ?? '', {
+        expiresIn: '7d',
+      })
+
+      const { password: _, ...userLogin } = user
+
+      return res.json({
+        user: userLogin,
+        token: token,
+      })
+    } catch(e) {
+      console.log('Erro ao fazer login')
+      return res.status(500).send('Erro ao fazer login')
     }
-
-    const verifyPass = await bcrypt.compare(password, user.password)
-
-    if (!verifyPass) {
-      return res.status(400).json({ error: 'Email or password invalids' })
-    }
-
-    const token = jwt.sign({ id: user.id }, process.env.JWT_PASS ?? '', {
-      expiresIn: '1d',
-    })
-
-    const { password: _, ...userLogin } = user
-
-    return res.status(200).json({ user: userLogin, token: token })
   }
 
   async getProfile(req: Request, res: Response) {
-    const user = await prisma.user.findUnique({ where: { id: req.user.id } })
+    try {
 
-    return res.json(user)
+      return res.status(200).json(req.user)
+    } catch(e) {
+      console.log('Erro ao obter dados de usuario')
+      return res.status(500).send('Erro ao obter dados de usuario')
+    }
   }
 }

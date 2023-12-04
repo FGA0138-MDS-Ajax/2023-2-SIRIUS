@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
-import { beforeEach } from 'node:test'
-import CSVController from './CSVController'
+import { CSVController } from './CSVController'
 
 describe('Testes unitários para o CSV Controller', () => {
   let csvController: CSVController
@@ -18,7 +17,9 @@ describe('Testes unitários para o CSV Controller', () => {
   })
 
   describe('importCSV', () => {
+
     it('should return 400 if fileContents is not provided', async () => {
+      req.body = { fileContents: '' }
       await csvController.importCSV(req, res)
 
       expect(res.status).toHaveBeenCalledWith(400)
@@ -26,7 +27,7 @@ describe('Testes unitários para o CSV Controller', () => {
     })
 
     it('should return 400 if csvContents is invalid', async () => {
-      req.body = { fileContents: 'invalid csv' }
+      req.body = { fileContents: 1 }
 
       await csvController.importCSV(req, res)
 
@@ -61,7 +62,7 @@ describe('Testes unitários para o CSV Controller', () => {
       await csvController.importCSV(req, res)
 
       expect(res.status).toHaveBeenCalledWith(500)
-      expect(res.send).toHaveBeenCalledWith('Erro no Processamento do CSV: parse error')
+      expect(res.send).toHaveBeenCalledWith('Erro no Processamento do CSV')
     })
   })
 })

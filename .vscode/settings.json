@@ -1,0 +1,10 @@
+{
+    "liveshare.accessibility.accessibilityFeaturesEnabled": "auto",
+    "liveshare.allowGuestDebugControl": false,
+    "liveshare.allowGuestTaskControl": false,
+    "liveshare.diagnosticLogging": false,
+    "liveshare.diagnosticMode": false,
+    "liveshare.languages.allowGuestCommandControl": true,
+    "liveshare.notebooks.allowGuestExecuteCells": false,
+    "liveshare.showReadOnlyUsersInEditor": "whileFollowing"
+}
