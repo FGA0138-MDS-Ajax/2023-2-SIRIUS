@@ -4,7 +4,6 @@ import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import prisma from '../../../client'
-import { IUserDataProps } from '../../types/types'
 
 export class UserController {
   async create(req: Request, res: Response) {

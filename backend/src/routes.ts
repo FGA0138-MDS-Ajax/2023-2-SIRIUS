@@ -8,6 +8,7 @@ import { ParticipantesController } from './controllers/Participantes/Participant
 import { ParticipanteEmGrupoController } from './controllers/ParticipanteEmGrupo/ParticipanteEmGrupoController'
 import { VencedorGrupoController } from './controllers/VencedorGrupo/VencedorGrupoController'
 import { VencedorTorneioController } from './controllers/VencedorTorneio/VencedorTorneioController'
+import { authMiddleware } from './middlewares/authMiddleware'
 
 const routes = Router()
 
@@ -29,7 +30,7 @@ routes.post('/participantesEmGrupo/search', async (req, res) => {
 routes.post('/users/create', new UserController().create)
 routes.post('/login', new UserController().login)
 
-// routes.use(authMiddleware)
+routes.use(authMiddleware)
 
 routes.get('/profile', new UserController().getProfile)
 
